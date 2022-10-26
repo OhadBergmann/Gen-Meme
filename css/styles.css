@@ -58,13 +58,15 @@ body{
 
 ul,li{
     list-style-type: none;
+    height: 100%;
+    margin: 0;
 }
 /* header */
 
 .header-container{
     background-image: linear-gradient(-86deg, var(--cls5) 0%,var(--cls4) 100%);
 
-    border-radius: 10% / 50%;
+    border-radius: 12% / 50%;
     margin-inline: auto auto;
     height: 6vh;
     min-height: 6rem;
@@ -97,19 +99,62 @@ ul,li{
     text-transform: uppercase;
 }
 
+.header-container nav{
+    margin: 0.3vh 4vw 0.3vh 0.3vw;
+}
 
+.header-container nav ul{
+    justify-content: right;
+}
+.header-container nav li{
+    margin: auto;
+}
 
 .header-container li a{
+    height: 100%;
+    
+
     font-family: Poppins, sans-serif;
-    font-size: 4rem;
+    font-size: 1.5rem;
+    color: var(--cls7);
+    text-decoration: none;
 }
 
 
-
+/* small */
 @media (min-width: 450px)
 {
-    .header-container .logo{
+    .header-container{
+        border-radius: 7% / 50%;
+    }
+
+    .header-container >*{
+        margin: 0.3vh  0.3vh 0.3vh 5%;
+    }
+}
+
+/* medium */
+@media (min-width: 750px)
+{
+    .header-container{
+        border-radius: 9% / 50%;
+    }
+
+    .header-container >*{
+        width: 29vw;
         margin: 0.3vh  0.3vh 0.3vh 5%;
     }
     
+}
+
+/* large */
+@media (min-width: 1060px)
+{
+    .header-container{
+        border-radius: 7% / 50%;
+    }
+
+    .header-container .logo{
+        width: 21vw;
+    }
 }
