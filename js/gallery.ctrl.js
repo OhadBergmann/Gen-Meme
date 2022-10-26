@@ -1,9 +1,7 @@
 'use strict'
 
-console.log('ctrl');
-
 function onInit(){
-    setGallery()
+    setGallery();
 }
 
 function renderMeme(){
