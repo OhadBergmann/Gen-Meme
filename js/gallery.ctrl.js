@@ -18,7 +18,7 @@ function setGallery(){
     if(!images.length){
         for (let i = 1; i <= 18; i++) {
             let currId = makeId(7);
-            strHtml += `<div class="item-container"><img class="square-img" data-id="${currId}" onclick="onOpenEditor(this)"
+            strHtml += `<div class="item-container"><img class="square-img" data-id="${currId}" onclick="onImgSelect(this)"
             src="./img/${folders[0]}/${i}.jpg"= alt="item"></div>`;
     
             images[i - 1] =  { id: currId, url: `./img/${folders[0]}/${i}.jpg`, words: '' };
@@ -27,7 +27,7 @@ function setGallery(){
         createImages(images);
     } else {
         images.forEach((img)=>{
-            strHtml += `<div class="item-container"><img class="square-img" data-id="${img.id}" onclick="onOpenEditor(this)"
+            strHtml += `<div class="item-container"><img class="square-img" data-id="${img.id}" onclick="onImgSelect(this)"
             src="${img.url}"= alt="item"></div>`;
         });
     }

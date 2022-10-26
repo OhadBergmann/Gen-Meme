@@ -9,8 +9,20 @@ const IMAGES_STOREKEY = 'local-images';
 const MEMES_STOREKEY = 'local-memes';
 
 
-function getMeme(){
-    
+function createCurrMeme(id){
+    gCurrMeme = _createMeme(id);
+}
+
+function getCurrMeme(){
+    return gCurrMeme;
+}
+
+function getImagesFromId(id){
+    for (let i = 0; i < gImages.length; i++) {
+        if(gImages[i].id === id) return gImages[i];
+    }
+
+    return null;
 }
 
 function getImages(){
@@ -35,10 +47,10 @@ function _setImagesFromStorage(){
     return false;
 }
 
-function _createMeme(imgIdx){
+function _createMeme(imgId){
     return {
-        selectedImgId: imgIdx,
-        selectedLineIdx: 0,
+        imgId,
+        lineIdx: 0,
         lines: [{
             txt: '',
             size: 20,
