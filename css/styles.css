@@ -13,8 +13,13 @@
 /* TYPOGRAPHY */
 
 @font-face {
-    font-family: poppins;
-    src: url(/fonts/Poppins/Poppins-SemiBold.ttf);
+    font-family: poppins-r;
+    src: url(/fonts/Poppins/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: poppins-s;
+    src: url(/fonts/Poppins/Poppins-Medium.ttf);
 }
 
 /* basic */
@@ -68,23 +73,43 @@ ul,li{
 }
 
 .header-container .logo{
-    
-    padding: 0.7vh;
-    margin: 0.3vh  0.3vh 0.3vh 10%;
-    border-radius: 13% ;
-    background-color: var(--cls3);
+    justify-content: left;
+    padding: 0.3vw;
+    margin: 0.3vh 0.3vw 0.3vh 0.3vw;
+    width: 15vw;
+    min-width: 150px;
 }
 
 .header-container .logo img{
     height: 6vh;
-    width: 13.8vh;
-    aspect-ratio: 2.3/1;
+    width: 6vh;
+    aspect-ratio: 1/1;
     
 }
-.header-container  li a{
+
+.header-container .logo .l-txt{
+    align-self: center;
+    margin-left: 0.7rem;
+
+    font-family: Poppins-r;
+    font-size: 1.5rem;
+    color: var(--cls7);
+    text-transform: uppercase;
+}
+
+
+
+.header-container li a{
     font-family: Poppins, sans-serif;
     font-size: 4rem;
 }
 
 
 
+@media (min-width: 450px)
+{
+    .header-container .logo{
+        margin: 0.3vh  0.3vh 0.3vh 5%;
+    }
+    
+}
