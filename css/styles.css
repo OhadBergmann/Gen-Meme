@@ -10,6 +10,13 @@
     --cls7: rgba(255,255,255,1);
 }
 
+/* TYPOGRAPHY */
+
+@font-face {
+    font-family: poppins;
+    src: url(/fonts/Poppins/Poppins-SemiBold.ttf);
+}
+
 /* basic */
 
 *{
@@ -44,7 +51,9 @@ body{
     align-items: center;
 }
 
-
+ul,li{
+    list-style-type: none;
+}
 /* header */
 
 .header-container{
@@ -52,14 +61,17 @@ body{
 
     border-radius: 10% / 50%;
     margin-inline: auto auto;
-    height: 8vh;
+    height: 6vh;
+    min-height: 6rem;
     width: 90vw;
+    min-width: 320px;
 }
 
 .header-container .logo{
     
     padding: 0.7vh;
     margin: 0.3vh  0.3vh 0.3vh 10%;
+    border-radius: 13% ;
     background-color: var(--cls3);
 }
 
@@ -69,5 +81,10 @@ body{
     aspect-ratio: 2.3/1;
     
 }
+.header-container  li a{
+    font-family: Poppins, sans-serif;
+    font-size: 4rem;
+}
+
 
 
