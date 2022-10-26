@@ -9,7 +9,9 @@
     --cls6: #0c98b9;
     --cls7: #21ac91;
     --cls8: #33be6d;
-    --cls9: #ffffff;
+    --cls9: #ff0000;
+    --cls10: #ffffff;
+
 }
 
 /* TYPOGRAPHY */
@@ -89,7 +91,7 @@ ul,li{
     justify-content: left;
     padding: 0.3vw;
     margin: 0.3vh 0.3vw 0.3vh 3.3vw;
-    width: 15vw;
+    width: 50vw;
     min-width: 150px;
 }
 
@@ -104,8 +106,8 @@ ul,li{
     margin-left: 0.7rem;
 
     font-family: Poppins-r;
-    font-size: 1.5rem;
-    color: var(--cls9);
+    font-size: 1rem;
+    color: var(--cls10);
     text-transform: uppercase;
 }
 
@@ -115,25 +117,29 @@ ul,li{
 
 .header-container nav ul{
     justify-content: right;
+    padding-inline-start: 0;
 }
 .header-container nav li{
     margin: auto;
+    width: 20vw;
 }
+
 
 .header-container li a.link{
     margin-block: 1.5rem 1.5rem;
     height: 3rem;
 
+    
     text-align: center;
     font-family: Poppins, sans-serif;
-    font-size: 1.5rem;
-    color: var(--cls9);
+    font-size: 1rem;
+    color: var(--cls10);
     text-decoration: none;
     border-radius: 20% / 50%;
 }
 
 .header-container li a.link:hover{
-    background-color: var(--cls9);
+    background-color: var(--cls10);
     font-weight: 700;
     color: var(--cls7);
 }
@@ -247,10 +253,41 @@ section.meme-editor .canvas-controller{
 
 section.meme-editor .canvas-controller input{
     border-radius: 10% / 50%;
-    margin-inline: 10px 10px;
+    margin-block: 10px 10px;
+    margin-inline: 20px 20px;
     grid-column: 1 / span 5;
     grid-row: 1 / 1;
+    font-size: 2rem;
 }
+
+section.meme-editor .canvas-controller .canvas-btn{
+
+}
+
+section.meme-editor .canvas-controller .canvas-btn.up-arrow{
+    grid-column: 1 / 1;
+    grid-row: 2 / 2;
+    background-color: var(--cls6);
+}
+
+section.meme-editor .canvas-controller .canvas-btn.down-arrow{
+    grid-column: 2 / 2;
+    grid-row: 2 / 2;
+    background-color: var(--cls6);
+}
+
+section.meme-editor .canvas-controller .canvas-btn.plus{
+    grid-column: 3 / 3;
+    grid-row: 2 / 2;
+    background-color: var(--cls8);
+}
+
+section.meme-editor .canvas-controller .canvas-btn.delete{
+    grid-column: 4 / 4;
+    grid-row: 2 / 2;
+    background-color: var(--cls9);
+}
+
 
 
 section.meme-editor .editor-backgound{
@@ -271,7 +308,13 @@ section.meme-editor .editor-backgound{
     .header-container >*{
         margin: 0.3vh  0.3vh 0.3vh 5%;
     }
+
+    section.images-grid{
+        justify-content: center;
+    }
+    
 }
+
 
 /* medium */
 @media (min-width: 750px)
@@ -284,7 +327,14 @@ section.meme-editor .editor-backgound{
         width: 29vw;
         margin: 0.3vh  0.3vh 0.3vh 5%;
     }
+
+    .header-container .logo .l-txt{
+        font-size: 1.5rem;
+    }
     
+    .header-container li a.link{
+        font-size: 1.5rem;
+    }
 }
 
 /* large */
