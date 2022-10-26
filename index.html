@@ -37,20 +37,38 @@
         <div class="editor-container flex f-row">
             <canvas class="meme-canvas"></canvas>
             <div class="canvas-controller grid">
-                <input type="text" placeholder="   enter your line">
+                <input class="txt-line" type="text" placeholder="   enter your line">
                 <button class="up-arrow-btn"></button>
                 <button class="down-arrow-btn"></button>
-                <button class="plus-btn"></button>
+                <button class="add-line-btn"></button>
                 <button class="delete-btn"></button>
                 <section class="txt-editor-container grid">
-                    <button class="txt-btn increase"></button>
-                    <button class="txt-btn dencrease"></button>
-                    <button class="txt-btn align-left"></button>
-                    <button class="txt-btn align-center"></button>
-                    <button class="txt-btn align-right"></button>
-                    <button class="txt-btn font-selection"></button>
-                    <button class="txt-btn font-style"></button>
-                    <button class="txt-btn paintbrush"></button>
+                    <button class="txt-btn increase">
+                        <img src="./img/img-general/increase-icon.jpg" alt="increase">
+                    </button>
+                    <button class="txt-btn dencrease">
+                        <img src="./img/img-general/decrease-icon.jpg" alt="decrease">
+                    </button>
+                    <button class="txt-btn align-left">
+                        <img src="./img/img-general/align-left-icon.jpg" alt="align left">
+                    </button>
+                    <button class="txt-btn align-center">
+                        <img src="./img/img-general/align-center-icon.jpg" alt="align center">
+                    </button>
+                    <button class="txt-btn align-right">
+                        <img src="./img/img-general/align-right-icon.jpg" alt="align right">
+                    </button>
+                    <input class="font-selection" list="fonts-list" >
+                    <datalist id="fonts-list">
+                        <option> Poppins</option>
+                        <option> Impacted</option>
+                    </datalist>
+                    <button class="txt-btn font-style">
+                        <img src="" alt="">
+                    </button>
+                    <button class="txt-btn paintbrush">
+                        <img src="" alt="">
+                    </button>
                 </section>
                 <div class="smiley-selection flex f-row just-between">
                     <button class="smiley-btn"></button>

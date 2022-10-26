@@ -26,6 +26,11 @@
     src: url(/fonts/Poppins/Poppins-Medium.ttf);
 }
 
+@font-face {
+    font-family: impacted;
+    src: url(/fonts/Impact/impacted.ttf);
+}
+
 /* basic */
 
 *{
@@ -251,7 +256,7 @@ section.meme-editor .canvas-controller{
 }
 
 
-section.meme-editor .canvas-controller input{
+section.meme-editor .canvas-controller input.txt-line{
     border-radius: 10% / 50%;
     margin-block: 10px 10px;
     margin-inline: 20px 20px;
@@ -272,7 +277,7 @@ section.meme-editor .canvas-controller .down-arrow-btn{
     background-color: var(--cls6);
 }
 
-section.meme-editor .canvas-controller .plus-btn{
+section.meme-editor .canvas-controller .add-line-btn{
     grid-column: 3 / 3;
     grid-row: 2 / 2;
     background-color: var(--cls8);
@@ -298,9 +303,24 @@ section.meme-editor .canvas-controller .txt-editor-container{
 
 }
 
+.canvas-controller .txt-editor-container .txt-btn{
+    height: 60px;
+    width: 60px;
+    padding-inline: 0px;
+    transition: 0.3 ease-in-out;
+    border-radius: 8px;
+    box-shadow: 0px 3px 2px 0px var(--cls4);
+}
+
 .canvas-controller .txt-editor-container .txt-btn:hover{
     background-color: var(--cls5);
     cursor: pointer;
+}
+
+.canvas-controller .txt-editor-container .txt-btn img{
+    height: 50px;
+    width: 50px;
+    border-radius: 8px;
 }
 
 .canvas-controller .txt-editor-container .increase{
@@ -328,11 +348,15 @@ section.meme-editor .canvas-controller .txt-editor-container{
     grid-row: 1 / 1;
 }
 
-.canvas-controller .txt-editor-container .font-selection{
+.canvas-controller .txt-editor-container input.font-selection{
     grid-column: 1 / span 3;
     grid-row: 2 / 2;
+    font-size: 1.5rem;
 }
 
+#fonts-list > option{
+    
+}
 .canvas-controller .txt-editor-container .font-style{
     grid-column: 4 / 4;
     grid-row: 2 / 2;
