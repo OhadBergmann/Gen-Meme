@@ -1,0 +1,21 @@
+:root{
+    /*color palet */
+
+    --cls1: rgba(0,0,0,1);
+    --cls2: rgba(0,0,0,1);
+    --cls3: rgba(0,0,0,1);
+    --cls4: rgba(0,0,0,1);
+    --cls5: rgba(0,0,0,1);
+    --cls6: rgba(0,0,0,1);
+    --cls7: rgba(255,255,255,1);
+}
+
+/* basic */
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--cls1);
+}
