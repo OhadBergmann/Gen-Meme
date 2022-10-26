@@ -32,7 +32,7 @@ body{
 .f-col{
     flex-direction: column;
 }
-.space-between{
+.just-between{
     justify-content: space-between;
 }
 
