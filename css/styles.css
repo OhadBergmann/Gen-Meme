@@ -6,11 +6,15 @@
     --cls3: #22252c;
     --cls4: #383b42;
     --cls5: #bbc4d1;
-    --cls6: #0c98b9;
-    --cls7: #21ac91;
-    --cls8: #33be6d;
-    --cls9: #ff0000;
-    --cls10: #ffffff;
+    --cls6: #165c9c;
+    --cls7: #1e7cd340;
+    --cls8: #0c98b9;
+    --cls9: #21ac91;
+    --cls10: #33be6d;
+    --cls11: #8f44bb;
+    --cls12: #ff0000;
+    --cls13: #ffffff40;
+    --cls14: #ffffff;
 
 }
 
@@ -81,7 +85,7 @@ ul,li{
 /* header */
 
 .header-container{
-    background-image: linear-gradient(-86deg, var(--cls8) 0%,var(--cls6) 100%);
+    background-image: linear-gradient(-86deg, var(--cls10) 0%,var(--cls8) 100%);
     position: relative;
     border-radius: 12% / 50%;
     margin-inline: auto auto;
@@ -112,7 +116,7 @@ ul,li{
 
     font-family: Poppins-r;
     font-size: 1rem;
-    color: var(--cls10);
+    color: var(--cls14);
     text-transform: uppercase;
 }
 
@@ -138,15 +142,15 @@ ul,li{
     text-align: center;
     font-family: Poppins, sans-serif;
     font-size: 1rem;
-    color: var(--cls10);
+    color: var(--cls14);
     text-decoration: none;
     border-radius: 20% / 50%;
 }
 
 .header-container li a.link:hover{
-    background-color: var(--cls10);
+    background-color: var(--cls14);
     font-weight: 700;
-    color: var(--cls7);
+    color: var(--cls9);
 }
 
 .header-container a.link.gallery{
@@ -265,34 +269,45 @@ section.meme-editor .canvas-controller input.txt-line{
     font-size: 2rem;
 }
 
+section.meme-editor .canvas-controller .line-btn{
+    box-shadow: 0px 5px 3px var(--cls2), inset 3px 5px 0 var(--cls13);
+    border-radius: 17%;
+    margin-inline: 0.3vw ;
+    margin-block: 0.2vh ;
+    transition: 0.1s ease-in-out;
+}
+section.meme-editor .canvas-controller .line-btn:hover{
+    box-shadow: 3px 3px 0 var(--cls13), inset 0 3px 3px var(--cls2);
+}
+
 section.meme-editor .canvas-controller .up-arrow-btn{
     grid-column: 1 / 1;
     grid-row: 2 / 2;
-    background-color: var(--cls6);
+    background-color: var(--cls8);
 }
 
 section.meme-editor .canvas-controller .down-arrow-btn{
     grid-column: 2 / 2;
     grid-row: 2 / 2;
-    background-color: var(--cls6);
+    background-color: var(--cls8);
 }
 
 section.meme-editor .canvas-controller .add-line-btn{
     grid-column: 3 / 3;
     grid-row: 2 / 2;
-    background-color: var(--cls8);
+    background-color: var(--cls10);
 }
 
 section.meme-editor .canvas-controller .delete-btn{
     grid-column: 4 / 4;
     grid-row: 2 / 2;
-    background-color: var(--cls9);
+    background-color: var(--cls12);
 }
 
 section.meme-editor .canvas-controller .txt-editor-container{
     grid-column: 1 / 6;
     grid-row: 3 / 5;
-    background-color: var(--cls6);
+    background-color: var(--cls8);
 
     grid-template-columns: repeat(5, minmax(20px, 1fr));
     grid-template-rows: repeat(2, minmax(20px, 1fr));
@@ -354,9 +369,6 @@ section.meme-editor .canvas-controller .txt-editor-container{
     font-size: 1.5rem;
 }
 
-#fonts-list > option{
-    
-}
 .canvas-controller .txt-editor-container .font-style{
     grid-column: 4 / 4;
     grid-row: 2 / 2;
@@ -367,6 +379,79 @@ section.meme-editor .canvas-controller .txt-editor-container{
     grid-row: 2 / 2;
 }
 
+.canvas-controller .smiley-selection{
+    grid-column: 1 / 6;
+    grid-row: 5 / 7;
+
+    height: 7vh;
+    margin: auto;
+    padding-inline: 1vw 1vw;
+    background-color: var(--cls14);
+    border-radius: 10% / 50%;
+}
+.canvas-controller .smiley-selection >*{
+    display: block;
+    background-color: var(--cls14);
+    border: none;
+    cursor: pointer;
+}
+
+.canvas-controller .smiley-selection .smiley-item{
+    height: 70px;
+    width: 70px;
+    margin-block: auto;
+    margin-inline: 0.2vw 0.2vw;
+}
+
+
+
+.canvas-controller .smiley-selection .next-smiley{
+    height: 20px;
+    width: 20px;
+    align-self: center;
+}
+
+.canvas-controller .smiley-selection .prev-smiley{
+    height: 20px;
+    width: 20px;
+    align-self: center;
+    
+}
+
+.canvas-controller .s-s-btn{
+    font-size: 1.2rem;
+    border-radius: 10% / 30%;
+    border: none;
+
+    font-family: poppins-r;
+    color: var(--cls14);
+    box-shadow: 1px 6px 0 var(--cls2), inset 0 5px 0 var(--cls13);
+    transition: 0.1s ease-in-out;
+}
+
+.canvas-controller .s-s-btn:hover{
+    box-shadow: 0px 6px 0 var(--cls13), inset 0 6px 0 var(--cls2);
+}
+
+.canvas-controller .share-btn{
+    grid-column: 1 / 3;
+    grid-row: 7 / 7;
+    transform: translate(20%);
+
+    margin-block-end: 2vh;
+    background-color: var(--cls6);
+
+}
+
+.canvas-controller .save-btn{
+    grid-column: 4 / 6;
+    grid-row: 7 / 7;
+    transform: translate(-20%);
+
+    margin-block-end: 2vh;
+    background-color: var(--cls11);
+   
+}
 
 section.meme-editor .editor-backgound{
     background-color: var(--cls2);
