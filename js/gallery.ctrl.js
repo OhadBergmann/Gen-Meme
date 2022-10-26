@@ -10,13 +10,26 @@ function renderMeme(){
 
 
 function setGallery(){
-    var strHtml = '';
+    let strHtml = '';
     const folders = ['img-1x1'];
     const ElgalleryContainer = document.querySelector('section.images-grid');
+    let images = getImages();
+
+    if(!images.length){
+        for (let i = 1; i <= 18; i++) {
+            let currId = makeId(7);
+            strHtml += `<div class="item-container"><img class="square-img" data-id="${currId}" onclick="onOpenEditor(this)"
+            src="./img/${folders[0]}/${i}.jpg"= alt="item"></div>`;
     
-    for (let i = 1; i <= 18; i++) {
-        strHtml += `<div class="item-container"><img class="square-img" data-filename="${i}.png" data-folder="${folders[0]}" 
-        onclick="onOpenEditor(this)" src="./img/img-1x1/${i}.jpg" alt="item"></div>`;
+            images[i - 1] =  { id: currId, url: `./img/${folders[0]}/${i}.jpg`, words: '' };
+        }
+
+        createImages(images);
+    } else {
+        images.forEach((img)=>{
+            strHtml += `<div class="item-container"><img class="square-img" data-id="${img.id}" onclick="onOpenEditor(this)"
+            src="${img.url}"= alt="item"></div>`;
+        });
     }
     
     ElgalleryContainer.innerHTML = strHtml;

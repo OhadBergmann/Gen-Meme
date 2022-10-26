@@ -2,11 +2,32 @@
 
 var gCurrMeme;
 var gMemes = [];
+var gImages = [];
 var gKeywordSearchCountMap = {'funny':12,'cat':16, 'dark':2};
 
+const IMAGES_STOREKEY = 'image-array';
 
+function getImages(){
+    _setImagesFromStorage();
+    return gImages.map((img)=>{return img});
+}
 
+function createImages(images){
+    gImages = images.map((img)=>{
+        const {id,url,words} = img;
+        return _createImage(id,url,words);
+    });
 
+    saveToStorage(IMAGES_STOREKEY, gImages);
+}
+
+function _setImagesFromStorage(){
+    if(loadFromStorage(IMAGES_STOREKEY)){
+        gImages = loadFromStorage(IMAGES_STOREKEY);
+        return true;
+    }
+    return false;
+}
 
 
 
@@ -28,8 +49,8 @@ function _createMeme(imgIdx){
     ]};   
 }
 
-function _createImage(imgIdx, url, keywords){
-    return {id: imgIdx, url, keywords};
+function _createImage(id, url, keywords){
+    return {id, url, keywords};
 }
 
 

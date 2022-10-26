@@ -5,8 +5,7 @@ function renderGallery(){
 }
 
 function onOpenEditor(el){
-    const imgSrc = `./img/${el.dataset.folder}/${el.dataset.filename}`;
-    
+    const imgSrc = el.dataset.id;
 }
 
 
