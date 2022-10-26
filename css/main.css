@@ -2,11 +2,11 @@
     /*color palet */
 
     --cls1: rgba(0,0,0,1);
-    --cls2: rgba(0,0,0,1);
-    --cls3: rgba(0,0,0,1);
-    --cls4: rgba(0,0,0,1);
-    --cls5: rgba(0,0,0,1);
-    --cls6: rgba(0,0,0,1);
+    --cls2: #22252c;
+    --cls3: #383b42;
+    --cls4: #0c98b9;
+    --cls5: #33be6d;
+    --cls6: rgba(255,255,255,1);
     --cls7: rgba(255,255,255,1);
 }
 
@@ -19,3 +19,55 @@
 body{
     background-color: var(--cls1);
 }
+
+
+.flex{
+    display: flex;
+}
+
+.f-row{
+    flex-direction: row;
+}
+
+.f-col{
+    flex-direction: column;
+}
+.space-between{
+    justify-content: space-between;
+}
+
+.cent-just-content{
+    justify-content: center;
+}
+
+.cent-alig-item{
+    align-items: center;
+}
+
+
+/* header */
+
+.header-container{
+    background-image: linear-gradient(-86deg, var(--cls5) 0%,var(--cls4) 100%);
+
+    border-radius: 10% / 50%;
+    margin-inline: auto auto;
+    height: 8vh;
+    width: 90vw;
+}
+
+.header-container .logo{
+    
+    padding: 0.7vh;
+    margin: 0.3vh  0.3vh 0.3vh 10%;
+    background-color: var(--cls3);
+}
+
+.header-container .logo img{
+    height: 6vh;
+    width: 13.8vh;
+    aspect-ratio: 2.3/1;
+    
+}
+
+
