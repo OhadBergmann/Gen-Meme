@@ -71,13 +71,14 @@ ul,li{
 
 .header-container{
     background-image: linear-gradient(-86deg, var(--cls8) 0%,var(--cls6) 100%);
-
+    position: relative;
     border-radius: 12% / 50%;
     margin-inline: auto auto;
     height: 6vh;
     min-height: 6rem;
     width: 90vw;
     min-width: 320px;
+    z-index: 40;
 }
 
 .header-container .logo{
@@ -141,7 +142,10 @@ ul,li{
     width: 6rem;
 }
 
+
 /* search bar */
+
+
 section.search-bar{
     height: 7vh;
     width: 94vw;
@@ -149,6 +153,8 @@ section.search-bar{
 }
 
 /* gallery */
+
+
 main.gallery-container {
     background-color: var(--cls4);
     height: 100vh;
@@ -210,14 +216,31 @@ section.meme-editor .editor-container{
     min-width: 300px;
     box-shadow: 0px 0px 2px 3px var(--cls5);
 
+    padding-inline: 2rem 2rem;
+    padding-block: 2rem 2rem;
 }
 
+section.meme-editor .editor-container > *{
+    background-color: var(--cls4);
+    width: calc(50% - 0.5rem);
+    border-radius: 0.75rem;
+}
+
+section.meme-editor canvas.meme-canvas{
+    margin-inline-end: 1rem;
+}
+
+section.meme-editor .canvas-controller{
+    margin-inline-start: 1rem;
+}
 
 section.meme-editor .editor-backgound{
     background-color: var(--cls2);
     width: 100%;
     height: 100%;
 }
+
+
 
 /* small */
 @media (min-width: 450px)

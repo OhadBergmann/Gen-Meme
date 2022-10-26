@@ -5,7 +5,7 @@ function renderGallery(){
 }
 
 function onOpenEditor(el){
-    const imgSrc = el.dataset.id;
+    onToggleEditor();
 }
 
 

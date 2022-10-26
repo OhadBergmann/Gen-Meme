@@ -5,7 +5,13 @@ var gMemes = [];
 var gImages = [];
 var gKeywordSearchCountMap = {'funny':12,'cat':16, 'dark':2};
 
-const IMAGES_STOREKEY = 'image-array';
+const IMAGES_STOREKEY = 'local-images';
+const MEMES_STOREKEY = 'local-memes';
+
+
+function getMeme(){
+    
+}
 
 function getImages(){
     _setImagesFromStorage();
@@ -28,8 +34,6 @@ function _setImagesFromStorage(){
     }
     return false;
 }
-
-
 
 function _createMeme(imgIdx){
     return {
