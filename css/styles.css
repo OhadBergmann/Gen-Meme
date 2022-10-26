@@ -260,34 +260,88 @@ section.meme-editor .canvas-controller input{
     font-size: 2rem;
 }
 
-section.meme-editor .canvas-controller .canvas-btn{
-
-}
-
-section.meme-editor .canvas-controller .canvas-btn.up-arrow{
+section.meme-editor .canvas-controller .up-arrow-btn{
     grid-column: 1 / 1;
     grid-row: 2 / 2;
     background-color: var(--cls6);
 }
 
-section.meme-editor .canvas-controller .canvas-btn.down-arrow{
+section.meme-editor .canvas-controller .down-arrow-btn{
     grid-column: 2 / 2;
     grid-row: 2 / 2;
     background-color: var(--cls6);
 }
 
-section.meme-editor .canvas-controller .canvas-btn.plus{
+section.meme-editor .canvas-controller .plus-btn{
     grid-column: 3 / 3;
     grid-row: 2 / 2;
     background-color: var(--cls8);
 }
 
-section.meme-editor .canvas-controller .canvas-btn.delete{
+section.meme-editor .canvas-controller .delete-btn{
     grid-column: 4 / 4;
     grid-row: 2 / 2;
     background-color: var(--cls9);
 }
 
+section.meme-editor .canvas-controller .txt-editor-container{
+    grid-column: 1 / 6;
+    grid-row: 3 / 5;
+    background-color: var(--cls6);
+
+    grid-template-columns: repeat(5, minmax(20px, 1fr));
+    grid-template-rows: repeat(2, minmax(20px, 1fr));
+    row-gap: 10px;
+    column-gap: 15px;
+
+    padding: 10px;
+
+}
+
+.canvas-controller .txt-editor-container .txt-btn:hover{
+    background-color: var(--cls5);
+    cursor: pointer;
+}
+
+.canvas-controller .txt-editor-container .increase{
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+}
+
+.canvas-controller .txt-editor-container .dencrease{
+    grid-column: 2 / 2;
+    grid-row: 1 / 1;
+}
+
+.canvas-controller .txt-editor-container .align-left{
+    grid-column: 3 / 3;
+    grid-row: 1 / 1;
+}
+
+.canvas-controller .txt-editor-container .align-center{
+    grid-column: 4 / 4;
+    grid-row: 1 / 1;
+}
+
+.canvas-controller .txt-editor-container .align-right{
+    grid-column: 5 / 5;
+    grid-row: 1 / 1;
+}
+
+.canvas-controller .txt-editor-container .font-selection{
+    grid-column: 1 / span 3;
+    grid-row: 2 / 2;
+}
+
+.canvas-controller .txt-editor-container .font-style{
+    grid-column: 4 / 4;
+    grid-row: 2 / 2;
+}
+
+.canvas-controller .txt-editor-container .paintbrush{
+    grid-column: 5 / 5;
+    grid-row: 2 / 2;
+}
 
 
 section.meme-editor .editor-backgound{
