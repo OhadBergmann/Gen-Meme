@@ -10,7 +10,6 @@ function onImgSelect(el){
     onToggleEditor();
     _resizeCanvas();
     _setEventListener();
-    
     renderMeme()
 }
 
@@ -33,6 +32,7 @@ function onUp(){
 
 function drawImgFromMeme(meme) {
     const image = getImagesFromId(meme.imgId);
+    gElCanvas.setAttribute('data-imgid',`${meme.imgId}`);
     const img = new Image();
     console.log(image);
     img.src = image.url;
@@ -57,7 +57,11 @@ function _setEventListener(){
 
 function _resizeCanvas() {
     const elCanvasContainer = document.querySelector('section.meme-editor .editor-container');
-    gElCanvas.setAttribute('width',`${elCanvasContainer.offsetWidth}`);
-    gElCanvas.setAttribute('height', `${elCanvasContainer.offsetHeight}`);
+    //TODO : add different clal for other sizes then 500X500
+    let CurrHieght = elCanvasContainer.offsetHeight;
+    let CurrWidth = (CurrHieght * 500) / 500
+    gElCanvas.setAttribute('width',`${CurrWidth}`);
+    gElCanvas.setAttribute('height', `${CurrHieght}`);
+
     renderMeme();
 }
