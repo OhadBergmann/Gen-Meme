@@ -16,7 +16,7 @@ function setGallery(){
     
     for (let i = 1; i <= 18; i++) {
         strHtml += `<div class="item-container"><img class="square-img" data-filename="${i}.png" data-folder="${folders[0]}" 
-        onclick="onGenerateNewMeme(this,)" src="./img/img-1x1/${i}.jpg" alt="item"></div>`;
+        onclick="onOpenEditor(this)" src="./img/img-1x1/${i}.jpg" alt="item"></div>`;
     }
     
     ElgalleryContainer.innerHTML = strHtml;

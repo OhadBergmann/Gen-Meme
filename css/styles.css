@@ -1,13 +1,15 @@
 :root{
     /*color palet */
 
-    --cls1: rgba(0,0,0,1);
-    --cls2: #22252c;
-    --cls3: #383b42;
-    --cls4: #0c98b9;
-    --cls5: #21ac91;
-    --cls6: #33be6d;
-    --cls7: rgba(255,255,255,1);
+    --cls1: #000000;
+    --cls2: #22252cab;
+    --cls3: #22252c;
+    --cls4: #383b42;
+    --cls5: #bbc4d1;
+    --cls6: #0c98b9;
+    --cls7: #21ac91;
+    --cls8: #33be6d;
+    --cls9: #ffffff;
 }
 
 /* TYPOGRAPHY */
@@ -33,6 +35,9 @@ body{
     overflow-x: hidden;
 }
 
+.hide{
+    display: none;
+}
 
 .flex{
     display: flex;
@@ -65,7 +70,7 @@ ul,li{
 /* header */
 
 .header-container{
-    background-image: linear-gradient(-86deg, var(--cls6) 0%,var(--cls4) 100%);
+    background-image: linear-gradient(-86deg, var(--cls8) 0%,var(--cls6) 100%);
 
     border-radius: 12% / 50%;
     margin-inline: auto auto;
@@ -87,7 +92,6 @@ ul,li{
     height: 6vh;
     width: 6vh;
     aspect-ratio: 1/1;
-    
 }
 
 .header-container .logo .l-txt{
@@ -96,7 +100,7 @@ ul,li{
 
     font-family: Poppins-r;
     font-size: 1.5rem;
-    color: var(--cls7);
+    color: var(--cls9);
     text-transform: uppercase;
 }
 
@@ -118,15 +122,15 @@ ul,li{
     text-align: center;
     font-family: Poppins, sans-serif;
     font-size: 1.5rem;
-    color: var(--cls7);
+    color: var(--cls9);
     text-decoration: none;
     border-radius: 20% / 50%;
 }
 
 .header-container li a.link:hover{
-    background-color: var(--cls7);
+    background-color: var(--cls9);
     font-weight: 700;
-    color: var(--cls5);
+    color: var(--cls7);
 }
 
 .header-container a.link.gallery{
@@ -137,10 +141,16 @@ ul,li{
     width: 6rem;
 }
 
+/* search bar */
+section.search-bar{
+    height: 7vh;
+    width: 94vw;
+    margin-inline: auto auto;
+}
 
 /* gallery */
 main.gallery-container {
-    background-color: var(--cls3);
+    background-color: var(--cls4);
     height: 100vh;
     width: 94vw;
     margin-top: 3vh;
@@ -170,6 +180,45 @@ main.gallery-container .item-container .square-img{
     max-height: 250px;
     min-height: 50px;
 }
+
+
+/* Meme Editor */
+section.meme-editor{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+
+section.meme-editor .editor-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+
+    background-color: var(--cls3);
+    height: 50vh;
+    max-height: 700px;
+    min-height: 300px;
+    width: 70vw;
+    max-width: 1000px;
+    min-width: 300px;
+    box-shadow: 0px 0px 2px 3px var(--cls5);
+
+}
+
+
+section.meme-editor .editor-backgound{
+    background-color: var(--cls2);
+    width: 100%;
+    height: 100%;
+}
+
 /* small */
 @media (min-width: 450px)
 {
