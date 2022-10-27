@@ -15,7 +15,7 @@ function onImgSelect(el){
 }
 
 function renderMeme(){
-    drawImgFromMeme(getCurrMeme());
+    _drawImgFromMeme(getCurrMeme());
 }
 
 
@@ -30,24 +30,46 @@ function onDown(){
 function onUp(){
     
 }
+function onToggleEditor(){
+    const elEditor = document.querySelector('.meme-editor');
+    elEditor.classList.contains('hide') ? elEditor.classList.remove('hide') : elEditor.classList.add('hide');
+}
 
-function drawImgFromMeme(meme) {
+function drawLineFromInput(){
+    const currMeme = getCurrMeme();
+    console.log('draw')
+    //const elInput = document.querySelector('.canvas-controller .txt.line');
+    _drawRectFromMeme(currMeme);
+}
+
+
+function _drawRectFromMeme(meme) {
+    const elInput = document.querySelector('.meme-canvas');
+    const {x,y} = _getPosFromMeme(meme,0);
+    let height = meme.lines[0].size * 2;
+    let width = +elInput.getAttribute('width') -20;
+    
+    gCtx.strokeStyle = '#059bb647';
+    gCtx.strokeRect(x, y, width , height);
+}
+
+
+function _drawImgFromMeme(meme) {
     const image = getImagesFromId(meme.imgId);
     gElCanvas.setAttribute('data-imgid',`${meme.imgId}`);
     const img = new Image();
-    console.log(image);
+    
     img.src = image.url;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
     }
 }
 
-function onToggleEditor(){
-    const elEditor = document.querySelector('.meme-editor');
-    elEditor.classList.contains('hide') ? elEditor.classList.remove('hide') : elEditor.classList.add('hide');
+function _getPosFromMeme(meme, lineidx){
+    return meme.lines[lineidx].rect.topL;
 }
 
-function getEvPos(ev) {
+function _getEventPos(ev) {
     if (TOUCH_EVS.includes(ev.type)) {
       ev.preventDefault();
       ev = ev.changedTouches[0];
@@ -61,7 +83,6 @@ function getEvPos(ev) {
 
 function _setEventListener(){
     
-
     /* screen events*/
     window.addEventListener('resize', _resizeCanvas);
 

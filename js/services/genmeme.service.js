@@ -55,14 +55,26 @@ function _createMeme(imgId){
             txt: '',
             size: 20,
             align: 'left',
-            color: '#0c98b9'
+            color: '#0c98b9',
+            rect: {
+                topL: {x:10,y:10},
+                botL: {x: 10,y:(10 + (20 * 1.5))},
+                topR: {x:150,y:10},
+                botR: {x: 150,y:(10 + (20 * 1.5))}
+            }
         },{
             txt: '',
             size: 20,
             align: 'left',
-            color: '#dc14c3'
-        },
-    ]};   
+            color: '#dc14c3',
+            rect: {
+                topLeft: {x:10,y:300},
+                botLeft: {x: 10,y:(300 + (20 * 1.5))},
+                topright: {x:150,y:300},
+                botLeft: {x: 150,y:(300 + (20 * 1.5))}
+            }
+        }],
+   };   
 }
 
 function _createImage(id, url, keywords){
