@@ -37,7 +37,7 @@
         <div class="editor-container flex f-row">
             <canvas class="meme-canvas"></canvas>
             <div class="canvas-controller grid">
-                <input class="txt-line" type="text" placeholder="   enter your line" oninput="drawLineFromInput()">
+                <input class="txt-line txt-Left" type="text" placeholder="   enter your line" oninput="onGetTxtFromInput()">
                 <button class="line-btn up-arrow-btn"></button>
                 <button class="line-btn down-arrow-btn"></button>
                 <button class="line-btn add-line-btn"></button>
@@ -49,13 +49,13 @@
                     <button class="txt-btn dencrease">
                         <img src="./img/img-general/decrease-icon.jpg" alt="decrease">
                     </button>
-                    <button class="txt-btn align-left">
+                    <button class="txt-btn align-left" onclick="onAlignText('left')">
                         <img src="./img/img-general/align-left-icon.jpg" alt="align left">
                     </button>
-                    <button class="txt-btn align-center">
+                    <button class="txt-btn align-center" onclick="onAlignText('center')">
                         <img src="./img/img-general/align-center-icon.jpg" alt="align center">
                     </button>
-                    <button class="txt-btn align-right">
+                    <button class="txt-btn align-right" onclick="onAlignText('right')">
                         <img src="./img/img-general/align-right-icon.jpg" alt="align right">
                     </button>
                     <input class="font-selection" list="fonts-list" >

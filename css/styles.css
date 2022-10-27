@@ -82,6 +82,18 @@ ul,li{
     height: 100%;
     margin: 0;
 }
+
+.txt-Left{
+    text-align: left;
+}
+
+.txt-center{
+    text-align: center;
+}
+
+.txt-right{
+    text-align: right;
+}
 /* header */
 
 .header-container{

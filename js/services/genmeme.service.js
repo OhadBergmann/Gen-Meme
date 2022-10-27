@@ -17,6 +17,35 @@ function getCurrMeme(){
     return gCurrMeme;
 }
 
+function setLineAlignment(idx,value){
+    gCurrMeme.lines[idx].align = value;
+}
+
+function getLineTxt(idx){
+    return gCurrMeme.lines[idx].txt;
+}
+
+function setLineTxt(idx,value){
+    gCurrMeme.lines[idx].txt = value;
+}
+
+function getLineFontSize(idx){
+    return gCurrMeme.lines[idx].size;
+}
+
+function setLineFontSize(idx,value){
+    gCurrMeme.lines[idx].size = value;
+}
+
+function getLineFamily(idx){
+    return gCurrMeme.lines[idx].family;
+}
+
+function setLineFamily(idx,value){
+    gCurrMeme.lines[idx].family = value;
+}
+
+
 function getImagesFromId(id){
     for (let i = 0; i < gImages.length; i++) {
         if(gImages[i].id === id) return gImages[i];
@@ -53,6 +82,7 @@ function _createMeme(imgId){
         lineIdx: 0,
         lines: [{
             txt: '',
+            family: 'poppins-r',
             size: 20,
             align: 'left',
             color: '#0c98b9',
@@ -64,6 +94,7 @@ function _createMeme(imgId){
             }
         },{
             txt: '',
+            family: 'poppins-r',
             size: 20,
             align: 'left',
             color: '#dc14c3',
