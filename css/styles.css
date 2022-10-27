@@ -287,6 +287,7 @@ section.meme-editor .canvas-controller input.txt-line{
     grid-column: 1 / span 5;
     grid-row: 1 / 1;
     font-size: 2.5rem;
+    box-shadow: 0px 5px 3px var(--cls2), inset 3px 5px 0 var(--cls13);
 }
 
 section.meme-editor .canvas-controller .line-btn{
@@ -391,17 +392,23 @@ section.meme-editor .canvas-controller .txt-editor-container{
 }
 
 .canvas-controller .txt-editor-container input.font-selection{
-    grid-column: 1 / span 3;
+    grid-column: 1 / 3;
     grid-row: 2 / 2;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
-.canvas-controller .txt-editor-container .font-style{
+.canvas-controller .txt-editor-container .color-picker{
+    grid-column: 3 / 3;
+    grid-row: 2 / 2;
+    padding: 0.5rem;
+}
+
+.canvas-controller .txt-editor-container .font-outerline{
     grid-column: 4 / 4;
     grid-row: 2 / 2;
 }
 
-.canvas-controller .txt-editor-container .paintbrush{
+.canvas-controller .txt-editor-container .fill-rect{
     grid-column: 5 / 5;
     grid-row: 2 / 2;
 }
@@ -477,8 +484,24 @@ section.meme-editor .canvas-controller .txt-editor-container{
 
     margin-block-end: 2vh;
     background-color: var(--cls11);
-   
+    padding-inline-start: 2rem;
 }
+
+.canvas-controller .share-btn img{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 1rem;
+    top: 0.5rem;
+}
+.canvas-controller .download-btn img{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 1rem;
+    top: 0.5rem;
+}
+
 
 section.meme-editor .editor-backgound{
     background-color: var(--cls2);

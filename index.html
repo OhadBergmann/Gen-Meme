@@ -64,11 +64,12 @@
                         <option value="poppins"></option>
                         <option value="impacted"></option>
                     </datalist>
+                    <input type="color" class="txt-btn color-picker">
                     <button class="txt-btn font-outerline">
                         <img src="./img/img-general/outerline-icon.jpg" alt="text OuterLine" onclick="onToggleOuterLine()">
                     </button>
-                    <button class="txt-btn paintbrush">
-                        <img src="./img/img-general/filltxt-icon.jpg" alt="fill text" onclick="onToggleFillTxt()">
+                    <button class="txt-btn fill-rect">
+                        <img src="./img/img-general/filltxt-icon.jpg" alt="fill" onclick="onToggleFill()">
                     </button>
                 </section>
                 <div class="smiley-selection flex f-row just-between">
@@ -79,8 +80,12 @@
                     <img class="smiley-item" src="./img/img-general/smiley-silly.jpg">
                     <img class="prev-smiley" src="./img/img-general/next-icon.jpg">
                 </div>
-                <button class="share-btn s-d-btn">Share</button>
-                <button class="download-btn s-d-btn">Download</button>
+                <button class="share-btn s-d-btn">
+                    <img src="./img/img-general/share-icon.png" alt="">Share
+                </button>
+                <button class="download-btn s-d-btn">
+                    <img src="./img/img-general/download-icon.png" alt="">Download
+                </button>
             </div>
         </div>
         <div class="editor-backgound"></div>

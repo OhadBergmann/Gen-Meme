@@ -7,7 +7,7 @@ let gElCanvas;
 let gCtx;
 let gLineIdx = 0;
 let gCurrCbS = null;
-let gTextStyle = {fill: true, outer: false}
+let gRectStyle = {fill: false, outer: true}
 
 
 
@@ -82,12 +82,12 @@ function onToggleEditor(){
 
 
 function onToggleOuterLine(){
-    gTextStyle.outer = !gTextStyle.outer;
+    gRectStyle.outer = !gRectStyle.outer;
     renderMeme();
 }
 
-function onToggleFillTxt(){
-    gTextStyle.fill = !gTextStyle.fill;
+function onToggleFill(){
+    gRectStyle.fill = !gRectStyle.fill;
     renderMeme();
 }
 
@@ -126,8 +126,6 @@ function drawImage() {
 }
 
 function drawText(){
-    if(!gTextStyle.fill && !gTextStyle.outer) return;
-
     const txt = getLineTxt(gLineIdx)
     var pos = {};
     const fontsize = getLineFontSize(gLineIdx);
@@ -146,28 +144,31 @@ function drawText(){
             break;
     }
 
-    if(gTextStyle.fill){
-        gCtx.fillStyle = '#ffffff';
-        gCtx.fillText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));
-    }
-    
-    if(gTextStyle.outer){
-        gCtx.strokeStyle= '#ebdf0080';
-        gCtx.strokeText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));   
-    }
+    gCtx.fillStyle = '#ffffff';
+    gCtx.fillText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));
+    gCtx.strokeStyle= '#0000004d';
+    gCtx.strokeText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));   
 }
 
 function drawRect() {
+    if(!gRectStyle.fill && !gRectStyle.outer) return;
+
     const elInput = document.querySelector('.meme-canvas');
     const {x,y} = getLineRect(gLineIdx).topL;
 
     let height = getLineFontSize(gLineIdx) * 1.5;
     let width = +document.querySelector('.meme-canvas').width -CANVAS_IMAGE_PADDING*2;
     gCtx.lineWidth = 5;
-    gCtx.strokeStyle = '#059bb647';
-    gCtx.fillStyle = '#ffffff59';
-    gCtx.fillRect(x, y, width , height);
-    gCtx.strokeRect(x, y, width , height);
+
+    if(gRectStyle.fill){
+        gCtx.fillStyle = '#ffffff59';
+        gCtx.fillRect(x, y, width , height);
+    }
+    
+    if(gRectStyle.outer){
+        gCtx.strokeStyle = '#ffffffb3';
+        gCtx.strokeRect(x, y, width , height);
+    }
    
 }
 
