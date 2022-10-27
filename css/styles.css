@@ -268,6 +268,7 @@ section.meme-editor .canvas-controller{
     padding: 10px;
     gap: 10px;
     height: 45vh;
+    margin-block-start: 3rem;
 }
 
 section.meme-editor .canvas-controller input.txt-line{
@@ -577,6 +578,7 @@ section.meme-editor .editor-backgound{
     
     section.meme-editor .canvas-controller{
         margin-inline-start: 1rem;
+        margin-block-start: 0;
     }
 
     section.meme-editor .editor-container > *{
