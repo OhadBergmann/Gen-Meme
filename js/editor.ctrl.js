@@ -2,6 +2,7 @@
 
 let gElCanvas;
 let gCtx;
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend'];
 
 function onImgSelect(el){
     gElCanvas = document.querySelector('.meme-editor .meme-canvas');
@@ -36,8 +37,9 @@ function drawImgFromMeme(meme) {
     const img = new Image();
     console.log(image);
     img.src = image.url;
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    }
 }
 
 function onToggleEditor(){
@@ -45,14 +47,34 @@ function onToggleEditor(){
     elEditor.classList.contains('hide') ? elEditor.classList.remove('hide') : elEditor.classList.add('hide');
 }
 
-function _setEventListener(){
-    if(!gElCanvas) return;
+function getEvPos(ev) {
+    if (TOUCH_EVS.includes(ev.type)) {
+      ev.preventDefault();
+      ev = ev.changedTouches[0];
+      return{
+        x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+        y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+      }
+    }
+    return {x: ev.offsetX, y: ev.offsetY}
+}
 
+function _setEventListener(){
+    
+
+    /* screen events*/
     window.addEventListener('resize', _resizeCanvas);
 
+    if(!gElCanvas) return;
+    /* only for canvas: mouse events*/
     gElCanvas.addEventListener('mousemove', onMove);
     gElCanvas.addEventListener('mousedown', onDown);
     gElCanvas.addEventListener('mouseup', onUp);
+
+    /* only for canvas: touch events*/
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchend', onUp)
 }
 
 function _resizeCanvas() {
