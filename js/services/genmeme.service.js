@@ -17,8 +17,19 @@ function getCurrMeme(){
     return gCurrMeme;
 }
 
-function setLineAlignment(idx,value){
+function getImageIdFromMeme(){
+    return gCurrMeme.imgId;
+}
+function getMemeLines(){
+    return gCurrMeme.lines;
+}
+
+function setLineAlign(idx,value){
     gCurrMeme.lines[idx].align = value;
+}
+
+function getLineAlign(idx){
+    return gCurrMeme.lines[idx].align;
 }
 
 function getLineTxt(idx){
@@ -89,30 +100,35 @@ function _setImagesFromStorage(){
 function _createMeme(imgId){
     return {
         imgId,
-        lineIdx: 0,
         lines: [{
-            txt: '',
+            isVisible: true,
+            txt: '   enter your line',
             family: 'Poppins-Regular',
             size: 20,
             align: 'left',
             color: '#0c98b9',
             rect: {
                 topL: {x:10,y:10},
-                botL: {x: 10,y:(10 + (20 * 1.5))},
                 topR: {x:150,y:10},
-                botR: {x: 150,y:(10 + (20 * 1.5))}
+                botL: {x:10,y:(10 + (20 * 1.5))},
+                botR: {x:150,y:(10 + (20 * 1.5))},
+                topM: {x:75, y:10},
+                botM: {x:75, y:(10 + (20 * 1.5))}
             }
         },{
-            txt: '',
+            isVisible: false,
+            txt: '   enter your line',
             family: 'Poppins-Regular',
             size: 20,
             align: 'left',
             color: '#dc14c3',
             rect: {
-                topLeft: {x:10,y:300},
-                botLeft: {x: 10,y:(300 + (20 * 1.5))},
-                topright: {x:150,y:300},
-                botLeft: {x: 150,y:(300 + (20 * 1.5))}
+                topL: {x:10,y:300},
+                topR: {x:150,y:300},
+                botL: {x:10,y:(300 + (20 * 1.5))},
+                botR: {x:150,y:(300 + (20 * 1.5))},
+                topM: {x:75, y:(300)},
+                botM: {x:75, y:(300 + (20 * 1.5))}
             }
         }],
    };   

@@ -14,11 +14,19 @@ function onImgSelect(el){
     onToggleEditor();
     _resizeCanvas();
     _setEventListener();
-    renderMeme()
+    renderMeme();
 }
 
 function renderMeme(){
-    _drawImgFromMeme(getCurrMeme(),gCurrCbS);
+    getMemeLines().forEach((line,idx)=>{
+        if(line.isVisible){
+            gLineIdx = idx;
+            gCurrCbS = [];
+            gCurrCbS.push(_drawRect);
+            gCurrCbS.push(_drawText);
+        }
+    });
+    _drawImage();
     gCurrCbS = null;
 }
 
@@ -36,11 +44,12 @@ function onUp(){
 }
 
 function onFontSizeChange(val){
-    setLineFontSize(gLineIdx ,(getLineFontSize(gLineIdx) + val))
+    setLineFontSize(gLineIdx ,(getLineFontSize(gLineIdx) + val));
+    renderMeme();
 }
 
 function onAlignText(alingment) {
-    setLineAlignment(gLineIdx,alingment);
+    setLineAlign(gLineIdx,alingment);
     const elInput = document.querySelector('.canvas-controller .txt-line');
     switch (alingment) {
         case 'left':
@@ -59,6 +68,7 @@ function onAlignText(alingment) {
             elInput.classList.remove('txt-left');
             break;
     }
+    renderMeme();
 }
 function onToggleEditor(){
     const elEditor = document.querySelector('.meme-editor');
@@ -68,56 +78,65 @@ function onToggleEditor(){
 function onGetTxtFromInput(){
     const currTxt = document.querySelector('.canvas-controller .txt-line').value;
     setLineTxt(gLineIdx,currTxt);
-
-    gCurrCbS = [];
-    gCurrCbS.push(_drawRect);
-    gCurrCbS.push(_drawText)
     renderMeme();
 }
 
-function _drawText(){
-    const txt = getLineTxt(gLineIdx)
-    gCtx.font = `${getLineFontSize(gLineIdx)}px ${getLineFamily(gLineIdx)}`;
-    const {x,y} = getLineRect(gLineIdx).botL;
-
-    console.log(txt)
-    gCtx.fillText(txt, x, y);
-    gCtx.strokeText(txt, x, y);
-}
-
-function _drawRect() {
-    let currMeme = getCurrMeme()
-
-    const elInput = document.querySelector('.meme-canvas');
-    const {x,y} = _getPosFromMeme(currMeme,gLineIdx);
-
-    let height = currMeme.lines[gLineIdx].size * 2;
-    let width = +elInput.getAttribute('width') -20;
-    gCtx.lineWidth = 5;
-    gCtx.strokeStyle = '#059bb647';
-    gCtx.strokeRect(x, y, width , height);
-}
-
-
-function _drawImgFromMeme(meme,callbacks) {
-    const image = getImagesFromId(meme.imgId);
-    gElCanvas.setAttribute('data-imgid',`${meme.imgId}`);
+function _drawImage() {
+    const currImgId = getImageIdFromMeme();
+    const image = getImagesFromId(currImgId);
+    const cds = gCurrCbS; //NOTE: the declaration of this variable is for closure reasons (for the onload function)
+    gElCanvas.setAttribute('data-imgid',`${currImgId}`);
     const img = new Image();
     
     img.src = image.url;
-    img.onload = () => {
+    img.onload = function() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        if(callbacks){
-            callbacks.forEach((cb)=>{
+
+        if(cds){
+            cds.forEach((cb)=>{
                 cb();
             });
         }
     }
 }
 
-function _getPosFromMeme(meme, lineidx){
-    return meme.lines[lineidx].rect.topL;
+function _drawText(){
+    const txt = getLineTxt(gLineIdx)
+    var pos = {};
+    gCtx.font = `${getLineFontSize(gLineIdx)}px ${getLineFamily(gLineIdx)}`;
+    gCtx.textAlign = getLineAlign(gLineIdx);
+    
+    switch (gCtx.textAlign) {
+        case 'left':
+            pos = getLineRect(gLineIdx).botL;
+            break;
+        case 'center':
+            pos = getLineRect(gLineIdx).botM;
+            break;
+        case 'right':
+            pos = getLineRect(gLineIdx).botR;
+            break;
+    }
+    
+    gCtx.fillText(txt, pos.x, pos.y);
+    gCtx.strokeText(txt, pos.x, pos.y);
 }
+
+function _drawRect() {
+    console.log('_drawRect');
+    const elInput = document.querySelector('.meme-canvas');
+    const {x,y} = getLineRect(gLineIdx).topL;
+
+    let height = getLineFontSize(gLineIdx) * 2;
+    let width = +elInput.getAttribute('width') -20;
+    gCtx.lineWidth = 5;
+    gCtx.strokeStyle = '#059bb647';
+    gCtx.strokeRect(x, y, width , height);
+   
+}
+
+
+
 
 function _getEventPos(ev) {
     if (TOUCH_EVS.includes(ev.type)) {
