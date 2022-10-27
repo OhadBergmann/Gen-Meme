@@ -1,4 +1,5 @@
 'use strict'
+
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend'];
 
 let gElCanvas;
@@ -34,6 +35,10 @@ function onUp(){
     
 }
 
+function onFontSizeChange(val){
+    setLineFontSize(gLineIdx ,(getLineFontSize(gLineIdx) + val))
+}
+
 function onAlignText(alingment) {
     setLineAlignment(gLineIdx,alingment);
     const elInput = document.querySelector('.canvas-controller .txt-line');
@@ -54,7 +59,6 @@ function onAlignText(alingment) {
             elInput.classList.remove('txt-left');
             break;
     }
-    
 }
 function onToggleEditor(){
     const elEditor = document.querySelector('.meme-editor');
@@ -64,16 +68,21 @@ function onToggleEditor(){
 function onGetTxtFromInput(){
     const currTxt = document.querySelector('.canvas-controller .txt-line').value;
     setLineTxt(gLineIdx,currTxt);
+
     gCurrCbS = [];
     gCurrCbS.push(_drawRect);
+    gCurrCbS.push(_drawText)
     renderMeme();
 }
 
 function _drawText(){
-    const currMeme = getCurr();
-    gCtx.font = getLineFamily(gLineIdx);
-    gCtx.fillText(text, x, y [16, 40]);
-    gCtx.strokeText(text, x, y [16, 40]);
+    const txt = getLineTxt(gLineIdx)
+    gCtx.font = `${getLineFontSize(gLineIdx)}px ${getLineFamily(gLineIdx)}`;
+    const {x,y} = getLineRect(gLineIdx).botL;
+
+    console.log(txt)
+    gCtx.fillText(txt, x, y);
+    gCtx.strokeText(txt, x, y);
 }
 
 function _drawRect() {

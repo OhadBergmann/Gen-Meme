@@ -46,6 +46,16 @@ function setLineFamily(idx,value){
 }
 
 
+function getLineRect(idx){
+    return gCurrMeme.lines[idx].rect;
+}
+
+function setLineRect(idx,rect){
+    gCurrMeme.lines[idx].rect = rect;
+}
+
+
+
 function getImagesFromId(id){
     for (let i = 0; i < gImages.length; i++) {
         if(gImages[i].id === id) return gImages[i];
@@ -82,7 +92,7 @@ function _createMeme(imgId){
         lineIdx: 0,
         lines: [{
             txt: '',
-            family: 'poppins-r',
+            family: 'Poppins-Regular',
             size: 20,
             align: 'left',
             color: '#0c98b9',
@@ -94,7 +104,7 @@ function _createMeme(imgId){
             }
         },{
             txt: '',
-            family: 'poppins-r',
+            family: 'Poppins-Regular',
             size: 20,
             align: 'left',
             color: '#dc14c3',
