@@ -26,11 +26,11 @@ function renderMeme(){
         if(line.isVisible){
             gLineIdx = idx;
             gCurrCbS = [];
-            gCurrCbS.push(_drawRect);
-            gCurrCbS.push(_drawText);
+            gCurrCbS.push(drawRect);
+            gCurrCbS.push(drawText);
         }
     });
-    _drawImage();
+    drawImage();
     gCurrCbS = null;
 }
 
@@ -85,7 +85,7 @@ function onGetTxtFromInput(){
     renderMeme();
 }
 
-function _drawImage() {
+function drawImage() {
     const currImgId = getImageIdFromMeme();
     const image = getImagesFromId(currImgId);
     const cds = gCurrCbS; //NOTE: the declaration of this variable is for closure reasons (for the onload function)
@@ -103,7 +103,7 @@ function _drawImage() {
     }
 }
 
-function _drawText(){
+function drawText(){
     const txt = getLineTxt(gLineIdx)
     var pos = {};
     const fontsize = getLineFontSize(gLineIdx);
@@ -117,22 +117,26 @@ function _drawText(){
         case 'center':
             pos = getLineRect(gLineIdx).botM;
             break;
+        case 'right':
             pos = getLineRect(gLineIdx).botR;
             break;
     }
-    
-    gCtx.fillText(txt, pos.x*2, (pos.y - (fontsize+CANVAS_IMAGE_PADDING)/2));
-    gCtx.strokeText(txt, pos.x*2, (pos.y - (fontsize+CANVAS_IMAGE_PADDING)/2));
+    gCtx.fillStyle = '#ffffff';
+    gCtx.strokeStyle= '#ebdf0080';
+    gCtx.fillText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));
+    gCtx.strokeText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));
 }
 
-function _drawRect() {
+function drawRect() {
     const elInput = document.querySelector('.meme-canvas');
     const {x,y} = getLineRect(gLineIdx).topL;
 
-    let height = getLineFontSize(gLineIdx) * 2;
+    let height = getLineFontSize(gLineIdx) * 1.5;
     let width = +document.querySelector('.meme-canvas').width -CANVAS_IMAGE_PADDING*2;
     gCtx.lineWidth = 5;
     gCtx.strokeStyle = '#059bb647';
+    gCtx.fillStyle = '#ffffff59';
+    gCtx.fillRect(x, y, width , height);
     gCtx.strokeRect(x, y, width , height);
    
 }
