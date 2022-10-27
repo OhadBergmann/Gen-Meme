@@ -191,12 +191,13 @@ section.search-bar{
     margin-inline: auto auto;
 }
 
+
 /* gallery */
 
 
 main.gallery-container {
     background-color: var(--cls4);
-    height: 100vh;
+    height: auto;
     width: 94vw;
     margin-top: 3vh;
     margin-inline: auto auto;
@@ -210,14 +211,16 @@ main.gallery-container .images-grid{
     grid-template-rows: repeat(auto-fit, minmax(50px, 250px));
     grid-auto-flow: dense;
     gap: 7px;
-
+    justify-content: center;
     padding: 7px;
     
 }
 
+
 main.gallery-container .images-grid .item-container{
     border-radius: 0.75rem;
-   box-shadow: 1px 1px 1px var(--cls1);
+    box-shadow: 1px 1px 1px var(--cls1);
+    
 }
 
 main.gallery-container .item-container .square-img{
@@ -240,8 +243,9 @@ section.meme-editor{
 
 section.meme-editor .editor-container{
         position: fixed;
+        flex-direction: column;
         z-index: 20;
-        height: 50vh;;
+        height: 90vh;;
         background-color: var(--cls3);
         padding-inline: 2rem 2rem;
         padding-block: 2rem 2rem;
@@ -250,13 +254,12 @@ section.meme-editor .editor-container{
 
 section.meme-editor .editor-container > *{
     background-color: var(--cls4);
-    width: calc(50% - 0.5rem);
+    width: calc(100% - 0.5rem);
     border-radius: 0.75rem;
 }
 
 section.meme-editor canvas.meme-canvas{
-    margin-inline-end: 1rem;
-    height: calc(50vh - 4rem);
+    height: 35vh;
 }
 
 section.meme-editor .canvas-controller{
@@ -264,10 +267,8 @@ section.meme-editor .canvas-controller{
     grid-template-rows: repeat(7, minmax(20px, 1fr));
     padding: 10px;
     gap: 10px;
-    margin-inline-start: 1rem;
     height: 45vh;
 }
-
 
 section.meme-editor .canvas-controller input.txt-line{
     border-radius: 10% / 50%;
@@ -275,7 +276,7 @@ section.meme-editor .canvas-controller input.txt-line{
     margin-inline: 20px 20px;
     grid-column: 1 / span 5;
     grid-row: 1 / 1;
-    font-size: 2.5rem;
+    font-size: 1.7rem;
     box-shadow: 0px 5px 3px var(--cls2), inset 3px 5px 0 var(--cls13);
 }
 
@@ -423,8 +424,8 @@ section.meme-editor .canvas-controller .txt-editor-container{
 }
 
 .canvas-controller .smiley-selection .smiley-item{
-    height: 70px;
-    width: 70px;
+    height: 40px;
+    width: 40px;
     margin-block: auto;
     margin-inline: 0.2vw 0.2vw;
 }
@@ -514,9 +515,7 @@ section.meme-editor .editor-backgound{
         margin: 0.3vh  0.3vh 0.3vh 5%;
     }
 
-    section.images-grid{
-        justify-content: center;
-    }
+   
     
     section.meme-editor .canvas-controller{
         height: 45vh;
@@ -536,6 +535,7 @@ section.meme-editor .editor-backgound{
         height: 40px;
         width: 40px;
     }
+
 }
 
 
@@ -560,7 +560,6 @@ section.meme-editor .editor-backgound{
     }
 
     section.meme-editor .editor-container{
-        
         top: 10vh;;
         left: 50%;
         height: 50vh;
@@ -571,6 +570,24 @@ section.meme-editor .editor-backgound{
         box-shadow: 0px 0px 2px 3px var(--cls5);
     }
 
+    section.meme-editor canvas.meme-canvas{
+        margin-inline-end: 1rem;
+        height: calc(50vh - 4rem);
+    }
+    
+    section.meme-editor .canvas-controller{
+        margin-inline-start: 1rem;
+    }
+
+    section.meme-editor .editor-container > *{
+        width: calc(50% - 0.5rem);
+    }
+
+    section.meme-editor .editor-container{
+        height: 50vh;
+        flex-direction: row;
+    }
+
     section.meme-editor .editor-container .meme-canvas{
         align-self: baseline;
     }
@@ -579,6 +596,12 @@ section.meme-editor .editor-backgound{
         height: 60px;
         width: 60px;
     }
+
+    .canvas-controller .smiley-selection .smiley-item{
+        height: 50px;
+        width: 50px;
+    }
+
 }
 
 /* large */
@@ -634,7 +657,15 @@ section.meme-editor .editor-backgound{
         box-shadow: 0px 0px 2px 3px var(--cls5);
     }
 
-    
+
+    section.meme-editor .canvas-controller input.txt-line{
+        font-size: 3rem;
+    }
+
+    .canvas-controller .smiley-selection .smiley-item{
+        height: 70px;
+        width: 70px;
+    }
 }
 
 

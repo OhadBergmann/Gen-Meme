@@ -110,7 +110,7 @@ function createImages(){
     gImages[14] = _createImage(makeId(), './img/img-1x1/15.jpg',['TVshows', 'Serious']);
     gImages[15] = _createImage(makeId(), './img/img-1x1/16.jpg',['Movies', 'Smile']);
     gImages[16] = _createImage(makeId(), './img/img-1x1/17.jpg',['Putin', 'Politics']);
-    gImages[17] = _createImage(makeId(), './img/img-1x1/17.jpg',['Toys', 'Movies']);
+    gImages[17] = _createImage(makeId(), './img/img-1x1/18.jpg',['Toys', 'Movies']);
     saveToStorage(IMAGES_STOREKEY, gImages);
 }
 
