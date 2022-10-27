@@ -300,29 +300,36 @@ section.meme-editor .canvas-controller .line-btn:hover{
     box-shadow: 3px 3px 0 var(--cls13), inset 0 3px 3px var(--cls2);
 }
 
-section.meme-editor .canvas-controller .up-arrow-btn{
+section.meme-editor .canvas-controller .switch-Line{
     grid-column: 1 / 1;
     grid-row: 2 / 2;
     background-color: var(--cls8);
 }
 
-section.meme-editor .canvas-controller .down-arrow-btn{
-    grid-column: 2 / 2;
-    grid-row: 2 / 2;
-    background-color: var(--cls8);
-}
-
 section.meme-editor .canvas-controller .add-line-btn{
-    grid-column: 3 / 3;
+    grid-column: 2 / 2;
     grid-row: 2 / 2;
     background-color: var(--cls10);
 }
 
 section.meme-editor .canvas-controller .delete-btn{
-    grid-column: 4 / 4;
+    grid-column: 3 / 3;
     grid-row: 2 / 2;
     background-color: var(--cls12);
 }
+
+section.meme-editor .canvas-controller .down-arrow-btn{
+    grid-column: 4 / 4;
+    grid-row: 2 / 2;
+    background-color: var(--cls14);
+}
+
+section.meme-editor .canvas-controller .up-arrow-btn{
+    grid-column: 5 / 5;
+    grid-row: 2 / 2;
+    background-color: var(--cls14);
+}
+
 
 section.meme-editor .canvas-controller .txt-editor-container{
     grid-column: 1 / 6;
