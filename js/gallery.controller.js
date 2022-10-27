@@ -11,20 +11,21 @@ function renderMeme(){
 
 function setGallery(){
     let strHtml = '';
-    const folders = ['img-1x1'];
+
     const elGalleryContainer = document.querySelector('section.images-grid');
     let images = getImages();
 
     if(!images.length){
+        createImages(images);
+        images = getImages();
         for (let i = 1; i <= 18; i++) {
-            let currId = makeId(7);
-            strHtml += `<div class="item-container"><img class="square-img" data-id="${currId}" onclick="onImgSelect(this)"
-            src="./img/${folders[0]}/${i}.jpg"= alt="item"></div>`;
-    
-            images[i - 1] =  { id: currId, url: `./img/${folders[0]}/${i}.jpg`, words: '' };
+            images.forEach((img)=>{
+                strHtml += `<div class="item-container"><img class="square-img" data-id="${img.id}" onclick="onImgSelect(this)"
+                src="${img.url}"= alt="item"></div>`;
+            });
         }
 
-        createImages(images);
+       
     } else {
         images.forEach((img)=>{
             strHtml += `<div class="item-container"><img class="square-img" data-id="${img.id}" onclick="onImgSelect(this)"

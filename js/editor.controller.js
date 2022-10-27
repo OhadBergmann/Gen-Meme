@@ -98,12 +98,18 @@ function onGetTxtFromInput(){
 }
 
 function onFontSelect(){
-    setLineFamily(gLineIdx, document.querySelector('.font-selection').value);
-    //.classList.value
+    const elInput = document.querySelector('.canvas-controller .txt-line');
+    const FontFamily = document.querySelector('.font-selection').value;
+    setLineFamily(gLineIdx, FontFamily);
+    elInput.classList.value = `txt-line txt-Left`;
+    if(!elInput.classList.contains(`toggle-${FontFamily}`)){
+        elInput.classList.add(`toggle-${FontFamily}`);
+    }
+    renderMeme();
 }
 function drawImage() {
     const currImgId = getImageIdFromMeme();
-    const image = getImagesFromId(currImgId);
+    const image = getImageFromId(currImgId);
     const cds = gCurrCbS; //NOTE: the declaration of this variable is for closure reasons (for the onload function)
     gElCanvas.setAttribute('data-imgid',`${currImgId}`);
     const img = new Image();

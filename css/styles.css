@@ -26,7 +26,7 @@
 }
 
 @font-face {
-    font-family: poppins-s;
+    font-family: poppin;
     src: url(/fonts/Poppins/Poppins-Medium.ttf);
 }
 
@@ -95,8 +95,8 @@ ul,li{
     text-align: right;
 }
 
-.toggle-poppins-s{
-    font-family: poppins-s;
+.toggle-poppins{
+    font-family: poppin;
 }
 
 .toggle-impacted{
