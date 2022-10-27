@@ -94,6 +94,14 @@ ul,li{
 .txt-right{
     text-align: right;
 }
+
+.toggle-poppins-s{
+    font-family: poppins-s;
+}
+
+.toggle-impacted{
+    font-family: impacted;
+}
 /* header */
 
 .header-container{
@@ -278,7 +286,7 @@ section.meme-editor .canvas-controller input.txt-line{
     margin-inline: 20px 20px;
     grid-column: 1 / span 5;
     grid-row: 1 / 1;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 section.meme-editor .canvas-controller .line-btn{

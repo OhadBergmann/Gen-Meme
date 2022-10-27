@@ -37,7 +37,7 @@
         <div class="editor-container flex f-row">
             <canvas class="meme-canvas"></canvas>
             <div class="canvas-controller grid">
-                <input class="txt-line txt-Left" type="text" placeholder="   enter your line" oninput="onGetTxtFromInput()">
+                <input class="txt-line txt-Left toggle-poppins-s" type="text" placeholder="   enter your line" oninput="onGetTxtFromInput()">
                 <button class="line-btn up-arrow-btn"></button>
                 <button class="line-btn down-arrow-btn"></button>
                 <button class="line-btn add-line-btn"></button>
@@ -58,16 +58,16 @@
                     <button class="txt-btn align-right" onclick="onAlignText('right')">
                         <img src="./img/img-general/align-right-icon.jpg" alt="align right">
                     </button>
-                    <input class="font-selection" list="fonts-list" >
+                    <input class="font-selection" list="fonts-list" placeholder="poppins" onchange="onFontSelect()">
                     <datalist id="fonts-list">
-                        <option> Poppins</option>
-                        <option> Impacted</option>
+                        <option value="poppins"></option>
+                        <option value="impacted"></option>
                     </datalist>
-                    <button class="txt-btn font-style">
-                        <img src="./img/img-general/style-icon.jpg" alt="style">
+                    <button class="txt-btn font-outerline">
+                        <img src="./img/img-general/outerline-icon.jpg" alt="text OuterLine" onclick="onToggleOuterLine()">
                     </button>
                     <button class="txt-btn paintbrush">
-                        <img src="./img/img-general/paintbrush-icon.jpg" alt="brush">
+                        <img src="./img/img-general/filltxt-icon.jpg" alt="fill text" onclick="onToggleFillTxt()">
                     </button>
                 </section>
                 <div class="smiley-selection flex f-row just-between">
@@ -89,7 +89,7 @@
 
     <script src="./js/services/util.service.js"></script>
     <script src="./js/services/storage.service.js"></script>
-    <script src="./js/services/genmeme.service.js"></script>
+    <script src="./js/services/meme.service.js"></script>
     <script src="./js/gallery.controller.js"></script>
     <script src="./js/editor.controller.js"></script>
     

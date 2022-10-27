@@ -6,7 +6,8 @@ const CANVAS_IMAGE_PADDING = 30;
 let gElCanvas;
 let gCtx;
 let gLineIdx = 0;
-var gCurrCbS = null;
+let gCurrCbS = null;
+let gTextStyle = {fill: true, outer: false}
 
 
 
@@ -15,10 +16,10 @@ function onImgSelect(el){
     gElCanvas = document.querySelector('.meme-editor .meme-canvas');
     gCtx = gElCanvas.getContext('2d');
     onToggleEditor();
-    _setEventListener();
+    setEventListener();
     createCurrMeme(el.dataset.id, gElCanvas.width,gElCanvas.height,fontSize,CANVAS_IMAGE_PADDING);
     //NOTE: _resizeCanvas all ready calls to renderMeme();
-     _resizeCanvas();
+     resizeCanvas();
 }
 
 function renderMeme(){
@@ -79,12 +80,27 @@ function onToggleEditor(){
     elEditor.classList.contains('hide') ? elEditor.classList.remove('hide') : elEditor.classList.add('hide');
 }
 
+
+function onToggleOuterLine(){
+    gTextStyle.outer = !gTextStyle.outer;
+    renderMeme();
+}
+
+function onToggleFillTxt(){
+    gTextStyle.fill = !gTextStyle.fill;
+    renderMeme();
+}
+
 function onGetTxtFromInput(){
     const currTxt = document.querySelector('.canvas-controller .txt-line').value;
     setLineTxt(gLineIdx,currTxt);
     renderMeme();
 }
 
+function onFontSelect(){
+    setLineFamily(gLineIdx, document.querySelector('.font-selection').value);
+    //.classList.value
+}
 function drawImage() {
     const currImgId = getImageIdFromMeme();
     const image = getImagesFromId(currImgId);
@@ -104,6 +120,8 @@ function drawImage() {
 }
 
 function drawText(){
+    if(!gTextStyle.fill && !gTextStyle.outer) return;
+
     const txt = getLineTxt(gLineIdx)
     var pos = {};
     const fontsize = getLineFontSize(gLineIdx);
@@ -121,10 +139,16 @@ function drawText(){
             pos = getLineRect(gLineIdx).botR;
             break;
     }
-    gCtx.fillStyle = '#ffffff';
-    gCtx.strokeStyle= '#ebdf0080';
-    gCtx.fillText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));
-    gCtx.strokeText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));
+
+    if(gTextStyle.fill){
+        gCtx.fillStyle = '#ffffff';
+        gCtx.fillText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));
+    }
+    
+    if(gTextStyle.outer){
+        gCtx.strokeStyle= '#ebdf0080';
+        gCtx.strokeText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));   
+    }
 }
 
 function drawRect() {
@@ -144,7 +168,7 @@ function drawRect() {
 
 
 
-function _getEventPos(ev) {
+function getEventPos(ev) {
     if (TOUCH_EVS.includes(ev.type)) {
       ev.preventDefault();
       ev = ev.changedTouches[0];
@@ -156,10 +180,10 @@ function _getEventPos(ev) {
     return {x: ev.offsetX, y: ev.offsetY}
 }
 
-function _setEventListener(){
+function setEventListener(){
     
     /* screen events*/
-    window.addEventListener('resize', _resizeCanvas);
+    window.addEventListener('resize', resizeCanvas);
 
     if(!gElCanvas) return;
     /* only for canvas: mouse events*/
@@ -173,7 +197,7 @@ function _setEventListener(){
     gElCanvas.addEventListener('touchend', onUp)
 }
 
-function _resizeCanvas() {
+function resizeCanvas() {
     const elCanvasContainer = document.querySelector('section.meme-editor .editor-container');
     //TODO : add different clal for other sizes then 500X500
     let CurrHieght = elCanvasContainer.offsetHeight;

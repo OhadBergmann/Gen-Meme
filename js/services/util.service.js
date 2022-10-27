@@ -10,8 +10,3 @@ function makeId(length){
     }
     return str;
 }
-
-
-function test(str){
-    console.log('test' + str)
-}
