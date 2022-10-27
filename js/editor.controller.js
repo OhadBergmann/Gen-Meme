@@ -117,7 +117,6 @@ function _drawText(){
         case 'center':
             pos = getLineRect(gLineIdx).botM;
             break;
-        case 'right':
             pos = getLineRect(gLineIdx).botR;
             break;
     }
@@ -134,9 +133,8 @@ function _drawRect() {
     let width = +document.querySelector('.meme-canvas').width -CANVAS_IMAGE_PADDING*2;
     gCtx.lineWidth = 5;
     gCtx.strokeStyle = '#059bb647';
-    gCtx.fillRect('#ffffff33');
     gCtx.strokeRect(x, y, width , height);
-
+   
 }
 
 
