@@ -9,8 +9,21 @@ const IMAGES_STOREKEY = 'local-images';
 const MEMES_STOREKEY = 'local-memes';
 
 
-function createCurrMeme(id){
-    gCurrMeme = _createMeme(id);
+//TODO: fixe meme sizes when resizeing
+/*function resizeImgVariables(width,height,padding){
+  gCurrMeme.lines.forEach((line,idx)=>{
+        line.rect.topL = 
+        line.rect.topM = 
+        line.rect.topR = 
+        line.rect.botL = 
+        line.rect.botM = 
+        line.rect.botR = 
+    });
+}*/
+
+function createCurrMeme(id,width,height,size,padding){
+    console.log(width,height)
+    gCurrMeme = _createMeme(id,width,height,size,padding);
 }
 
 function getCurrMeme(){
@@ -97,38 +110,38 @@ function _setImagesFromStorage(){
     return false;
 }
 
-function _createMeme(imgId){
+function _createMeme(imgId,width,height,size,padding){
     return {
         imgId,
         lines: [{
             isVisible: true,
             txt: '   enter your line',
             family: 'Poppins-Regular',
-            size: 20,
+            size,
             align: 'left',
             color: '#0c98b9',
             rect: {
-                topL: {x:10,y:10},
-                topR: {x:150,y:10},
-                botL: {x:10,y:(10 + (20 * 1.5))},
-                botR: {x:150,y:(10 + (20 * 1.5))},
-                topM: {x:75, y:10},
-                botM: {x:75, y:(10 + (20 * 1.5))}
+                topL: {x:padding,y:padding},
+                topR: {x:width - padding,y:padding},
+                topM: {x:(width - padding)/2, y:padding},
+                botL: {x:padding,y:(padding + size*2)},
+                botR: {x:width - padding,y:(padding + size*2)},
+                botM: {x:(width - padding)/2, y:(padding + size*2)}
             }
         },{
             isVisible: false,
             txt: '   enter your line',
             family: 'Poppins-Regular',
-            size: 20,
+            size,
             align: 'left',
             color: '#dc14c3',
             rect: {
-                topL: {x:10,y:300},
-                topR: {x:150,y:300},
-                botL: {x:10,y:(300 + (20 * 1.5))},
-                botR: {x:150,y:(300 + (20 * 1.5))},
-                topM: {x:75, y:(300)},
-                botM: {x:75, y:(300 + (20 * 1.5))}
+                topL: {x:padding,y:(height - (padding + size*2))},
+                topR: {x:width - padding,y:(height - (padding + size*2))},
+                topM: {x:(width - padding)/2, y:(height - (padding + size*2))},
+                botL: {x:padding,y:padding},
+                botR: {x:width - padding,y:padding},
+                botM: {x:(width - padding)/2, y:padding}
             }
         }],
    };   

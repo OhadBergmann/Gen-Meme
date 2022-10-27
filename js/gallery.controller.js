@@ -12,7 +12,7 @@ function renderMeme(){
 function setGallery(){
     let strHtml = '';
     const folders = ['img-1x1'];
-    const ElgalleryContainer = document.querySelector('section.images-grid');
+    const elGalleryContainer = document.querySelector('section.images-grid');
     let images = getImages();
 
     if(!images.length){
@@ -32,6 +32,6 @@ function setGallery(){
         });
     }
     
-    ElgalleryContainer.innerHTML = strHtml;
+    elGalleryContainer.innerHTML = strHtml;
 }
 

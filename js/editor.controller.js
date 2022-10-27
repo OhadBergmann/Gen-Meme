@@ -1,20 +1,24 @@
 'use strict'
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend'];
+const CANVAS_IMAGE_PADDING = 30; 
 
 let gElCanvas;
 let gCtx;
 let gLineIdx = 0;
 var gCurrCbS = null;
 
+
+
 function onImgSelect(el){
+    const fontSize = parseInt(getComputedStyle(document.querySelector('.canvas-controller .txt-line')).fontSize);
     gElCanvas = document.querySelector('.meme-editor .meme-canvas');
     gCtx = gElCanvas.getContext('2d');
-    createCurrMeme(el.dataset.id);
     onToggleEditor();
-    _resizeCanvas();
     _setEventListener();
-    renderMeme();
+    createCurrMeme(el.dataset.id, gElCanvas.width,gElCanvas.height,fontSize,CANVAS_IMAGE_PADDING);
+    //NOTE: _resizeCanvas all ready calls to renderMeme();
+     _resizeCanvas();
 }
 
 function renderMeme(){
@@ -89,9 +93,8 @@ function _drawImage() {
     const img = new Image();
     
     img.src = image.url;
-    img.onload = function() {
+    img.onload = ()=>{
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-
         if(cds){
             cds.forEach((cb)=>{
                 cb();
@@ -103,7 +106,8 @@ function _drawImage() {
 function _drawText(){
     const txt = getLineTxt(gLineIdx)
     var pos = {};
-    gCtx.font = `${getLineFontSize(gLineIdx)}px ${getLineFamily(gLineIdx)}`;
+    const fontsize = getLineFontSize(gLineIdx);
+    gCtx.font = `${fontsize}px ${getLineFamily(gLineIdx)}`;
     gCtx.textAlign = getLineAlign(gLineIdx);
     
     switch (gCtx.textAlign) {
@@ -118,21 +122,21 @@ function _drawText(){
             break;
     }
     
-    gCtx.fillText(txt, pos.x, pos.y);
-    gCtx.strokeText(txt, pos.x, pos.y);
+    gCtx.fillText(txt, pos.x*2, (pos.y - (fontsize+CANVAS_IMAGE_PADDING)/2));
+    gCtx.strokeText(txt, pos.x*2, (pos.y - (fontsize+CANVAS_IMAGE_PADDING)/2));
 }
 
 function _drawRect() {
-    console.log('_drawRect');
     const elInput = document.querySelector('.meme-canvas');
     const {x,y} = getLineRect(gLineIdx).topL;
 
     let height = getLineFontSize(gLineIdx) * 2;
-    let width = +elInput.getAttribute('width') -20;
+    let width = +document.querySelector('.meme-canvas').width -CANVAS_IMAGE_PADDING*2;
     gCtx.lineWidth = 5;
     gCtx.strokeStyle = '#059bb647';
+    gCtx.fillRect('#ffffff33');
     gCtx.strokeRect(x, y, width , height);
-   
+
 }
 
 
@@ -174,6 +178,5 @@ function _resizeCanvas() {
     let CurrWidth = (CurrHieght * 500) / 500
     gElCanvas.setAttribute('width',`${CurrWidth}`);
     gElCanvas.setAttribute('height', `${CurrHieght}`);
-
     renderMeme();
 }
