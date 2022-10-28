@@ -8,5 +8,6 @@ function makeId(length){
     {
         str += possible.charAt(Math.floor(Math.random() * possible.length));
     }
+    
     return str;
 }
