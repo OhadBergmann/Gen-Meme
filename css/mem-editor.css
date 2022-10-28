@@ -1,6 +1,6 @@
 
 
-section.meme-editor{
+.main-editor-container{
     position: fixed;
     top: 0;
     left: 0;
@@ -9,8 +9,13 @@ section.meme-editor{
     z-index: 10;
 }
 
+.main-editor-container .editor-backgound{
+    background-color: var(--cls2);
+    width: 100%;
+    height: 100%;
+}
 
-.meme-editor .editor-container{
+.editor-container{
         position: fixed;
         flex-direction: column;
         z-index: 20;
@@ -21,21 +26,20 @@ section.meme-editor{
         transform: translateY(10vh);
 }
 
-.meme-editor .editor-container > *{
+.editor-container > *{
     background-color: var(--cls4);
-    width: calc(100% - 0.5rem);
     border-radius: 0.75rem;
 }
 
-.meme-editor .meme-canvas{
+.editor-container .meme-canvas{
     height: 35vh;
 }
 
-.meme-editor section.canvas-controller{
+.txt-editor-container{
     display: inline-block;
 }
 
-section.meme-editor .canvas-controller input.txt-line{
+.txt-editor-container .current-line{
     border-radius: 10% / 50%;
     margin-block: 10px 10px;
     margin-inline: 20px 20px;
@@ -45,7 +49,11 @@ section.meme-editor .canvas-controller input.txt-line{
     box-shadow: 0px 5px 3px var(--cls2), inset 3px 5px 0 var(--cls13);
 }
 
-section.meme-editor .canvas-controller .line-btn{
+
+
+/* UPPER B-T-N ROW*/
+
+.txt-editor-container .line-btn{
     box-shadow: 0px 5px 3px var(--cls2), inset 3px 5px 0 var(--cls13);
     border-radius: 17%;
     margin-inline: 0.3vw ;
@@ -54,43 +62,45 @@ section.meme-editor .canvas-controller .line-btn{
     padding: 0;
 }
 
-section.meme-editor .canvas-controller .line-btn:hover{
+.txt-editor-container .line-btn:hover{
     box-shadow: 3px 3px 0 var(--cls13), inset 0 3px 3px var(--cls2);
 }
 
-
-section.meme-editor .canvas-controller .switch-Line{
+.txt-editor-container .switch-Line{
     grid-column: 1 / 1;
     grid-row: 2 / 2;
     background-color: var(--cls8);
 }
 
-section.meme-editor .canvas-controller .add-line-btn{
+.txt-editor-container .add-line-btn{
     grid-column: 2 / 2;
     grid-row: 2 / 2;
     background-color: var(--cls10);
 }
 
-section.meme-editor .canvas-controller .delete-btn{
+.txt-editor-container .delete-btn{
     grid-column: 3 / 3;
     grid-row: 2 / 2;
     background-color: var(--cls12);
 }
 
-section.meme-editor .canvas-controller .down-arrow-btn{
+.txt-editor-container .down-arrow-btn{
     grid-column: 4 / 4;
     grid-row: 2 / 2;
     background-color: var(--cls14);
 }
 
-section.meme-editor .canvas-controller .up-arrow-btn{
+.txt-editor-container .up-arrow-btn{
     grid-column: 5 / 5;
     grid-row: 2 / 2;
     background-color: var(--cls14);
 }
 
 
-section.meme-editor .canvas-controller .txt-editor-container{
+
+/* TEXT STYLE B-T-N*/
+
+.txt-style-container{
     grid-column: 1 / 6;
     grid-row: 3 / 5;
     background-color: var(--cls8);
@@ -101,10 +111,9 @@ section.meme-editor .canvas-controller .txt-editor-container{
     column-gap: 15px;
 
     padding: 10px;
-
 }
 
-.canvas-controller .txt-editor-container .txt-btn{
+.txt-style-container .txt-btn{
     height: 60px;
     width: 60px;
     padding-inline: 0px;
@@ -113,65 +122,69 @@ section.meme-editor .canvas-controller .txt-editor-container{
     box-shadow: 0px 3px 2px 0px var(--cls4);
 }
 
-.canvas-controller .txt-editor-container .txt-btn:hover{
+.txt-style-container .txt-btn:hover{
     background-color: var(--cls5);
     cursor: pointer;
 }
 
-.canvas-controller .txt-editor-container .txt-btn img{
+.txt-style-container .txt-btn img{
     height: 50px;
     width: 50px;
     border-radius: 8px;
 }
 
-.canvas-controller .txt-editor-container .increase{
+.txt-style-container .increase{
     grid-column: 1 / 1;
     grid-row: 1 / 1;
 }
 
-.canvas-controller .txt-editor-container .dencrease{
+.txt-style-container .dencrease{
     grid-column: 2 / 2;
     grid-row: 1 / 1;
 }
 
-.canvas-controller .txt-editor-container .align-left{
+.txt-style-container .align-left{
     grid-column: 3 / 3;
     grid-row: 1 / 1;
 }
 
-.canvas-controller .txt-editor-container .align-center{
+.txt-style-container .align-center{
     grid-column: 4 / 4;
     grid-row: 1 / 1;
 }
 
-.canvas-controller .txt-editor-container .align-right{
+.txt-style-container .align-right{
     grid-column: 5 / 5;
     grid-row: 1 / 1;
 }
 
-.canvas-controller .txt-editor-container input.font-selection{
+.txt-style-container .font-selection{
     grid-column: 1 / 3;
     grid-row: 2 / 2;
     font-size: 1.2rem;
 }
 
-.canvas-controller .txt-editor-container .color-picker{
+.txt-style-container .color-picker{
     grid-column: 3 / 3;
     grid-row: 2 / 2;
     padding: 0.5rem;
 }
 
-.canvas-controller .txt-editor-container .font-outerline{
+.txt-style-container .font-outerline{
     grid-column: 4 / 4;
     grid-row: 2 / 2;
 }
 
-.canvas-controller .txt-editor-container .fill-rect{
+.txt-style-container .fill-rect{
     grid-column: 5 / 5;
     grid-row: 2 / 2;
 }
 
-.canvas-controller .smiley-selection{
+
+
+/*smileys B-T-N*/
+
+.smileys-container{
     grid-column: 1 / 6;
     grid-row: 5 / 7;
 
@@ -181,36 +194,38 @@ section.meme-editor .canvas-controller .txt-editor-container{
     background-color: var(--cls14);
     border-radius: 10% / 50%;
 }
-.canvas-controller .smiley-selection >*{
+
+.smileys-container >*{
     display: block;
     background-color: var(--cls14);
     border: none;
     cursor: pointer;
 }
 
-.canvas-controller .smiley-selection .smiley-item{
+.smileys-container .smiley-item{
     height: 40px;
     width: 40px;
     margin-block: auto;
     margin-inline: 0.2vw 0.2vw;
 }
 
-
-
-.canvas-controller .smiley-selection .next-smiley{
+.smileys-container .next-smiley{
     height: 20px;
     width: 20px;
     align-self: center;
 }
 
-.canvas-controller .smiley-selection .prev-smiley{
+.smileys-container .prev-smiley{
     height: 20px;
     width: 20px;
     align-self: center;
     
 }
 
-.canvas-controller .s-d-btn{
+
+/* EXPORT B-T-N*/
+
+.txt-editor-container .export-btn{
     font-size: 1.2rem;
     border-radius: 10% / 30%;
     border: none;
@@ -221,11 +236,11 @@ section.meme-editor .canvas-controller .txt-editor-container{
     transition: 0.1s ease-in-out;
 }
 
-.canvas-controller .s-d-btn:hover{
+.txt-editor-container .export-btn:hover{
     box-shadow: 0px 6px 0 var(--cls13), inset 0 6px 0 var(--cls2);
 }
 
-.canvas-controller .share-btn{
+.txt-editor-container .share-btn{
     grid-column: 1 / 3;
     grid-row: 7 / 7;
     transform: translate(20%);
@@ -235,7 +250,7 @@ section.meme-editor .canvas-controller .txt-editor-container{
 
 }
 
-.canvas-controller .download-btn{
+.txt-editor-container .download-btn{
     grid-column: 4 / 6;
     grid-row: 7 / 7;
     transform: translate(-20%);
@@ -245,14 +260,14 @@ section.meme-editor .canvas-controller .txt-editor-container{
     padding-inline-start: 2rem;
 }
 
-.canvas-controller .share-btn img{
+.txt-editor-container .share-btn img{
     position: absolute;
     width: 25px;
     height: 25px;
     left: 1rem;
     top: 0.5rem;
 }
-.canvas-controller .download-btn img{
+.txt-editor-container .download-btn img{
     position: absolute;
     width: 25px;
     height: 25px;
@@ -261,20 +276,17 @@ section.meme-editor .canvas-controller .txt-editor-container{
 }
 
 
-section.meme-editor .editor-backgound{
-    background-color: var(--cls2);
-    width: 100%;
-    height: 100%;
-}
 
-/* small */
+/* --------------------------------------- RESPONSIVE DESIGN ---------------------------------------*/
+
+
+
+/* MOBILE SIZE SMALL */
+
 @media (min-width: 450px)
 {
-    section.meme-editor .canvas-controller{
-        height: 45vh;
-    }
 
-    section.meme-editor .editor-container{
+    .editor-container{
         top: 0;
         left: 0;
         height: 50vh;
@@ -284,17 +296,16 @@ section.meme-editor .editor-backgound{
         transform: translateY(10vh);
     }
 
-    .meme-editor section.canvas-controller{
+    .txt-editor-container{
         display: inline-block;
         grid-template-columns: repeat(5, minmax(20px, 1fr));
         grid-template-rows: repeat(7, minmax(20px, 1fr));
         padding: 10px;
         gap: 10px;
-        height: 45vh;
         margin-block-start: 3rem;
     }
 
-    .canvas-controller .line-btn img{
+    .txt-editor-container .line-btn img{
         height: 40px;
         width: 40px;
     }
@@ -302,11 +313,13 @@ section.meme-editor .editor-backgound{
 }
 
 
-/* medium */
+
+/* MOBILE & TABLET SIZE MEDIUM */
+
 @media (min-width: 750px)
 {
 
-    section.meme-editor .editor-container{
+    .editor-container{
         top: 10vh;;
         left: 50%;
         height: 50vh;
@@ -315,53 +328,43 @@ section.meme-editor .editor-backgound{
         padding-block: 2vh 2vh;
         transform: translate(-50%);
         box-shadow: 0px 0px 2px 3px var(--cls5);
+        flex-direction: row;
     }
 
-    section.meme-editor canvas.meme-canvas{
+    .editor-container > *{
+        width: calc(50% - 0.5rem);
+    }
+
+    .editor-container .meme-canvas{
+        display: inline-block;
         margin-inline-end: 1rem;
         height: calc(50vh - 4rem);
     }
     
-    section.meme-editor .canvas-controller{
+    .txt-editor-container{
         margin-inline-start: 1rem;
         margin-block-start: 0;
     }
 
-    section.meme-editor .editor-container > *{
-        width: calc(50% - 0.5rem);
-    }
-
-    section.meme-editor .editor-container{
-        height: 50vh;
-        flex-direction: row;
-    }
-
-    section.meme-editor .editor-container .meme-canvas{
-        display: inline-block;
-    }
-
-    .canvas-controller .line-btn img{
+    .txt-editor-container .line-btn img{
         height: 60px;
         width: 60px;
     }
 
-    .canvas-controller .smiley-selection .smiley-item{
+    .txt-editor-containerr .smileys-container .smiley-item{
         height: 50px;
         width: 50px;
     }
 
 }
 
-/* large */
+
+
+/* DESKTOP SIZE LARGE */
+
 @media (min-width: 1060px)
 {
-
-    .canvas-controller .line-btn img{
-        height: 40px;
-        width: 40px;
-    }
-
-    section.meme-editor .editor-container{
+    .editor-container{
         
         top: 50%;;
         left: 50%;
@@ -373,16 +376,19 @@ section.meme-editor .editor-backgound{
         margin-inline: auto auto;
         box-shadow: 0px 0px 2px 3px var(--cls5);
     }
-}
 
-/*ex-large */
-@media (min-width: 1600px){
-    .canvas-controller .line-btn img{
+    .txt-editor-container .line-btn img{
         height: 40px;
         width: 40px;
     }
 
-    section.meme-editor .editor-container{
+    
+}
+
+/* DESKTOP SIZE LARGE */
+
+@media (min-width: 1450px){
+    .main-editor-container .editor-container{
         
         top: 50%;;
         left: 50%;
@@ -393,13 +399,17 @@ section.meme-editor .editor-backgound{
         padding-block: 2rem 2rem;
         box-shadow: 0px 0px 2px 3px var(--cls5);
     }
-
-
-    section.meme-editor .canvas-controller input.txt-line{
+    
+    .txt-editor-container .current-line{
         font-size: 3rem;
     }
 
-    .canvas-controller .smiley-selection .smiley-item{
+    .txt-editor-container .line-btn img{
+        height: 40px;
+        width: 40px;
+    }
+
+    .smileys-container .smiley-item{
         height: 70px;
         width: 70px;
     }

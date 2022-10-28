@@ -12,8 +12,8 @@ let gRectStyle = {fill: false, outer: true}
 
 
 function onImgSelect(el){
-    const fontSize = parseInt(getComputedStyle(document.querySelector('.canvas-controller .txt-line')).fontSize);
-    gElCanvas = document.querySelector('.meme-editor .meme-canvas');
+    const fontSize = parseInt(getComputedStyle(document.querySelector('.txt-editor-container .current-line')).fontSize);
+    gElCanvas = document.querySelector('.editor-container .meme-canvas');
     gCtx = gElCanvas.getContext('2d');
     onToggleEditor();
     setEventListener();
@@ -55,7 +55,7 @@ function onFontSizeChange(val){
 
 function onAlignText(alingment) {
     setLineAlign(gLineIdx,alingment);
-    const elInput = document.querySelector('.canvas-controller .txt-line');
+    const elInput = document.querySelector('.txt-editor-container .current-line');
     switch (alingment) {
         case 'left':
             elInput.classList.add('txt-left');
@@ -76,7 +76,7 @@ function onAlignText(alingment) {
     renderMeme();
 }
 function onToggleEditor(){
-    const elEditor = document.querySelector('.meme-editor');
+    const elEditor = document.querySelector('.main-editor-container');
     elEditor.classList.contains('hide') ? elEditor.classList.remove('hide') : elEditor.classList.add('hide');
 }
 
@@ -92,16 +92,16 @@ function onToggleFill(){
 }
 
 function onGetTxtFromInput(){
-    const currTxt = document.querySelector('.canvas-controller .txt-line').value;
+    const currTxt = document.querySelector('.txt-editor-container .current-line').value;
     setLineTxt(gLineIdx,currTxt);
     renderMeme();
 }
 
 function onFontSelect(){
-    const elInput = document.querySelector('.canvas-controller .txt-line');
+    const elInput = document.querySelector('.txt-editor-container .current-line');
     const FontFamily = document.querySelector('.font-selection').value;
     setLineFamily(gLineIdx, FontFamily);
-    elInput.classList.value = `txt-line txt-Left`;
+    elInput.classList.value = `current-line txt-Left`;
     if(!elInput.classList.contains(`toggle-${FontFamily}`)){
         elInput.classList.add(`toggle-${FontFamily}`);
     }
@@ -208,7 +208,15 @@ function resizeCanvas() {
     //TODO : add different clal for other sizes then 500X500
     let imgRatio = 500/500;
     let CurrHieght = gElCanvas.parentNode.offsetHeight - gElCanvas.offsetTop*2;
-    let CurrWidth = CurrHieght*imgRatio - gElCanvas.offsetLeft*2;
+    let CurrWidth =  gElCanvas.parentNode.offsetWidth- gElCanvas.offsetLeft*2 ;
+    const bios = 32;
+
+    document.body.clientWidth + bios < 750 ? CurrHieght = CurrWidth*imgRatio - gElCanvas.offsetTop*2
+        : CurrWidth = CurrHieght*imgRatio - gElCanvas.offsetLeft*2;
+
+    /*if(CurrWidth > gElCanvas.parentNode.offsetWidth/2 - gElCanvas.offsetLeft*2){
+        CurrWidth = gElCanvas.parentNode.offsetWidth/2 - gElCanvas.offsetLeft*2;
+    }*/
     gElCanvas.style.height = CurrHieght + 'px';
     gElCanvas.style.width = CurrWidth + 'px';
     gCtx.canvas.height = CurrHieght;

@@ -162,7 +162,3 @@ function _createMeme(imgId,width,height,size,padding){
 function _createImage(id, url, keywords){
     return {id, url, keywords};
 }
-
-
-// 
-

@@ -33,11 +33,11 @@
         </section>
     </main>
 
-    <section class="meme-editor hide">
-        <div class="editor-container">
+    <section class="main-editor-container hide">
+        <div class="editor-container flex">
             <canvas class="meme-canvas"></canvas>
-            <section class="canvas-controller grid">
-                <input class="txt-line txt-Left" type="text" placeholder="   enter your line" oninput="onGetTxtFromInput()">
+            <section class="txt-editor-container grid">
+                <input class="current-line txt-Left" type="text" placeholder="   enter your line" oninput="onGetTxtFromInput()">
                 <button class="line-btn switch-Line">
                     <img src="./img/img-general/switch-lines-icon.png" alt="">
                 </button>
@@ -53,7 +53,7 @@
                 <button class="line-btn up-arrow-btn">
                     <img src="./img/img-general/up-arrow-icon.png" alt="">
                 </button>
-                <section class="txt-editor-container grid">
+                <section class="txt-style-container grid">
                     <button class="txt-btn increase" onclick="onFontSizeChange(1)">
                         <img src="./img/img-general/increase-icon.jpg" alt="increase">
                     </button>
@@ -82,7 +82,7 @@
                         <img src="./img/img-general/filltxt-icon.jpg" alt="fill" onclick="onToggleFill()">
                     </button>
                 </section>
-                <div class="smiley-selection flex f-row just-between">
+                <div class="smileys-container flex f-row just-between">
                     <img class="prev-smiley" src="./img/img-general/prev-icon.jpg">
                     <img class="smiley-item" src="./img/img-general/smiley-ecstatic.jpg">
                     <img class="smiley-item" src="./img/img-general/smiley-awkward.jpg">
@@ -90,10 +90,10 @@
                     <img class="smiley-item" src="./img/img-general/smiley-silly.jpg">
                     <img class="prev-smiley" src="./img/img-general/next-icon.jpg">
                 </div>
-                <button class="share-btn s-d-btn">
+                <button class="share-btn export-btn">
                     <img src="./img/img-general/share-icon.png" alt="">Share
                 </button>
-                <button class="download-btn s-d-btn">
+                <button class="download-btn export-btn">
                     <img src="./img/img-general/download-icon.png" alt="">Download
                 </button>
             </section>
