@@ -21,7 +21,7 @@ function setGallery(){
         for (let i = 1; i <= 18; i++) {
             images.forEach((img)=>{
                 strHtml += `<div class="item-container"><img class="square-img" data-id="${img.id}" onclick="onImgSelect(this)"
-                src="${img.url}"= alt="item"></div>`;
+                src="${img.url}" alt="item"></div>`;
             });
         }
 
@@ -29,7 +29,7 @@ function setGallery(){
     } else {
         images.forEach((img)=>{
             strHtml += `<div class="item-container"><img class="square-img" data-id="${img.id}" onclick="onImgSelect(this)"
-            src="${img.url}"= alt="item"></div>`;
+            src="${img.url}" alt="item"></div>`;
         });
     }
     
