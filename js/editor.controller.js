@@ -205,12 +205,17 @@ function setEventListener(){
 }
 
 function resizeCanvas() {
-    const elCanvasContainer = document.querySelector('section.meme-editor .editor-container');
     //TODO : add different clal for other sizes then 500X500
-    let CurrWidth = elCanvasContainer.offsetWidth;
-    let CurrHieght = CurrWidth;
-    gElCanvas.width = CurrWidth;
-    gElCanvas.height = CurrHieght;
-    gElCanvas.style.height = `${CurrHieght}`;
+    let imgRatio = 500/500;
+    let CurrHieght = gElCanvas.parentNode.offsetHeight - gElCanvas.offsetTop*2;
+    let CurrWidth = CurrHieght*imgRatio - gElCanvas.offsetLeft*2;
+    
+    gElCanvas.style.height = CurrHieght + 'px';
+    gElCanvas.style.width = CurrWidth + 'px';
+    gCtx.canvas.height = CurrHieght;
+    gCtx.canvas.width = CurrWidth;
+    
+
+    
     renderMeme();
 }
