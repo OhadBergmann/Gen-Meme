@@ -7,26 +7,39 @@ section.search-bar{
 }
 
 
-/* small */
+
+/* --------------------------------------- RESPONSIVE DESIGN ---------------------------------------*/
+
+
+
+/* MOBILE SIZE SMALL */
+
 @media (min-width: 450px)
 {
 
 }
 
 
-/* medium */
+
+/* MOBILE & TABLET SIZE MEDIUM */
+
 @media (min-width: 750px)
 { 
     
 }
 
-/* large */
+
+
+/* DESKTOP SIZE LARGE */
+
 @media (min-width: 1060px)
 {
     
 }
 
-/*ex-large */
+
+/* DESKTOP SIZE EX-LARGE */
+
 @media (min-width: 1600px){
 
 }

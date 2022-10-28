@@ -12,7 +12,7 @@
     z-index: 40;
 }
 
-.header-container .logo{
+.logo-container{
     justify-content: left;
     padding: 0.3vw;
     margin: 0.3vh 0.3vw 0.3vh 3.3vw;
@@ -20,13 +20,13 @@
     min-width: 150px;
 }
 
-.header-container .logo img{
+.logo-container img{
     height: 6vh;
     width: 6vh;
     aspect-ratio: 1/1;
 }
 
-.header-container .logo .l-txt{
+.logo-container .l-txt{
     align-self: center;
     margin-left: 0.7rem;
 
@@ -36,21 +36,22 @@
     text-transform: uppercase;
 }
 
-.header-container nav{
+.nav-bar-container{
     margin: 0vh 4vw 0vh 0.3vw;
 }
 
-.header-container nav ul{
+.nav-bar-container ul{
     justify-content: right;
     padding-inline-start: 0;
 }
-.header-container nav li{
+
+.nav-bar-container li{
     margin: auto;
     width: 20vw;
 }
 
 
-.header-container li a.link{
+.nav-bar-container li a.link{
     margin-block: 1.5rem 1.5rem;
     height: 3rem;
 
@@ -63,22 +64,28 @@
     border-radius: 20% / 50%;
 }
 
-.header-container li a.link:hover{
+.nav-bar-container li a.link:hover{
     background-color: var(--cls14);
     font-weight: 700;
     color: var(--cls9);
 }
 
-.header-container a.link.gallery{
+.nav-bar-container a.link.gallery{
      width: 7rem;
 }
 
-.header-container a.link.about{
+.nav-bar-container a.link.about{
     width: 6rem;
 }
 
 
-/* small */
+
+/* --------------------------------------- RESPONSIVE DESIGN ---------------------------------------*/
+
+
+
+/* MOBILE SIZE SMALL */
+
 @media (min-width: 450px)
 {
     .header-container{
@@ -90,7 +97,10 @@
     }
 }
 
-/* medium */
+
+
+/* MOBILE & TABLET SIZE MEDIUM */
+
 @media (min-width: 750px)
 {
     .header-container{
@@ -112,7 +122,9 @@
 }
 
 
-/* large */
+
+/* DESKTOP SIZE LARGE */
+
 @media (min-width: 1060px)
 {
     .header-container{
@@ -125,7 +137,9 @@
 }
 
 
-/*ex-large */
+
+/* DESKTOP SIZE EX-LARGE */
+
 @media (min-width: 1600px){
 
 }

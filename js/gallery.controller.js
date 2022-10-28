@@ -12,7 +12,7 @@ function renderMeme(){
 function setGallery(){
     let strHtml = '';
 
-    const elGalleryContainer = document.querySelector('section.images-grid');
+    const elGalleryContainer = document.querySelector('.img-grid-container');
     let images = getImages();
 
     if(!images.length){

@@ -1,6 +1,6 @@
 
 
-main.gallery-container {
+.gallery-container {
     background-color: var(--cls4);
     height: auto;
     width: 94vw;
@@ -10,7 +10,7 @@ main.gallery-container {
 }
 
 
-main.gallery-container .images-grid{
+.gallery-container .img-grid-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(50px, 250px));
     grid-template-rows: repeat(auto-fit, minmax(50px, 250px));
@@ -22,39 +22,53 @@ main.gallery-container .images-grid{
 }
 
 
-main.gallery-container .images-grid .item-container{
+.img-grid-container .item-container{
     border-radius: 0.75rem;
     box-shadow: 1px 1px 1px var(--cls1);
     
 }
 
-main.gallery-container .item-container .square-img{
+.item-container .square-img{
     border-radius: 0.75rem;
     max-height: 250px;
     min-height: 50px;
 }
 
 
-/* small */
+
+/* --------------------------------------- RESPONSIVE DESIGN ---------------------------------------*/
+
+
+
+/* MOBILE SIZE SMALL */
+
 @media (min-width: 450px)
 {
 
 }
 
 
-/* medium */
+
+/* MOBILE & TABLET SIZE MEDIUM */
+
 @media (min-width: 750px)
 { 
     
 }
 
-/* large */
+
+
+/* DESKTOP SIZE LARGE */
+
 @media (min-width: 1060px)
 {
     
 }
 
-/*ex-large */
+
+
+/* DESKTOP SIZE EX-LARGE */
+
 @media (min-width: 1600px){
 
 }
