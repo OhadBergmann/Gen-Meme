@@ -2,7 +2,9 @@
 
 .header-container{
     background-image: linear-gradient(-86deg, var(--cls10) 0%,var(--cls8) 100%);
-    position: relative;
+    position: fixed;
+    top: 0.5rem;  
+
     border-radius: 12% / 50%;
     margin-inline: auto auto;
     height: 6vh;
@@ -89,6 +91,7 @@
 @media (min-width: 450px)
 {
     .header-container{
+        position: relative;
         border-radius: 7% / 50%;
     }
 

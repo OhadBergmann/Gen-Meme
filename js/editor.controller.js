@@ -217,22 +217,15 @@ function resizeCanvas() {
     if(document.body.clientWidth + bios < 750){
         newHieght = container.getBoundingClientRect().height - (container.getBoundingClientRect().height 
     - gElCanvas.getBoundingClientRect().height);
-    newWidth = container.getBoundingClientRect().width - (container.getBoundingClientRect().width 
-    - gElCanvas.getBoundingClientRect().width)
+    newWidth = newHieght * imgRatio;
      } else {
-        newHieght = container.getBoundingClientRect().height - (container.getBoundingClientRect().height 
-        - gElCanvas.getBoundingClientRect().height);
         newWidth = container.getBoundingClientRect().width/2 - (container.getBoundingClientRect().width 
         - gElCanvas.getBoundingClientRect().width)
+        newHieght = newWidth * imgRatio;
      }
 
-    gElCanvas.style.height = newHieght + 'px';
-    gElCanvas.style.width = newWidth + 'px';
-
-    gElCanvas.height = gCtx.canvas.height = newHieght;
-    gElCanvas.width = gCtx.canvas.width = newWidth;
+     gElCanvas.height = newHieght;
+     gElCanvas.width = newWidth;
+     
     renderMeme();
-
-    //console.log('newHieght: ', newHieght)
-   // console.log('newWidth:', newWidth)
 }
