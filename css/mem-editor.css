@@ -371,6 +371,9 @@
         height: 60vh;
         width: 70vw;
         transform: translate(-50%,-50%);
+        padding-inline: 2rem 2rem;
+        padding-block: 2rem 2rem;
+        margin-inline: auto auto;
         box-shadow: 0px 0px 2px 3px var(--cls5);
     }
 
@@ -384,10 +387,10 @@
 
 
 
-/* DESKTOP SIZE EX-LARGE */
+/* DESKTOP SIZE EX_LARGE */
 
 @media (min-width: 1450px){
-    .editor-container{
+    .main-editor-container .editor-container{
         
         top: 50%;;
         left: 50%;

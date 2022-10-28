@@ -12,14 +12,13 @@ let gRectStyle = {fill: false, outer: true}
 
 
 function onImgSelect(el){
+    onToggleEditor();
     const fontSize = parseInt(getComputedStyle(document.querySelector('.txt-editor-container .current-line')).fontSize);
     gElCanvas = document.querySelector('.editor-container .meme-canvas');
     gCtx = gElCanvas.getContext('2d');
-    onToggleEditor();
     setEventListener();
     createCurrMeme(el.dataset.id, gElCanvas.width,gElCanvas.height,fontSize,CANVAS_IMAGE_PADDING);
-    //NOTE: _resizeCanvas all ready calls to renderMeme();
-     resizeCanvas();
+    resizeCanvas()
 }
 
 function renderMeme(){
@@ -55,7 +54,7 @@ function onFontSizeChange(val){
 
 function onAlignText(alingment) {
     setLineAlign(gLineIdx,alingment);
-    const elInput = document.querySelector('.txt-editor-container .current-line');
+    const elInput = document.querySelector('.txt-style-container .current-line');
     switch (alingment) {
         case 'left':
             elInput.classList.add('txt-left');
@@ -75,11 +74,11 @@ function onAlignText(alingment) {
     }
     renderMeme();
 }
+
 function onToggleEditor(){
     const elEditor = document.querySelector('.main-editor-container');
     elEditor.classList.contains('hide') ? elEditor.classList.remove('hide') : elEditor.classList.add('hide');
 }
-
 
 function onToggleOuterLine(){
     gRectStyle.outer = !gRectStyle.outer;
@@ -92,13 +91,13 @@ function onToggleFill(){
 }
 
 function onGetTxtFromInput(){
-    const currTxt = document.querySelector('.txt-editor-container .current-line').value;
+    const currTxt = document.querySelector('.txt-style-container .current-line').value;
     setLineTxt(gLineIdx,currTxt);
     renderMeme();
 }
 
 function onFontSelect(){
-    const elInput = document.querySelector('.txt-editor-container .current-line');
+    const elInput = document.querySelector('.txt-style-container .current-line');
     const FontFamily = document.querySelector('.font-selection').value;
     setLineFamily(gLineIdx, FontFamily);
     elInput.classList.value = `current-line txt-Left`;
@@ -107,6 +106,9 @@ function onFontSelect(){
     }
     renderMeme();
 }
+
+/* --------------------------------------- INNER FUNCTIONS ---------------------------------------*/
+
 function drawImage() {
     const currImgId = getImageIdFromMeme();
     const image = getImageFromId(currImgId);
@@ -205,21 +207,32 @@ function setEventListener(){
 }
 
 function resizeCanvas() {
-    //TODO : add different clal for other sizes then 500X500
-    let imgRatio = 500/500;
-    let CurrHieght = gElCanvas.parentNode.offsetHeight - gElCanvas.offsetTop*2;
-    let CurrWidth =  gElCanvas.parentNode.offsetWidth- gElCanvas.offsetLeft*2 ;
+    const container = gElCanvas.parentNode;
     const bios = 32;
+//TODO : add different clal for other sizes then 500X500
+    let imgRatio = 500/500;
+    let newHieght;
+    let newWidth;
+    
+    if(document.body.clientWidth + bios < 750){
+        newHieght = container.getBoundingClientRect().height - (container.getBoundingClientRect().height 
+    - gElCanvas.getBoundingClientRect().height);
+    newWidth = container.getBoundingClientRect().width - (container.getBoundingClientRect().width 
+    - gElCanvas.getBoundingClientRect().width)
+     } else {
+        newHieght = container.getBoundingClientRect().height - (container.getBoundingClientRect().height 
+        - gElCanvas.getBoundingClientRect().height);
+        newWidth = container.getBoundingClientRect().width/2 - (container.getBoundingClientRect().width 
+        - gElCanvas.getBoundingClientRect().width)
+     }
 
-    document.body.clientWidth + bios < 750 ? CurrHieght = CurrWidth*imgRatio - gElCanvas.offsetTop*2
-        : CurrWidth = CurrHieght*imgRatio - gElCanvas.offsetLeft*2;
+    gElCanvas.style.height = newHieght + 'px';
+    gElCanvas.style.width = newWidth + 'px';
 
-    /*if(CurrWidth > gElCanvas.parentNode.offsetWidth/2 - gElCanvas.offsetLeft*2){
-        CurrWidth = gElCanvas.parentNode.offsetWidth/2 - gElCanvas.offsetLeft*2;
-    }*/
-    gElCanvas.style.height = CurrHieght + 'px';
-    gElCanvas.style.width = CurrWidth + 'px';
-    gCtx.canvas.height = CurrHieght;
-    gCtx.canvas.width = CurrWidth;
+    gElCanvas.height = gCtx.canvas.height = newHieght;
+    gElCanvas.width = gCtx.canvas.width = newWidth;
     renderMeme();
+
+    //console.log('newHieght: ', newHieght)
+   // console.log('newWidth:', newWidth)
 }
