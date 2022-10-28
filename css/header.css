@@ -1,0 +1,129 @@
+.header-container{
+    background-image: linear-gradient(-86deg, var(--cls10) 0%,var(--cls8) 100%);
+    position: relative;
+    border-radius: 12% / 50%;
+    margin-inline: auto auto;
+    height: 6vh;
+    min-height: 6rem;
+    width: 90vw;
+    min-width: 320px;
+    z-index: 40;
+}
+
+.header-container .logo{
+    justify-content: left;
+    padding: 0.3vw;
+    margin: 0.3vh 0.3vw 0.3vh 3.3vw;
+    width: 50vw;
+    min-width: 150px;
+}
+
+.header-container .logo img{
+    height: 6vh;
+    width: 6vh;
+    aspect-ratio: 1/1;
+}
+
+.header-container .logo .l-txt{
+    align-self: center;
+    margin-left: 0.7rem;
+
+    font-family: Poppins-r;
+    font-size: 1rem;
+    color: var(--cls14);
+    text-transform: uppercase;
+}
+
+.header-container nav{
+    margin: 0vh 4vw 0vh 0.3vw;
+}
+
+.header-container nav ul{
+    justify-content: right;
+    padding-inline-start: 0;
+}
+.header-container nav li{
+    margin: auto;
+    width: 20vw;
+}
+
+
+.header-container li a.link{
+    margin-block: 1.5rem 1.5rem;
+    height: 3rem;
+
+    
+    text-align: center;
+    font-family: Poppins, sans-serif;
+    font-size: 1rem;
+    color: var(--cls14);
+    text-decoration: none;
+    border-radius: 20% / 50%;
+}
+
+.header-container li a.link:hover{
+    background-color: var(--cls14);
+    font-weight: 700;
+    color: var(--cls9);
+}
+
+.header-container a.link.gallery{
+     width: 7rem;
+}
+
+.header-container a.link.about{
+    width: 6rem;
+}
+
+
+/* small */
+@media (min-width: 450px)
+{
+    .header-container{
+        border-radius: 7% / 50%;
+    }
+
+    .header-container >*{
+        margin: 0.3vh  0.3vh 0.3vh 5%;
+    }
+}
+
+/* medium */
+@media (min-width: 750px)
+{
+    .header-container{
+        border-radius: 9% / 50%;
+    }
+
+    .header-container >*{
+        width: 29vw;
+        margin: 0.3vh  0.3vh 0.3vh 5%;
+    }
+
+    .header-container .logo .l-txt{
+        font-size: 1.5rem;
+    }
+    
+    .header-container li a.link{
+        font-size: 1.5rem;
+    }
+}
+
+
+/* large */
+@media (min-width: 1060px)
+{
+    .header-container{
+        border-radius: 7% / 50%;
+    }
+
+    .header-container .logo{
+        width: 21vw;
+    }
+}
+
+
+/*ex-large */
+@media (min-width: 1600px){
+
+}

@@ -209,13 +209,9 @@ function resizeCanvas() {
     let imgRatio = 500/500;
     let CurrHieght = gElCanvas.parentNode.offsetHeight - gElCanvas.offsetTop*2;
     let CurrWidth = CurrHieght*imgRatio - gElCanvas.offsetLeft*2;
-    
     gElCanvas.style.height = CurrHieght + 'px';
     gElCanvas.style.width = CurrWidth + 'px';
     gCtx.canvas.height = CurrHieght;
     gCtx.canvas.width = CurrWidth;
-    
-
-    
     renderMeme();
 }

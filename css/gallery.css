@@ -1,0 +1,64 @@
+
+@import url('root.css');
+
+/* gallery */
+
+
+main.gallery-container {
+    background-color: var(--cls4);
+    height: auto;
+    width: 94vw;
+    margin-top: 3vh;
+    margin-inline: auto auto;
+    border-radius:0.75rem;
+}
+
+
+main.gallery-container .images-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 250px));
+    grid-template-rows: repeat(auto-fit, minmax(50px, 250px));
+    grid-auto-flow: dense;
+    gap: 7px;
+    justify-content: center;
+    padding: 7px;
+    
+}
+
+
+main.gallery-container .images-grid .item-container{
+    border-radius: 0.75rem;
+    box-shadow: 1px 1px 1px var(--cls1);
+    
+}
+
+main.gallery-container .item-container .square-img{
+    border-radius: 0.75rem;
+    max-height: 250px;
+    min-height: 50px;
+}
+
+
+/* small */
+@media (min-width: 450px)
+{
+
+}
+
+
+/* medium */
+@media (min-width: 750px)
+{ 
+    
+}
+
+/* large */
+@media (min-width: 1060px)
+{
+    
+}
+
+/*ex-large */
+@media (min-width: 1600px){
+
+}
