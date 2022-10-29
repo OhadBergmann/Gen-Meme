@@ -44,9 +44,14 @@
 
 .txt-editor-container * {
     object-fit: cover;
-    width: 100%;
+   
 }
 
+.txt-editor-container .line-btn{
+    height: 40px;
+    width: 40px;
+    align-self: center;
+}
 .txt-editor-container *:not(section) img {
     height: 20px;
     width: 20px;
@@ -61,6 +66,7 @@
     font-size: 1.7rem;
     box-shadow: 0px 5px 3px var(--cls2), inset 3px 5px 0 var(--cls13);
     margin: 0px;
+    height: 35px;
 }
 
 
@@ -202,12 +208,13 @@
 .smileys-container{
     grid-column: 1 / 6;
     grid-row: 5 / 7;
-
+    height: 60px;
     height: 7vh;
     margin: auto;
     padding-inline: 1vw 1vw;
     background-color: var(--cls14);
     border-radius: 10% / 50%;
+    height: 60px;
 }
 
 .smileys-container >*{
@@ -215,9 +222,10 @@
     background-color: var(--cls14);
     border: none;
     cursor: pointer;
+    height: 60px;
 }
 
-.smileys-container .smiley-item{
+ .smiley-item{
     height: 40px;
     width: 40px;
     margin-block: auto;
@@ -259,7 +267,7 @@
     grid-column: 1 / 3;
     grid-row: 7 / 7;
     transform: translate(20%);
-
+    min-height: 30px;
     margin-block-end: 2vh;
     background-color: var(--cls6);
 
@@ -269,7 +277,7 @@
     grid-column: 4 / 6;
     grid-row: 7 / 7;
     transform: translate(-20%);
-
+    min-height: 30px;
     margin-block-end: 2vh;
     background-color: var(--cls11);
     padding-inline-start: 2rem;
@@ -315,17 +323,25 @@
 
     .txt-editor-container{
         display: inline-block;
-        padding: 10px;
-        gap: 10px;
-        margin-block-start: 3rem;
+        padding: 5px;
+        gap: 2px;
+        margin-block-start: 0;
         padding:2rem;
+        padding: 2px;
     }
 
     .txt-editor-container .line-btn img{
-        height: 40px;
-        width: 40px;
+        height: 35px;
+        width: 35px;
+    }
+    .smileys-container{
+        height: 60px;
     }
 
+    .txt-style-container {
+        margin-inline: 60px;
+        margin-bottom: 5px;
+    }
 }
 
 
@@ -355,24 +371,49 @@
 
     .editor-container .meme-canvas{
         display: inline-block;
-        margin-inline-end: 1rem;
+        margin-inline-end: 0.5rem;
         height: calc(50vh - 4rem);
     }
-    
+
     .txt-editor-container{
-        margin-inline-start: 1rem;
         margin-block-start: 0;
-        
+        gap: 5px;
+        padding: 5px;
     }
 
-    .txt-editor-container .line-btn img{
+
+    .txt-editor-container .current-line{
+        font-size: 2.5rem;
+        height: 50px;
+    }
+
+    .txt-editor-container .line-btn{
+        height: auto;
+        width: auto;
+        align-self: center;
+    }
+    .txt-editor-container *:not(section) img {
         height: 60px;
         width: 60px;
+    }
+
+       .txt-editor-container .line-btn img{
+        height: 60px;
+        width: 60px;
+    }
+
+    .smileys-container{
+        min-height: 100px;
     }
 
     .txt-editor-containerr .smileys-container .smiley-item{
         height: 50px;
         width: 50px;
+    }
+
+    .txt-style-container {
+        margin-inline: 20px;
+        margin-bottom: 5px;
     }
 
     .txt-style-container .txt-btn{
@@ -406,6 +447,11 @@
         box-shadow: 0px 0px 2px 3px var(--cls5);
     }
 
+    .txt-editor-container .current-line{
+        font-size: 2.5rem;
+        height: 60px;
+    }
+
     .txt-style-container .txt-btn{
         height: 55px;
         width: 55px;
@@ -415,13 +461,6 @@
         height: 50px;
         width: 50px;
     }
-
-    
-    .txt-editor-container .line-btn img{
-        height: 40px;
-        width: 40px;
-    }
-
     
 }
 
@@ -444,11 +483,7 @@
     
     .txt-editor-container .current-line{
         font-size: 3rem;
-    }
-
-    .txt-editor-container .line-btn img{
-        height: 40px;
-        width: 40px;
+        height: 75px;
     }
 
     .smileys-container .smiley-item{

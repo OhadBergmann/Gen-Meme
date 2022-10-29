@@ -407,6 +407,7 @@ function resizeCanvas() {
 
     gElCanvas.height = gCtx.height =  newHieght;
     gElCanvas.width = gCtx.width = newWidth;
-
+    updateLinesPos(1,(canvasEdgeSize + getLineFontSize(1)/2 + canvasEdgeSize),
+    (gCtx.height - (getLineFontSize(1) + canvasEdgeSize*4)));
     renderMeme();
   }
