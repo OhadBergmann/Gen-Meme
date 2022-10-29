@@ -156,6 +156,21 @@ function _createMeme(imgId,width,height,size,padding){
                 botM: {x:(width - padding)/2, y:padding}
             }
         }],
+        smileys: [
+            {isVisible: false,
+            size: size*2,
+            url: './img/img-general/smiley-ecstatic.jpg'
+            },{isVisible: false,
+                size: size*2,
+                url: './img/img-general/smiley-awkward.jpg'
+            },{isVisible: false,
+                size: size*2,
+                url: './img/img-general/smiley-awe.jpg'
+            },{isVisible: false,
+                size: size*2,
+                url: './img/img-general/smiley-silly.jpg'
+            },
+        ]
    };   
 }
 

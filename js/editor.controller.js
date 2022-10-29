@@ -7,7 +7,7 @@ let gElCanvas;
 let gCtx;
 let gLineIdx = 0;
 let gCurrCbS = null;
-let gRectStyle = {fill: false, outer: true}
+let gRectStyle = {fill: false, outer: true};
 
 
 
@@ -16,8 +16,9 @@ function onImgSelect(el){
     const fontSize = parseInt(getComputedStyle(document.querySelector('.txt-editor-container .current-line')).fontSize);
     gElCanvas = document.querySelector('.editor-container .meme-canvas');
     gCtx = gElCanvas.getContext('2d');
-    setEventListener();
     createCurrMeme(el.dataset.id, gElCanvas.width,gElCanvas.height,fontSize,CANVAS_IMAGE_PADDING);
+    gElCanvas.setAttribute('data-imgid',`${getImageIdFromMeme()}`);
+    setEventListener();
     resizeCanvas()
 }
 
@@ -30,7 +31,9 @@ function renderMeme(){
             gCurrCbS.push(drawText);
         }
     });
-    drawImage();
+
+    const image = getImageFromId(getImageIdFromMeme());
+    drawImage(image,0,0,gElCanvas.height,gElCanvas.width);
     gCurrCbS = null;
 }
 
@@ -109,16 +112,13 @@ function onFontSelect(){
 
 /* --------------------------------------- INNER FUNCTIONS ---------------------------------------*/
 
-function drawImage() {
-    const currImgId = getImageIdFromMeme();
-    const image = getImageFromId(currImgId);
+function drawImage(image,x,y,endX,endY) {
     const cds = gCurrCbS; //NOTE: the declaration of this variable is for closure reasons (for the onload function)
-    gElCanvas.setAttribute('data-imgid',`${currImgId}`);
     const img = new Image();
     
     img.src = image.url;
     img.onload = ()=>{
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+        gCtx.drawImage(img, x, y, endX, endY);
         if(cds){
             cds.forEach((cb)=>{
                 cb();
@@ -217,7 +217,7 @@ function resizeCanvas() {
     //handle DOM
     switchDesktopAndMobile();
 
-    if(isMobile()){
+    if(document.body.clientWidth  < 750){
         newHieght = container.getBoundingClientRect().height - (container.getBoundingClientRect().height 
     - gElCanvas.getBoundingClientRect().height);
     newWidth = newHieght * imgRatio;
@@ -231,8 +231,6 @@ function resizeCanvas() {
      gElCanvas.width = newWidth;
      
     renderMeme();
-
-   
 }
 
 
