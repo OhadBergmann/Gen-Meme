@@ -46,7 +46,6 @@ function onImgSelect(el){
 
 
 function OnExitEditor() {
-    console.log('exit')
     onToggleEditor();
 }
 

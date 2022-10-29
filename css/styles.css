@@ -23,6 +23,7 @@
     --cls14: #ffffff;
     --cls15: #ffffff31;
 
+    --after-mg: url('../img-general/magnifying-glass-icon.png');
 }
 
 /* TYPOGRAPHY */
@@ -73,6 +74,8 @@ body{
 .f-col{
     flex-direction: column;
 }
+
+
 .just-between{
     justify-content: space-between;
 }
@@ -85,6 +88,9 @@ body{
     align-items: center;
 }
 
+.base-align-i{
+    align-items: baseline;
+}
 ul,li{
     list-style-type: none;
     height: 100%;

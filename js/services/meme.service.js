@@ -140,23 +140,23 @@ function updateLinesPos(idx,currLeft,currTop){
 function createImages(){
     gImages = [];
     gImages[0] = _createImage(makeId(7), './img/img-1x1/1.jpg',['trump', 'politics']);
-    gImages[1] = _createImage(makeId(7), './img/img-1x1/2.jpg',['Dog', 'funny']);
-    gImages[2] = _createImage(makeId(7), './img/img-1x1/3.jpg',['Baby', 'Dog']);
-    gImages[3] = _createImage(makeId(7), './img/img-1x1/4.jpg',['Cat', 'funny']);
-    gImages[4] = _createImage(makeId(7), './img/img-1x1/5.jpg',['Serious', 'Baby']);
-    gImages[5] = _createImage(makeId(7), './img/img-1x1/6.jpg',['TVshows', 'funny']);
-    gImages[6] = _createImage(makeId(7), './img/img-1x1/7.jpg',['Surprised', 'Baby']);
-    gImages[7] = _createImage(makeId(7), './img/img-1x1/8.jpg',['Movies', 'Smile']);
-    gImages[8] = _createImage(makeId(7), './img/img-1x1/9.jpg',['funny', 'Smile']);
-    gImages[9] = _createImage(makeId(7), './img/img-1x1/10.jpg',['Obama', 'Politics']);
-    gImages[10] = _createImage(makeId(7), './img/img-1x1/11.jpg',['Sport', 'Hugs']);
-    gImages[11] = _createImage(makeId(7), './img/img-1x1/12.jpg',['TVshows', 'Caught you']);
-    gImages[12] = _createImage(makeId(7), './img/img-1x1/13.jpg',['Movies', 'Smile']);
-    gImages[13] = _createImage(makeId(7), './img/img-1x1/14.jpg',['Movies', 'Serious']);
-    gImages[14] = _createImage(makeId(7), './img/img-1x1/15.jpg',['TVshows', 'Serious']);
-    gImages[15] = _createImage(makeId(7), './img/img-1x1/16.jpg',['Movies', 'Smile']);
-    gImages[16] = _createImage(makeId(7), './img/img-1x1/17.jpg',['Putin', 'Politics']);
-    gImages[17] = _createImage(makeId(7), './img/img-1x1/18.jpg',['Toys', 'Movies']);
+    gImages[1] = _createImage(makeId(7), './img/img-1x1/2.jpg',['dog', 'funny']);
+    gImages[2] = _createImage(makeId(7), './img/img-1x1/3.jpg',['baby', 'dog']);
+    gImages[3] = _createImage(makeId(7), './img/img-1x1/4.jpg',['cat', 'funny']);
+    gImages[4] = _createImage(makeId(7), './img/img-1x1/5.jpg',['serious', 'baby']);
+    gImages[5] = _createImage(makeId(7), './img/img-1x1/6.jpg',['tvshows', 'funny']);
+    gImages[6] = _createImage(makeId(7), './img/img-1x1/7.jpg',['surprised', 'baby']);
+    gImages[7] = _createImage(makeId(7), './img/img-1x1/8.jpg',['movies', 'smile']);
+    gImages[8] = _createImage(makeId(7), './img/img-1x1/9.jpg',['funny', 'smile']);
+    gImages[9] = _createImage(makeId(7), './img/img-1x1/10.jpg',['obama', 'politics']);
+    gImages[10] = _createImage(makeId(7), './img/img-1x1/11.jpg',['sport', 'hugs']);
+    gImages[11] = _createImage(makeId(7), './img/img-1x1/12.jpg',['tvshows', 'caught you']);
+    gImages[12] = _createImage(makeId(7), './img/img-1x1/13.jpg',['movies', 'smile']);
+    gImages[13] = _createImage(makeId(7), './img/img-1x1/14.jpg',['movies', 'serious']);
+    gImages[14] = _createImage(makeId(7), './img/img-1x1/15.jpg',['tvshows', 'serious']);
+    gImages[15] = _createImage(makeId(7), './img/img-1x1/16.jpg',['movies', 'smile']);
+    gImages[16] = _createImage(makeId(7), './img/img-1x1/17.jpg',['putin', 'politics']);
+    gImages[17] = _createImage(makeId(7), './img/img-1x1/18.jpg',['toys', 'movies']);
     saveToStorage(IMAGES_STOREKEY, gImages);
 }
 
@@ -181,18 +181,22 @@ function _createMeme(imgId,fontsize, linespos){
         lines: [_createLine(0,fontsize,pos0,true),_createLine(1,fontsize,pos1,false)],
         smileys: [
             {
+                name: 'ecstatic',
                 isVisible: false,
                 size: fontsize*3,
                 url: './img/img-general/smiley-ecstatic.jpg'
             },{
+                name: 'awkward',
                 isVisible: false,
                 size: fontsize*3,
                 url: './img/img-general/smiley-awkward.jpg'
             },{
+                name: 'awe',
                 isVisible: false,
                 size: fontsize*3,
                 url: './img/img-general/smiley-awe.jpg'
             },{
+                name: 'silly',
                 isVisible: false,
                 size: fontsize*3,
                 url: './img/img-general/smiley-silly.jpg'
