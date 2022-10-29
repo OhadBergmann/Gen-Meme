@@ -40,6 +40,12 @@ function onImgSelect(el){
     (gCtx.height - (getLineFontSize(1) + canvasEdgeSize*4)));
 }
 
+
+function OnExitEditor() {
+    console.log('exit')
+    onToggleEditor();
+}
+
 function onMove(){
 
 }

@@ -5,7 +5,6 @@ function onInit(){
     switchDesktopAndMobile()
 }
 
-
 function setGallery(){
     let strHtml = '';
 
