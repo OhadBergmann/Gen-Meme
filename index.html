@@ -39,7 +39,7 @@
         <div class="editor-container flex">
             <canvas class="meme-canvas"></canvas>
             <section class="txt-editor-container grid">
-                <input class="current-line txt-Left" type="text" placeholder="   enter your line" oninput="onGetTxtFromInput()">
+                <input class="current-line txt-Left" type="text" placeholder="   enter your line" oninput="onTxtFromInput()">
                 <button class="line-btn switch-Line">
                     <img src="./img/img-general/switch-lines-icon.png" alt="">
                 </button>
@@ -76,7 +76,7 @@
                         <option value="poppins"></option>
                         <option value="impacted"></option>
                     </datalist>
-                    <input type="color" class="txt-btn color-picker">
+                    <input type="color" class="txt-btn color-picker" oninput="onColorPicked(this)">
                     <button class="txt-btn font-outerline">
                         <img src="./img/img-general/outerline-icon.jpg" alt="text OuterLine" onclick="onToggleOuterLine()">
                     </button>

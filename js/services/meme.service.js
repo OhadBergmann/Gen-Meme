@@ -21,9 +21,8 @@ const MEMES_STOREKEY = 'local-memes';
     });
 }*/
 
-function createCurrMeme(id,width,height,size,padding){
-    console.log(width,height)
-    gCurrMeme = _createMeme(id,width,height,size,padding);
+function createCurrMeme(id,size,){
+    gCurrMeme = _createMeme(id,size);
 }
 
 function getCurrMeme(){
@@ -78,6 +77,16 @@ function setLineRect(idx,rect){
     gCurrMeme.lines[idx].rect = rect;
 }
 
+function getLineColor(idx){
+    return gCurrMeme.lines[idx].color;
+}
+
+function setLineColor(idx, color){
+    gCurrMeme.lines[idx].color = color;
+}
+
+
+
 function getImageFromId(id){
     for (let i = 0; i < gImages.length; i++) {
         if(gImages[i].id === id) return gImages[i];
@@ -122,7 +131,7 @@ function _setImagesFromStorage(){
     return false;
 }
 
-function _createMeme(imgId,width,height,size,padding){
+function _createMeme(imgId,size){
     return {
         imgId,
         lines: [{
@@ -132,14 +141,6 @@ function _createMeme(imgId,width,height,size,padding){
             size,
             align: 'left',
             color: '#0c98b9',
-            rect: {
-                topL: {x:padding,y:padding},
-                topR: {x:width - padding,y:padding},
-                topM: {x:(width - padding)/2, y:padding},
-                botL: {x:padding,y:(padding + size*2)},
-                botR: {x:width - padding,y:(padding + size*2)},
-                botM: {x:(width - padding)/2, y:(padding + size*2)}
-            }
         },{
             isVisible: false,
             txt: '   enter your line',
@@ -147,14 +148,6 @@ function _createMeme(imgId,width,height,size,padding){
             size,
             align: 'left',
             color: '#dc14c3',
-            rect: {
-                topL: {x:padding,y:(height - (padding + size*2))},
-                topR: {x:width - padding,y:(height - (padding + size*2))},
-                topM: {x:(width - padding)/2, y:(height - (padding + size*2))},
-                botL: {x:padding,y:padding},
-                botR: {x:width - padding,y:padding},
-                botM: {x:(width - padding)/2, y:padding}
-            }
         }],
         smileys: [
             {isVisible: false,

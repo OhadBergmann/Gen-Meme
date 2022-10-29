@@ -1,7 +1,6 @@
 'use strict'
 
-const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend'];
-const CANVAS_IMAGE_PADDING = 30; 
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']; 
 
 let gElCanvas;
 let gCtx;
@@ -13,10 +12,9 @@ let gRectStyle = {fill: false, outer: true};
 
 function onImgSelect(el){
     onToggleEditor();
-    const fontSize = parseInt(getComputedStyle(document.querySelector('.txt-editor-container .current-line')).fontSize);
     gElCanvas = document.querySelector('.editor-container .meme-canvas');
     gCtx = gElCanvas.getContext('2d');
-    createCurrMeme(el.dataset.id, gElCanvas.width,gElCanvas.height,fontSize,CANVAS_IMAGE_PADDING);
+    createCurrMeme(el.dataset.id,20);
     gElCanvas.setAttribute('data-imgid',`${getImageIdFromMeme()}`);
     setEventListener();
     resizeCanvas()
@@ -27,7 +25,7 @@ function renderMeme(){
         if(line.isVisible){
             gLineIdx = idx;
             gCurrCbS = [];
-            gCurrCbS.push(drawRect);
+           // gCurrCbS.push(drawRect);
             gCurrCbS.push(drawText);
         }
     });
@@ -57,7 +55,8 @@ function onFontSizeChange(val){
 
 function onAlignText(alingment) {
     setLineAlign(gLineIdx,alingment);
-    const elInput = document.querySelector('.txt-style-container .current-line');
+
+    const elInput = document.querySelector('.txt-editor-container .current-line');
     switch (alingment) {
         case 'left':
             elInput.classList.add('txt-left');
@@ -99,20 +98,27 @@ function onToggleFill(){
     renderMeme();
 }
 
-function onGetTxtFromInput(){
-    const currTxt = document.querySelector('.txt-style-container .current-line').value;
+function onTxtFromInput(){
+    const currTxt = document.querySelector('.txt-editor-container .current-line').value;
     setLineTxt(gLineIdx,currTxt);
     renderMeme();
 }
 
 function onFontSelect(){
-    const elInput = document.querySelector('.txt-style-container .current-line');
+    const elInput = document.querySelector('.txt-editor-container .current-line');
     const FontFamily = document.querySelector('.font-selection').value;
     setLineFamily(gLineIdx, FontFamily);
+
     elInput.classList.value = `current-line txt-Left`;
     if(!elInput.classList.contains(`toggle-${FontFamily}`)){
         elInput.classList.add(`toggle-${FontFamily}`);
     }
+
+    renderMeme();
+}
+
+function onColorPicked(el) {
+    setLineColor(gLineIdx, el.value);
     renderMeme();
 }
 
@@ -176,31 +182,56 @@ function drawImage(image,x,y,endX,endY) {
 }
 
 function drawText(){
+    // text padding from the sides
+    // txt height\width structure: bios || font size || bios 
+
+    const bios = 2.5;
+    const width = gElCanvas.width;
+    const height = gElCanvas.height;
     const txt = getLineTxt(gLineIdx)
-    var pos = {};
-    const fontsize = getLineFontSize(gLineIdx);
-    gCtx.font = `${fontsize}px ${getLineFamily(gLineIdx)}`;
-    gCtx.textAlign = getLineAlign(gLineIdx);
+    let x,y;
+    const fontSize = getLineFontSize(gLineIdx);
+    const fontFamily = getLineFamily(gLineIdx);
     
-    switch (gCtx.textAlign) {
+    switch (getLineAlign(gLineIdx)) {
         case 'left':
-            pos = getLineRect(gLineIdx).botL;
+            if(gLineIdx === 0){
+                x = bios*2;
+                y = fontSize + bios
+            } else if (gLineIdx === getMemeLines().length - 1){
+                x = bios*2;
+                y = height - bios*2;
+            }
             break;
         case 'center':
-            pos = getLineRect(gLineIdx).botM;
+            if(gLineIdx === 0){
+                x = width/2 - bios*2;
+                y = fontSize + bios
+            } else if (gLineIdx === getMemeLines().length - 1){
+                x = width/2 - bios*2;
+                y = height - bios*2;
+            }
             break;
         case 'right':
-            pos = getLineRect(gLineIdx).botR;
+            if(gLineIdx === 0){
+                x = width - bios*2;
+                y = fontSize + bios
+            } else if (gLineIdx === getMemeLines().length - 1){
+                x = width - bios*2;
+                y = height - bios*2;
+            }
             break;
     }
 
-    gCtx.fillStyle = '#ffffff';
-    gCtx.fillText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));
+    gCtx.font = `${fontSize}px ${fontFamily}`;
+    gCtx.textAlign = getLineAlign(gLineIdx);
+    gCtx.fillStyle = getLineColor(gLineIdx);
+    gCtx.fillText(txt, x, y);
     gCtx.strokeStyle= '#0000004d';
-    gCtx.strokeText(txt, pos.x*2, (pos.y - (fontsize + CANVAS_IMAGE_PADDING)/2));   
+    gCtx.strokeText(txt, x,y);   
 }
 
-function drawRect() {
+/*function drawRect() {
     if(!gRectStyle.fill && !gRectStyle.outer) return;
 
     const elInput = document.querySelector('.meme-canvas');
@@ -220,7 +251,7 @@ function drawRect() {
         gCtx.strokeRect(x, y, width , height);
     }
    
-}
+}*/
 
 
 
@@ -277,7 +308,8 @@ function resizeCanvas() {
 
      gElCanvas.height = gCtx.height =  newHieght;
      gElCanvas.width = gCtx.width = newWidth;
-     
+     gCtx.height = newHieght;
+     gCtx.width = newWidth;
     renderMeme();
 }
 
