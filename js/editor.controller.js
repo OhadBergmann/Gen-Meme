@@ -10,40 +10,35 @@ let gCurrCbS = null;
 let gRectStyle = {fill: false, outer: true};
 
 
-
-function onImgSelect(el){
-    
-    onToggleEditor();
-    gElCanvas = document.querySelector('.editor-container .meme-canvas');
-    gCtx = gElCanvas.getContext('2d');
-    
-    const linesPos = [{x: CANVAS_EDGESIZE, y: CANVAS_EDGESIZE},
-        {x: CANVAS_EDGESIZE, y: gElCanvas.height - (DEFAULT_FONT_SIZE + CANVAS_EDGESIZE*3)}]
-    createCurrMeme(el.dataset.id,DEFAULT_FONT_SIZE,linesPos);
-    gElCanvas.setAttribute('data-imgid',`${getImageIdFromMeme()}`);
-    setEventListener();
-    resizeCanvas()
-
-   
-    
-    
-}
-
 function renderMeme(){
-    getMemeLines().forEach((line,idx)=>{
+    gCurrCbS = [];
+    getMemeLines().forEach((line)=>{
         if(line.isVisible){
-            gLineIdx = idx;
-            gCurrCbS = [];
-            gCurrCbS.push(drawTxtOutline);
-            gCurrCbS.push(drawText);
+            gCurrCbS.push({func: drawText,id: line.lineIdx});
         }
     });
+    gCurrCbS.push({func: drawTxtOutline, id: getMarkedLine()});
 
     const image = getImageFromId(getImageIdFromMeme());
     drawImage(image,0,0,gElCanvas.width,gElCanvas.height);
     gCurrCbS = null;
 }
 
+
+function onImgSelect(el){
+    
+    onToggleEditor();
+    gElCanvas = document.querySelector('.editor-container .meme-canvas');
+    gCtx = gElCanvas.getContext('2d');
+    const linesPos = [{x: CANVAS_EDGESIZE, y: CANVAS_EDGESIZE},
+        {x: CANVAS_EDGESIZE, y: gElCanvas.height - (DEFAULT_FONT_SIZE + CANVAS_EDGESIZE*3)}]
+    createCurrMeme(el.dataset.id,DEFAULT_FONT_SIZE,linesPos);
+    gElCanvas.setAttribute('data-imgid',`${getImageIdFromMeme()}`);
+    setEventListener();
+    resizeCanvas();
+    updateLinesPos(1,(CANVAS_EDGESIZE + getLineFontSize(1)/2 + CANVAS_EDGESIZE),
+    (gCtx.height - (getLineFontSize(1) + CANVAS_EDGESIZE*4)));
+}
 
 function onMove(){
 
@@ -63,16 +58,18 @@ function onUserAddLine(){
 
     if(lines){
         for (let i = 0; i < lines.length; i++) {
-            if(lines[i].isVisible){
-                 newLine = lines[i];
-                 break;
+            if(!lines[i].isVisible){
+                setLineVisibleValue(i, true);
+                setMarkedLine(i)
+                renderMeme();
+                return;
             } 
              
          }
     } else {
         //add new line at the top and return;
         linepos = {x: CANVAS_EDGESIZE, y: CANVAS_EDGESIZE};
-        addLineToMeme(DEFAULT_FONT_SIZE,linepos, true);
+        addLineToMeme(0, DEFAULT_FONT_SIZE,linepos, true);
         gLineIdx = 0;
     }
     
@@ -80,12 +77,12 @@ function onUserAddLine(){
         if(lines.length === 1){
             //add the bottom line
             linepos = {x: CANVAS_EDGESIZE, y: gElCanvas.height - (DEFAULT_FONT_SIZE + CANVAS_EDGESIZE*3)};
-            addLineToMeme(DEFAULT_FONT_SIZE,linepos, true);
-            gLineIdx = 1;
+            addLineToMeme(lines.length, DEFAULT_FONT_SIZE,linepos, true);
+            gLineIdx = lines.length;
         } else {
             // add a line in the center
             linepos = {x: CANVAS_EDGESIZE, y: gElCanvas.height/2 - (DEFAULT_FONT_SIZE + CANVAS_EDGESIZE*3)}
-            addLineToMeme(DEFAULT_FONT_SIZE,linepos, true);
+            addLineToMeme(lines.length, DEFAULT_FONT_SIZE,linepos, true);
             gLineIdx = lines.length;
         }
     }
@@ -148,7 +145,7 @@ function onTxtFromInput(){
     const currTxt = document.querySelector('.txt-editor-container .current-line').value;
     setLineTxt(gLineIdx,currTxt);
     renderMeme();
-}
+}getMarkedLine
 
 function onFontSelect(){
     const elInput = document.querySelector('.txt-editor-container .current-line');
@@ -221,66 +218,66 @@ function drawImage(image,x,y,endX,endY) {
         gCtx.drawImage(img, x, y, endX, endY);
         if(cds){
             cds.forEach((cb)=>{
-                cb();
+                cb.func(cb.id);
             });
         }
     }
 }
 
-function drawText(){
+function drawText(idx){
     // text padding from the sides
     // txt height\width structure: CANVAS_EDGESIZE || font size || CANVAS_EDGESIZE 
 
     const width = gElCanvas.width;
     const height = gElCanvas.height;
-    const txt = getLineTxt(gLineIdx)
+    const txt = getLineTxt(idx)
     let x,y;
-    const fontSize = getLineFontSize(gLineIdx);
-    const fontFamily = getLineFamily(gLineIdx);
+    const fontSize = getLineFontSize(idx);
+    const fontFamily = getLineFamily(idx);
     const radiusSize = fontSize/2 + CANVAS_EDGESIZE;
-    switch (getLineAlign(gLineIdx)) {
+    switch (getLineAlign(idx)) {
         case 'left':
-            if(gLineIdx === 0){
+            if(idx === 0){
                 x = (CANVAS_EDGESIZE + radiusSize);
                 y = fontSize + CANVAS_EDGESIZE
-            } else if (gLineIdx === getMemeLines().length - 1){
+            } else if (idx === getMemeLines().length - 1){
                 x = (CANVAS_EDGESIZE + radiusSize);
-                y = height - CANVAS_EDGESIZE*2;
+                y = height - (CANVAS_EDGESIZE*3);
             }
             break;
         case 'center':
-            if(gLineIdx === 0){
+            if(idx === 0){
                 x = width/2 - (CANVAS_EDGESIZE + radiusSize);
                 y = fontSize + CANVAS_EDGESIZE
-            } else if (gLineIdx === getMemeLines().length - 1){
+            } else if (idx === getMemeLines().length - 1){
                 x = width/2 - (CANVAS_EDGESIZE + radiusSize);
-                y = height - CANVAS_EDGESIZE*2;
+                y = height - CANVAS_EDGESIZE*3;
             }
             break;
         case 'right':
-            if(gLineIdx === 0){
+            if(idx === 0){
                 x = width - (CANVAS_EDGESIZE + radiusSize);
                 y = fontSize + CANVAS_EDGESIZE
-            } else if (gLineIdx === getMemeLines().length - 1){
+            } else if (idx === getMemeLines().length - 1){
                 x = width - (CANVAS_EDGESIZE + radiusSize);
-                y = height - CANVAS_EDGESIZE*2;
+                y = height - CANVAS_EDGESIZE*3;
             }
             break;
     }
 
     gCtx.font = `${fontSize}px ${fontFamily}`;
-    gCtx.textAlign = getLineAlign(gLineIdx);
-    gCtx.fillStyle = getLineColor(gLineIdx);
+    gCtx.textAlign = getLineAlign(idx);
+    gCtx.fillStyle = getLineColor(idx);
     gCtx.fillText(txt, x, y);
     gCtx.strokeStyle= '#0000004d';
     gCtx.strokeText(txt, x,y);   
 }
 
 
-function drawTxtOutline(){
-    const leftdistance = getLinePos(gLineIdx).x;
-    const topdistance = getLinePos(gLineIdx).y;
-    const fontSize = getLineFontSize(gLineIdx);
+function drawTxtOutline(idx){
+    const leftdistance = getLinePos(idx).x;
+    const topdistance = getLinePos(idx).y;
+    const fontSize = getLineFontSize(idx);
     const radiusSize = fontSize/2 + CANVAS_EDGESIZE;
     const width = gElCanvas.width;
     let startX,currY,endX,centerY
@@ -292,6 +289,7 @@ function drawTxtOutline(){
     centerY = topdistance + radiusSize;
     startX = (leftdistance + radiusSize);
     currY = topdistance;
+
     endX = (width - (CANVAS_EDGESIZE + radiusSize));
     drawLinePath(startX, currY, endX, currY);
 
@@ -378,6 +376,6 @@ function resizeCanvas() {
 
     gElCanvas.height = gCtx.height =  newHieght;
     gElCanvas.width = gCtx.width = newWidth;
-    //updateLinesPos()
+
     renderMeme();
   }

@@ -3,6 +3,7 @@
 var gCurrMeme;
 var gMemes = [];
 var gImages = [];
+var gMarkedLine = 0;
 var gKeywordSearchCountMap = {'funny':12,'cat':16, 'dark':2};
 
 const IMAGES_STOREKEY = 'local-images';
@@ -34,6 +35,14 @@ function getImageIdFromMeme(){
 }
 function getMemeLines(){
     return gCurrMeme.lines;
+}
+
+function setMarkedLine(value){
+    gMarkedLine = value;
+}
+
+function getMarkedLine(){
+    return gMarkedLine;
 }
 
 function setLineAlign(idx,value){
@@ -97,9 +106,16 @@ function getImageFromId(id){
     return null;
 }
 
+function setLineVisibleValue (idx, value){
+    gCurrMeme.lines[idx].isVisible = value;
+}
+
 function getImages(){
     _setImagesFromStorage();
     return gImages.map((img)=>{return img});
+}
+function updateLinesPos(idx,currLeft,currTop){
+    gCurrMeme.lines[idx].pos = {x: currLeft, y: currTop}
 }
 
 function createImages(){
@@ -134,8 +150,8 @@ function _setImagesFromStorage(){
 }
 
 
-function addLineToMeme(fontsize, linespos, isVisible){
-    gCurrMeme.lines.push(_createLine(fontsize, linespos, isVisible))
+function addLineToMeme(idx, fontsize, linespos, isVisible){
+    gCurrMeme.lines.push(_createLine(idx, fontsize, linespos, isVisible))
 }
 
 function _createMeme(imgId,fontsize, linespos){
@@ -143,7 +159,7 @@ function _createMeme(imgId,fontsize, linespos){
     const pos1 = linespos[1];
     return {
         imgId,
-        lines: [_createLine(fontsize,pos0,true),_createLine(fontsize,pos1,false)],
+        lines: [_createLine(0,fontsize,pos0,true),_createLine(1,fontsize,pos1,false)],
         smileys: [
             {
                 isVisible: false,
@@ -165,8 +181,9 @@ function _createMeme(imgId,fontsize, linespos){
    };   
 }
 
-function _createLine(fontsize, linespos, isVisible){
+function _createLine(lineIdx, fontsize, linespos, isVisible){
     return {
+            lineIdx,
             isVisible,
             pos: linespos,
             txt: '   enter your line',
