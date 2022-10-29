@@ -33,7 +33,7 @@ function renderMeme(){
     });
 
     const image = getImageFromId(getImageIdFromMeme());
-    drawImage(image,0,0,gElCanvas.height,gElCanvas.width);
+    drawImage(image,0,0,gElCanvas.width,gElCanvas.height);
     gCurrCbS = null;
 }
 
@@ -81,6 +81,12 @@ function onAlignText(alingment) {
 function onToggleEditor(){
     const elEditor = document.querySelector('.main-editor-container');
     elEditor.classList.contains('hidden') ? elEditor.classList.remove('hidden') : elEditor.classList.add('hidden');
+    onTogglebCoverGallery();
+}
+
+function onTogglebCoverGallery(){
+    const elCovor = document.querySelector('.gallery-cover');
+    elCovor.classList.contains('hidden') ? elCovor.classList.remove('hidden') : elCovor.classList.add('hidden');
 }
 
 function onToggleOuterLine(){
@@ -109,6 +115,48 @@ function onFontSelect(){
     }
     renderMeme();
 }
+
+function onOpenMenu(){
+    
+    const elMenu = document.querySelector('.nav-bar-container ul');
+    const links = document.querySelectorAll('.nav-bar-container ul li');
+    const elMenuBtn = document.querySelector('.nav-bar-container .menu-btn');
+    const elCloseBtn = document.querySelector('.nav-bar-container .close-menu-btn');
+
+    onTogglebCoverGallery();
+    elMenuBtn.classList.add('hidden');
+    elCloseBtn.classList.remove('hidden');
+
+    if(elMenu.classList.contains('scale-zero')) elMenu.classList.remove('scale-zero');
+    setTimeout(()=>{
+        links.forEach((link)=>{
+            if(link.classList.contains('op-zero')) link.classList.remove('op-zero');
+        })
+       
+    },350)
+}
+
+function onCloseMenu(){
+    const elMenu = document.querySelector('.nav-bar-container ul');
+    const links = document.querySelectorAll('.nav-bar-container ul li');
+    const elMenuBtn = document.querySelector('.nav-bar-container .menu-btn');
+    const elCloseBtn = document.querySelector('.nav-bar-container .close-menu-btn');
+
+    onTogglebCoverGallery();
+    elCloseBtn.classList.add('hidden');
+    elMenuBtn.classList.remove('hidden');
+    
+
+    links.forEach((link)=>{
+        if(!link.classList.contains('op-zero')) link.classList.add('op-zero');
+    })
+
+    setTimeout(()=>{
+        if(!elMenu.classList.contains('scale-zero')) elMenu.classList.add('scale-zero');
+    },350)
+}
+
+
 
 /* --------------------------------------- INNER FUNCTIONS ---------------------------------------*/
 
@@ -227,8 +275,8 @@ function resizeCanvas() {
         newHieght = newWidth * imgRatio;
      }
 
-     gElCanvas.height = newHieght;
-     gElCanvas.width = newWidth;
+     gElCanvas.height = gCtx.height =  newHieght;
+     gElCanvas.width = gCtx.width = newWidth;
      
     renderMeme();
 }

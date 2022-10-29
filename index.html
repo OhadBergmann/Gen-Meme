@@ -14,9 +14,9 @@
             <div class="l-txt">Gen-Meme</div>
         </div>
         <nav class="nav-bar-container">
-            <img class="menu-btn hidden" src="./img/img-general/menu-icon.png" alt="menu" >
-            <img class="close-menu-btn hidden" src="./img/img-general/x-icon.png" alt="close">
-            <ul class="flex f-row hidden">
+            <img class="menu-btn hidden" src="./img/img-general/menu-icon.png" alt="menu" onclick="onOpenMenu()">
+            <img class="close-menu-btn hidden" src="./img/img-general/x-icon.png" alt="close" onclick="onCloseMenu()">
+            <ul class="flex f-row">
                 <li>
                     <a class="link gallery flex cent-just-c cent-align-i" href="">Gallery</a>
                 </li>
@@ -100,9 +100,8 @@
                 </button>
             </section>
         </div>
-        <div class="editor-backgound"></div>
-
     </section>
+    <div class="gallery-cover hidden"></div>
     <footer>foot</footer>
 
     <script src="./js/services/util.service.js"></script>

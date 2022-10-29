@@ -37,7 +37,15 @@
     width: 100%;
 }
 
-
+.gallery-cover{
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    background-color: var(--cls2);
+}
 
 /* --------------------------------------- RESPONSIVE DESIGN ---------------------------------------*/
 

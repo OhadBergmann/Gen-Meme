@@ -69,15 +69,20 @@
     position: absolute;
     top: 1.4vh;
     right: 0;
+    transition: 0.47s;
     transform: translateX(-25%);
-    
+    transform-origin: top;
+    transform: scaleY(1);
+
+    box-shadow: -3px 11px 10px 7px var(--cls15);
 }
 
 .nav-bar-container li{
     margin: auto;
     height: 3rem;
     margin: 0.5rem 1rem 0.5rem 1rem;
-    border: 0.1px solid var(--cls6)
+    border: 0.1px solid var(--cls6);
+    transition: 0.47s;
 }
 
 
@@ -92,7 +97,6 @@
     font-size: 1rem;
     color: var(--cls14);
     text-decoration: none;
-    border-radius: 20% / 50%;
 }
 
 .nav-bar-container li a.link:hover{
@@ -185,6 +189,8 @@
         flex-direction: row;
         position: relative;
         top: 0;
+
+        box-shadow: none;
     }
 
     .nav-bar-container li{
@@ -192,7 +198,10 @@
         margin-block: 0;
     }
     .nav-bar-container li a.link{
+        border-radius: 20% / 50%;
         font-size: 1.5rem;
+        border: none;
+        
     }
 }
 

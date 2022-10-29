@@ -21,6 +21,7 @@
     --cls12: #ff0000;
     --cls13: #ffffff40;
     --cls14: #ffffff;
+    --cls15: #ffffff31;
 
 }
 
@@ -110,6 +111,13 @@ ul,li{
     font-family: impacted;
 }
 
+.op-zero{
+    opacity: 0;
+}
+
+.scale-zero{
+    transform: scaleY(0) !important;
+}
 
 /* small */
 @media (min-width: 450px)

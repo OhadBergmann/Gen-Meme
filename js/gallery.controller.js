@@ -36,17 +36,25 @@ function setGallery(){
 function switchDesktopAndMobile(){
     const isMoblie =  document.body.clientWidth  < 750;
     const elMenuBtn =  document.querySelector('.nav-bar-container .menu-btn');
-    const elXBtn = document.querySelector('.nav-bar-container .close-menu-btn');
     const elMenu = document.querySelector('.nav-bar-container ul');
+    const elXBtn = document.querySelector('.nav-bar-container .close-menu-btn');
+    const links = document.querySelectorAll('.nav-bar-container ul li');
 
     if(isMoblie) {
         if(elMenuBtn.classList.contains('hidden')) elMenuBtn.classList.remove('hidden');
         if(!elXBtn.classList.contains('hidden'))elXBtn.classList.add('hidden');
-        if(!elMenu.classList.contains('hidden'))elMenu.classList.add('hidden');
+        if(!elMenu.classList.contains('scale-zero'))elMenu.classList.add('scale-zero');
+        links.forEach((link)=>{
+            if(!link.classList.contains('op-zero')) link.classList.add('op-zero')
+        })
+        
     }
     else {
         if(!elMenuBtn.classList.contains('hidden')) elMenuBtn.classList.add('hidden');
         if(!elXBtn.classList.contains('hidden'))elXBtn.classList.add('hidden');
-        if(elMenu.classList.contains('hidden'))elMenu.classList.remove('hidden');
+        if(elMenu.classList.contains('scale-zero'))elMenu.classList.remove('scale-zero');
+        links.forEach((link)=>{
+            if(link.classList.contains('op-zero')) link.classList.remove('op-zero')
+        })
     }
 }
