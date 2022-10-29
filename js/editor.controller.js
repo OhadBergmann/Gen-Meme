@@ -1,8 +1,8 @@
 'use strict'
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']; 
-const CANVAS_EDGESIZE = 15;
-const DEFAULT_FONT_SIZE = 80;
+let canvasEdgeSize = 15;
+let defaultFontSize = 80;
 let gElCanvas;
 let gCtx;
 let gLineIdx = 0;
@@ -30,14 +30,14 @@ function onImgSelect(el){
     onToggleEditor();
     gElCanvas = document.querySelector('.editor-container .meme-canvas');
     gCtx = gElCanvas.getContext('2d');
-    const linesPos = [{x: CANVAS_EDGESIZE, y: CANVAS_EDGESIZE},
-        {x: CANVAS_EDGESIZE, y: gElCanvas.height - (DEFAULT_FONT_SIZE + CANVAS_EDGESIZE*3)}]
-    createCurrMeme(el.dataset.id,DEFAULT_FONT_SIZE,linesPos);
+    const linesPos = [{x: canvasEdgeSize, y: canvasEdgeSize},
+        {x: canvasEdgeSize, y: gElCanvas.height - (defaultFontSize + canvasEdgeSize*3)}]
+    createCurrMeme(el.dataset.id,defaultFontSize,linesPos);
     gElCanvas.setAttribute('data-imgid',`${getImageIdFromMeme()}`);
     setEventListener();
     resizeCanvas();
-    updateLinesPos(1,(CANVAS_EDGESIZE + getLineFontSize(1)/2 + CANVAS_EDGESIZE),
-    (gCtx.height - (getLineFontSize(1) + CANVAS_EDGESIZE*4)));
+    updateLinesPos(1,(canvasEdgeSize + getLineFontSize(1)/2 + canvasEdgeSize),
+    (gCtx.height - (getLineFontSize(1) + canvasEdgeSize*4)));
 }
 
 function onMove(){
@@ -69,16 +69,16 @@ function onUserAddLine(){
          }
     } else {
         //add new line at the top and return;
-        linepos = {x: CANVAS_EDGESIZE, y: CANVAS_EDGESIZE};
-        addLineToMeme(0, DEFAULT_FONT_SIZE,linepos, true);
+        linepos = {x: canvasEdgeSize, y: canvasEdgeSize};
+        addLineToMeme(0, defaultFontSize,linepos, true);
         gLineIdx = 0;
     }
     
     if(!newLine){
         if(lines.length === 1){
             //add the bottom line
-            linepos = {x: CANVAS_EDGESIZE, y: gElCanvas.height - (DEFAULT_FONT_SIZE + CANVAS_EDGESIZE*3)};
-            addLineToMeme(lines.length, DEFAULT_FONT_SIZE,linepos, true);
+            linepos = {x: canvasEdgeSize, y: gElCanvas.height - (defaultFontSize + canvasEdgeSize*3)};
+            addLineToMeme(lines.length, defaultFontSize,linepos, true);
             gLineIdx = lines.length;
         } else {
             // add a line in the center
@@ -261,33 +261,33 @@ function drawText(idx){
     let x,y;
     const fontSize = getLineFontSize(idx);
     const fontFamily = getLineFamily(idx);
-    const radiusSize = fontSize/2 + CANVAS_EDGESIZE;
+    const radiusSize = fontSize/2 + canvasEdgeSize;
     switch (getLineAlign(idx)) {
         case 'left':
             if(idx === 0){
-                x = (CANVAS_EDGESIZE + radiusSize);
-                y = fontSize + CANVAS_EDGESIZE
+                x = (canvasEdgeSize + radiusSize);
+                y = fontSize + canvasEdgeSize
             } else if (idx === getMemeLines().length - 1){
-                x = (CANVAS_EDGESIZE + radiusSize);
-                y = height - (CANVAS_EDGESIZE*3);
+                x = (canvasEdgeSize + radiusSize);
+                y = height - (canvasEdgeSize*3);
             }
             break;
         case 'center':
             if(idx === 0){
-                x = width/2 - (CANVAS_EDGESIZE + radiusSize);
-                y = fontSize + CANVAS_EDGESIZE
+                x = width/2 - (canvasEdgeSize + radiusSize);
+                y = fontSize + canvasEdgeSize
             } else if (idx === getMemeLines().length - 1){
-                x = width/2 - (CANVAS_EDGESIZE + radiusSize);
-                y = height - CANVAS_EDGESIZE*3;
+                x = width/2 - (canvasEdgeSize + radiusSize);
+                y = height - canvasEdgeSize*3;
             }
             break;
         case 'right':
             if(idx === 0){
-                x = width - (CANVAS_EDGESIZE + radiusSize);
-                y = fontSize + CANVAS_EDGESIZE
+                x = width - (canvasEdgeSize + radiusSize);
+                y = fontSize + canvasEdgeSize
             } else if (idx === getMemeLines().length - 1){
-                x = width - (CANVAS_EDGESIZE + radiusSize);
-                y = height - CANVAS_EDGESIZE*3;
+                x = width - (canvasEdgeSize + radiusSize);
+                y = height - canvasEdgeSize*3;
             }
             break;
     }
@@ -305,7 +305,7 @@ function drawTxtOutline(idx){
     const leftdistance = getLinePos(idx).x;
     const topdistance = getLinePos(idx).y;
     const fontSize = getLineFontSize(idx);
-    const radiusSize = fontSize/2 + CANVAS_EDGESIZE;
+    const radiusSize = fontSize/2 + canvasEdgeSize;
     const width = gElCanvas.width;
     let startX,currY,endX,centerY
     
@@ -317,7 +317,7 @@ function drawTxtOutline(idx){
     startX = (leftdistance + radiusSize);
     currY = topdistance;
 
-    endX = (width - (CANVAS_EDGESIZE + radiusSize));
+    endX = (width - (canvasEdgeSize + radiusSize));
     drawLinePath(startX, currY, endX, currY);
 
     /* right arc*/
@@ -326,7 +326,7 @@ function drawTxtOutline(idx){
 
      /*bottom line*/
 
-    currY = topdistance + (CANVAS_EDGESIZE*2 + fontSize);
+    currY = topdistance + (canvasEdgeSize*2 + fontSize);
      drawLinePath(endX, currY, startX, currY);
 
       /* right arc*/
@@ -397,8 +397,12 @@ function resizeCanvas() {
 
     if(document.body.clientWidth  < 750){
         newWidth = newHieght * imgRatio;
+        canvasEdgeSize = 7.5;
+        defaultFontSize = 20;
      } else {
         newHieght = newWidth * imgRatio;
+        canvasEdgeSize = 15;
+        defaultFontSize = 80;
      }
 
     gElCanvas.height = gCtx.height =  newHieght;
