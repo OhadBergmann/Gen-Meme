@@ -63,7 +63,7 @@
     background-image: linear-gradient(-180deg, var(--cls10) 0%,var(--cls8) 100%);
     padding-inline-start: 0;
     height: 50vh;
-    margin-block-start: 75px;
+    margin-block-start: 65px;
     width: 175px;
 
     position: absolute;
@@ -196,11 +196,12 @@
     .nav-bar-container li{
         height: 100%;
         margin-block: 0;
+        border: none;
     }
     .nav-bar-container li a.link{
         border-radius: 20% / 50%;
         font-size: 1.5rem;
-        border: none;
+        
         
     }
 }
