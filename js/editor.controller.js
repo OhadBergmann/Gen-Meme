@@ -1,7 +1,7 @@
 'use strict'
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']; 
-
+const CANVAS_EDGESIZE = 15;
 let gElCanvas;
 let gCtx;
 let gLineIdx = 0;
@@ -14,7 +14,7 @@ function onImgSelect(el){
     onToggleEditor();
     gElCanvas = document.querySelector('.editor-container .meme-canvas');
     gCtx = gElCanvas.getContext('2d');
-    createCurrMeme(el.dataset.id,20);
+    createCurrMeme(el.dataset.id,80,gElCanvas.height);
     gElCanvas.setAttribute('data-imgid',`${getImageIdFromMeme()}`);
     setEventListener();
     resizeCanvas()
@@ -25,7 +25,7 @@ function renderMeme(){
         if(line.isVisible){
             gLineIdx = idx;
             gCurrCbS = [];
-           // gCurrCbS.push(drawRect);
+            gCurrCbS.push(drawRect);
             gCurrCbS.push(drawText);
         }
     });
@@ -48,8 +48,9 @@ function onUp(){
     
 }
 
-function onFontSizeChange(val){
-    setLineFontSize(gLineIdx ,(getLineFontSize(gLineIdx) + val));
+function onFontSizeChange(direction){
+    const value = 7 * direction
+    setLineFontSize(gLineIdx ,(getLineFontSize(gLineIdx) + value));
     renderMeme();
 }
 
@@ -183,9 +184,8 @@ function drawImage(image,x,y,endX,endY) {
 
 function drawText(){
     // text padding from the sides
-    // txt height\width structure: bios || font size || bios 
+    // txt height\width structure: CANVAS_EDGESIZE || font size || CANVAS_EDGESIZE 
 
-    const bios = 2.5;
     const width = gElCanvas.width;
     const height = gElCanvas.height;
     const txt = getLineTxt(gLineIdx)
@@ -196,29 +196,29 @@ function drawText(){
     switch (getLineAlign(gLineIdx)) {
         case 'left':
             if(gLineIdx === 0){
-                x = bios*2;
-                y = fontSize + bios
+                x = CANVAS_EDGESIZE*2;
+                y = fontSize + CANVAS_EDGESIZE
             } else if (gLineIdx === getMemeLines().length - 1){
-                x = bios*2;
-                y = height - bios*2;
+                x = CANVAS_EDGESIZE*2;
+                y = height - CANVAS_EDGESIZE*2;
             }
             break;
         case 'center':
             if(gLineIdx === 0){
-                x = width/2 - bios*2;
-                y = fontSize + bios
+                x = width/2 - CANVAS_EDGESIZE*2;
+                y = fontSize + CANVAS_EDGESIZE
             } else if (gLineIdx === getMemeLines().length - 1){
-                x = width/2 - bios*2;
-                y = height - bios*2;
+                x = width/2 - CANVAS_EDGESIZE*2;
+                y = height - CANVAS_EDGESIZE*2;
             }
             break;
         case 'right':
             if(gLineIdx === 0){
-                x = width - bios*2;
-                y = fontSize + bios
+                x = width - CANVAS_EDGESIZE*2;
+                y = fontSize + CANVAS_EDGESIZE
             } else if (gLineIdx === getMemeLines().length - 1){
-                x = width - bios*2;
-                y = height - bios*2;
+                x = width - CANVAS_EDGESIZE*2;
+                y = height - CANVAS_EDGESIZE*2;
             }
             break;
     }
@@ -231,29 +231,56 @@ function drawText(){
     gCtx.strokeText(txt, x,y);   
 }
 
-/*function drawRect() {
-    if(!gRectStyle.fill && !gRectStyle.outer) return;
 
-    const elInput = document.querySelector('.meme-canvas');
-    const {x,y} = getLineRect(gLineIdx).topL;
-
-    let height = getLineFontSize(gLineIdx) * 1.5;
-    let width = +document.querySelector('.meme-canvas').width -CANVAS_IMAGE_PADDING*2;
-    gCtx.lineWidth = 5;
-
-    if(gRectStyle.fill){
-        gCtx.fillStyle = '#ffffff59';
-        gCtx.fillRect(x, y, width , height);
-    }
+function drawTxtOutline(leftdistance, topdistance, edgesize){
+    const fontSize = getLineFontSize(gLineIdx);
+    const radiusSize = (fontSize + edgesize)/2;
+    const width = gElCanvas.width;
+    let pointStart,pointEnds,centerPoint;
     
-    if(gRectStyle.outer){
-        gCtx.strokeStyle = '#ffffffb3';
-        gCtx.strokeRect(x, y, width , height);
+    
+    gCtx.beginPath();
+    gCtx.strokeStyle = '#ffffffb3';
+
+    /*top line*/
+    pointStart = {x: leftdistance + edgesize, y: topdistance + edgesize};
+    pointEnds = {x: width - edgesize, y:  topdistance + edgesize};
+    drawLinePath(pointStart.x , pointStart.y, pointEnds.x, pointEnds.y);
+
+    /* right arc*/
+    centerPoint = {x: pointEnds.x, y: topdistance + radiusSize + edgesize};
+    drawArcPath(centerPoint.x, centerPoint.y, 'right',radiusSize);
+
+     /*bottom line*/
+     pointStart = {x: width - edgesize, y: topdistance + (edgesize*2 + fontSize)};
+     pointEnds =  {x: leftdistance + edgesize, y: topdistance + (edgesize*2 + fontSize)}
+     drawLinePath(pointStart.x , pointStart.y, pointEnds.x, pointEnds.y);
+
+      /* right arc*/
+    centerPoint = {x: pointEnds.x, y: topdistance + radiusSize + edgesize};
+    drawArcPath(centerPoint.x, centerPoint.y, 'left',radiusSize);
+    gCtx.stroke()
+}
+
+function drawLinePath(x, y, xEnd, yEnd) {
+    gCtx.lineWidth = 6
+    gCtx.moveTo(x, y)
+    gCtx.lineTo(xEnd, yEnd) 
+  }
+
+function drawArcPath(x, y, alignment,radiusSize) {
+    //NOTE TO SELF x,y = the middle of circle
+    gCtx.lineWidth = 6;
+    
+    switch(alignment){
+        case 'left':
+            gCtx.arc(x, y, radiusSize, Math.PI/2, (Math.PI*3)/2);
+            break;
+        case 'right':
+            gCtx.arc(x, y, radiusSize, (Math.PI*3)/2, Math.PI/2);
+            break;
     }
-   
-}*/
-
-
+  }
 
 
 function getEventPos(ev) {
@@ -287,30 +314,23 @@ function setEventListener(){
 
 function resizeCanvas() {
     const container = gElCanvas.parentNode;
-
+    const padding = 10;
+    let newHieght = container.offsetHeight - padding*2
+    let newWidth = container.offsetWidth - padding*2
     //TODO : add different clal for other sizes then 500X500
     let imgRatio = 500/500;
-    let newHieght;
-    let newWidth;
     
     //handle DOM
     switchDesktopAndMobile();
 
     if(document.body.clientWidth  < 750){
-        newHieght = container.getBoundingClientRect().height - (container.getBoundingClientRect().height 
-    - gElCanvas.getBoundingClientRect().height);
-    newWidth = newHieght * imgRatio;
+        newWidth = newHieght * imgRatio;
      } else {
-        newWidth = container.getBoundingClientRect().width/2 - (container.getBoundingClientRect().width 
-        - gElCanvas.getBoundingClientRect().width)
         newHieght = newWidth * imgRatio;
      }
 
-     gElCanvas.height = gCtx.height =  newHieght;
-     gElCanvas.width = gCtx.width = newWidth;
-     gCtx.height = newHieght;
-     gCtx.width = newWidth;
+    gElCanvas.height = gCtx.height =  newHieght;
+    gElCanvas.width = gCtx.width = newWidth;
+    updateLinesPos()
     renderMeme();
-}
-
-
+  }

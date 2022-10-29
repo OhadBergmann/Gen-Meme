@@ -21,7 +21,7 @@ const MEMES_STOREKEY = 'local-memes';
     });
 }*/
 
-function createCurrMeme(id,size,){
+function createCurrMeme(id,size){
     gCurrMeme = _createMeme(id,size);
 }
 
@@ -100,6 +100,7 @@ function getImages(){
     return gImages.map((img)=>{return img});
 }
 
+
 function createImages(){
     gImages = [];
     gImages[0] = _createImage(makeId(7), './img/img-1x1/1.jpg',['trump', 'politics']);
@@ -140,14 +141,14 @@ function _createMeme(imgId,size){
             family: 'Poppins-Regular',
             size,
             align: 'left',
-            color: '#0c98b9',
+            color: '#ffffff',
         },{
             isVisible: false,
             txt: '   enter your line',
             family: 'Poppins-Regular',
             size,
             align: 'left',
-            color: '#dc14c3',
+            color: '#ffffff',
         }],
         smileys: [
             {isVisible: false,
