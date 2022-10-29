@@ -60,7 +60,8 @@ function onUserAddLine(){
         for (let i = 0; i < lines.length; i++) {
             if(!lines[i].isVisible){
                 setLineVisibleValue(i, true);
-                setMarkedLine(i)
+                setMarkedLine(i);
+                gLineIdx = i;
                 renderMeme();
                 return;
             } 
@@ -81,9 +82,11 @@ function onUserAddLine(){
             gLineIdx = lines.length;
         } else {
             // add a line in the center
+            /*
             linepos = {x: CANVAS_EDGESIZE, y: gElCanvas.height/2 - (DEFAULT_FONT_SIZE + CANVAS_EDGESIZE*3)}
             addLineToMeme(lines.length, DEFAULT_FONT_SIZE,linepos, true);
             gLineIdx = lines.length;
+            */
         }
     }
 
@@ -205,7 +208,31 @@ function onCloseMenu(){
     },350)
 }
 
+function onSwitchLine(){
+    const lines = getMemeLines();
+    if(lines[gLineIdx + 1] && lines[gLineIdx + 1].isVisible){
+        setMarkedLine(gLineIdx + 1);
+        gLineIdx++;
+        renderMeme();
+    } else {
+        setMarkedLine(0);
+        gLineIdx = 0;
+        renderMeme();
+    }
+               
+}
 
+function onDownloadImg() {
+    const imgContent = gElCanvas.toDataURL('image/jpeg');
+    const link = document.createElement('a');
+    link.href = imgContent;
+    link.download = 'my-meme.jpg';
+    link.click();
+  }
+
+  function onShareImg(){
+    shareImg();
+  }
 
 /* --------------------------------------- INNER FUNCTIONS ---------------------------------------*/
 

@@ -40,7 +40,7 @@
             <canvas class="meme-canvas"></canvas>
             <section class="txt-editor-container grid">
                 <input class="current-line txt-Left" type="text" placeholder="   enter your line" oninput="onTxtFromInput()">
-                <button class="line-btn switch-Line">
+                <button class="line-btn switch-Line" onclick="onSwitchLine()">
                     <img src="./img/img-general/switch-lines-icon.png" alt="">
                 </button>
                 <button class="line-btn add-line-btn" onclick="onUserAddLine()">
@@ -93,10 +93,10 @@
                     <img class="prev-smiley" src="./img/img-general/next-icon.jpg">
                 </div>
                 <button class="share-btn export-btn">
-                    <img src="./img/img-general/share-icon.png" alt="">Share
+                    <img src="./img/img-general/share-icon.png" alt="share" onclick="onShareImg()" >Share
                 </button>
                 <button class="download-btn export-btn">
-                    <img src="./img/img-general/download-icon.png" alt="">Download
+                    <img src="./img/img-general/download-icon.png" alt="download" onclick="onDownloadImg()">Download
                 </button>
             </section>
         </div>
