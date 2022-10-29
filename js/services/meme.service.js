@@ -21,8 +21,8 @@ const MEMES_STOREKEY = 'local-memes';
     });
 }*/
 
-function createCurrMeme(id,size){
-    gCurrMeme = _createMeme(id,size);
+function createCurrMeme(id,size, linespos){
+    gCurrMeme = _createMeme(id,size, linespos);
 }
 
 function getCurrMeme(){
@@ -85,7 +85,9 @@ function setLineColor(idx, color){
     gCurrMeme.lines[idx].color = color;
 }
 
-
+function getLinePos(idx){
+    return gCurrMeme.lines[idx].pos;
+}
 
 function getImageFromId(id){
     for (let i = 0; i < gImages.length; i++) {
@@ -132,11 +134,14 @@ function _setImagesFromStorage(){
     return false;
 }
 
-function _createMeme(imgId,size){
+function _createMeme(imgId,size, linespos){
+    const pos0 = linespos[0];
+    const pos1 = linespos[1];
     return {
         imgId,
         lines: [{
             isVisible: true,
+            pos: pos0,
             txt: '   enter your line',
             family: 'Poppins-Regular',
             size,
@@ -144,6 +149,7 @@ function _createMeme(imgId,size){
             color: '#ffffff',
         },{
             isVisible: false,
+            pos: pos1,
             txt: '   enter your line',
             family: 'Poppins-Regular',
             size,
