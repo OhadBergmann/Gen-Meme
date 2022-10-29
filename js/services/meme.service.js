@@ -21,8 +21,8 @@ const MEMES_STOREKEY = 'local-memes';
     });
 }*/
 
-function createCurrMeme(id,size, linespos){
-    gCurrMeme = _createMeme(id,size, linespos);
+function createCurrMeme(id,fontsize, linespos){
+    gCurrMeme = _createMeme(id,fontsize, linespos);
 }
 
 function getCurrMeme(){
@@ -102,7 +102,6 @@ function getImages(){
     return gImages.map((img)=>{return img});
 }
 
-
 function createImages(){
     gImages = [];
     gImages[0] = _createImage(makeId(7), './img/img-1x1/1.jpg',['trump', 'politics']);
@@ -134,44 +133,48 @@ function _setImagesFromStorage(){
     return false;
 }
 
-function _createMeme(imgId,size, linespos){
+
+function addLineToMeme(fontsize, linespos, isVisible){
+    gCurrMeme.lines.push(_createLine(fontsize, linespos, isVisible))
+}
+
+function _createMeme(imgId,fontsize, linespos){
     const pos0 = linespos[0];
     const pos1 = linespos[1];
     return {
         imgId,
-        lines: [{
-            isVisible: true,
-            pos: pos0,
-            txt: '   enter your line',
-            family: 'Poppins-Regular',
-            size,
-            align: 'left',
-            color: '#ffffff',
-        },{
-            isVisible: false,
-            pos: pos1,
-            txt: '   enter your line',
-            family: 'Poppins-Regular',
-            size,
-            align: 'left',
-            color: '#ffffff',
-        }],
+        lines: [_createLine(fontsize,pos0,true),_createLine(fontsize,pos1,false)],
         smileys: [
-            {isVisible: false,
-            size: size*2,
-            url: './img/img-general/smiley-ecstatic.jpg'
+            {
+                isVisible: false,
+                size: fontsize*3,
+                url: './img/img-general/smiley-ecstatic.jpg'
             },{isVisible: false,
-                size: size*2,
+                size: fontsize*3,
                 url: './img/img-general/smiley-awkward.jpg'
-            },{isVisible: false,
-                size: size*2,
+            },{
+                isVisible: false,
+                size: fontsize*3,
                 url: './img/img-general/smiley-awe.jpg'
-            },{isVisible: false,
-                size: size*2,
+            },{
+                isVisible: false,
+                size: fontsize*3,
                 url: './img/img-general/smiley-silly.jpg'
             },
         ]
    };   
+}
+
+function _createLine(fontsize, linespos, isVisible){
+    return {
+            isVisible,
+            pos: linespos,
+            txt: '   enter your line',
+            family: 'Poppins-Regular',
+            size: fontsize,
+            align: 'left',
+            color: '#ffffff'
+    }
 }
 
 function _createImage(id, url, keywords){

@@ -56,6 +56,42 @@ function onDown(){
 function onUp(){
     
 }
+function onUserAddLine(){
+    let newLine = null;
+    let linepos;
+    const lines = getMemeLines();
+
+    if(lines){
+        for (let i = 0; i < lines.length; i++) {
+            if(lines[i].isVisible){
+                 newLine = lines[i];
+                 break;
+            } 
+             
+         }
+    } else {
+        //add new line at the top and return;
+        linepos = {x: CANVAS_EDGESIZE, y: CANVAS_EDGESIZE};
+        addLineToMeme(DEFAULT_FONT_SIZE,linepos, true);
+        gLineIdx = 0;
+    }
+    
+    if(!newLine){
+        if(lines.length === 1){
+            //add the bottom line
+            linepos = {x: CANVAS_EDGESIZE, y: gElCanvas.height - (DEFAULT_FONT_SIZE + CANVAS_EDGESIZE*3)};
+            addLineToMeme(DEFAULT_FONT_SIZE,linepos, true);
+            gLineIdx = 1;
+        } else {
+            // add a line in the center
+            linepos = {x: CANVAS_EDGESIZE, y: gElCanvas.height/2 - (DEFAULT_FONT_SIZE + CANVAS_EDGESIZE*3)}
+            addLineToMeme(DEFAULT_FONT_SIZE,linepos, true);
+            gLineIdx = lines.length;
+        }
+    }
+
+    renderMeme();
+}
 
 function onFontSizeChange(direction){
     const value = 7 * direction
