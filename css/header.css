@@ -29,8 +29,8 @@
 }
 
 .logo-container img{
-    height: 5vh;
-    width: 5vh;
+    height: 75px;
+    width: 75px;
     aspect-ratio: 1/1;
 }
 
@@ -46,6 +46,15 @@
 .nav-bar-container{
     margin: 0vh 4vw 0vh 0.3vw;
     width: 50%;
+}
+
+.nav-bar-container > img{
+    height: 75px;
+    width: 75px;
+    cursor: pointer;
+
+    position: absolute;
+    right: 0.3rem;
 }
 
 .nav-bar-container ul{
@@ -163,6 +172,11 @@
         font-size: 1.5rem;
     }
     
+    .nav-bar-container > img{
+        display: none;
+    }
+
+
     .nav-bar-container ul{
         background-image: none;
         height: inherit;

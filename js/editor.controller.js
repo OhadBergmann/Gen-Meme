@@ -77,7 +77,7 @@ function onAlignText(alingment) {
 
 function onToggleEditor(){
     const elEditor = document.querySelector('.main-editor-container');
-    elEditor.classList.contains('hide') ? elEditor.classList.remove('hide') : elEditor.classList.add('hide');
+    elEditor.classList.contains('hidden') ? elEditor.classList.remove('hidden') : elEditor.classList.add('hidden');
 }
 
 function onToggleOuterLine(){
@@ -208,13 +208,16 @@ function setEventListener(){
 
 function resizeCanvas() {
     const container = gElCanvas.parentNode;
-    const bios = 32;
-//TODO : add different clal for other sizes then 500X500
+
+    //TODO : add different clal for other sizes then 500X500
     let imgRatio = 500/500;
     let newHieght;
     let newWidth;
     
-    if(document.body.clientWidth + bios < 750){
+    //handle DOM
+    switchDesktopAndMobile();
+
+    if(isMobile()){
         newHieght = container.getBoundingClientRect().height - (container.getBoundingClientRect().height 
     - gElCanvas.getBoundingClientRect().height);
     newWidth = newHieght * imgRatio;
@@ -228,4 +231,8 @@ function resizeCanvas() {
      gElCanvas.width = newWidth;
      
     renderMeme();
+
+   
 }
+
+

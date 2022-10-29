@@ -2,10 +2,7 @@
 
 function onInit(){
     setGallery();
-}
-
-function renderMeme(){
-    
+    switchDesktopAndMobile()
 }
 
 
@@ -36,3 +33,20 @@ function setGallery(){
     elGalleryContainer.innerHTML = strHtml;
 }
 
+function switchDesktopAndMobile(){
+    const isMoblie =  document.body.clientWidth  < 750;
+    const elMenuBtn =  document.querySelector('.nav-bar-container .menu-btn');
+    const elXBtn = document.querySelector('.nav-bar-container .close-menu-btn');
+    const elMenu = document.querySelector('.nav-bar-container ul');
+
+    if(isMoblie) {
+        if(elMenuBtn.classList.contains('hidden')) elMenuBtn.classList.remove('hidden');
+        if(!elXBtn.classList.contains('hidden'))elXBtn.classList.add('hidden');
+        if(!elMenu.classList.contains('hidden'))elMenu.classList.add('hidden');
+    }
+    else {
+        if(!elMenuBtn.classList.contains('hidden')) elMenuBtn.classList.add('hidden');
+        if(!elXBtn.classList.contains('hidden'))elXBtn.classList.add('hidden');
+        if(elMenu.classList.contains('hidden'))elMenu.classList.remove('hidden');
+    }
+}
