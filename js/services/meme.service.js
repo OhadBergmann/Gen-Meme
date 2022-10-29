@@ -106,13 +106,32 @@ function getImageFromId(id){
     return null;
 }
 
+function deleteLine(idx, edgesize){
+    if(gCurrMeme.lines[idx]){
+        gCurrMeme.lines.splice(idx,1);
+    }
+
+    gCurrMeme.lines.forEach((line, index)=>{
+        line.lineIdx = index;
+    });
+
+    gMarkedLine = 0;
+}
+
 function setLineVisibleValue (idx, value){
     gCurrMeme.lines[idx].isVisible = value;
 }
 
+function hasActiveLines() {
+    return gCurrMeme.lines && gCurrMeme.lines.length > 0 && gCurrMeme.lines.some((line)=>{return line.isVisible;});
+}
 function getImages(){
     _setImagesFromStorage();
     return gImages.map((img)=>{return img});
+}
+
+function getMemeSmileys(){
+    return gCurrMeme.smileys;
 }
 function updateLinesPos(idx,currLeft,currTop){
     gCurrMeme.lines[idx].pos = {x: currLeft, y: currTop}
@@ -165,7 +184,8 @@ function _createMeme(imgId,fontsize, linespos){
                 isVisible: false,
                 size: fontsize*3,
                 url: './img/img-general/smiley-ecstatic.jpg'
-            },{isVisible: false,
+            },{
+                isVisible: false,
                 size: fontsize*3,
                 url: './img/img-general/smiley-awkward.jpg'
             },{

@@ -14,10 +14,14 @@ function renderMeme(){
     gCurrCbS = [];
     getMemeLines().forEach((line)=>{
         if(line.isVisible){
-            gCurrCbS.push({func: drawText,id: line.lineIdx});
+            gCurrCbS.push({func: drawText, id: line.lineIdx});
         }
     });
-    gCurrCbS.push({func: drawTxtOutline, id: getMarkedLine()});
+
+    getMemeSmileys();
+    if(hasActiveLines()){
+        gCurrCbS.push({func: drawTxtOutline, id: getMarkedLine()});
+    }
 
     const image = getImageFromId(getImageIdFromMeme());
     drawImage(image,0,0,gElCanvas.width,gElCanvas.height);
@@ -236,10 +240,15 @@ function onDownloadImg() {
     link.click();
   }
 
-  function onShareImg(){
+function onShareImg(){
     shareImg();
   }
 
+function onDeleteLine(){
+    deleteLine(gLineIdx);
+    gLineIdx = 0;
+    renderMeme();
+}
 /* --------------------------------------- INNER FUNCTIONS ---------------------------------------*/
 
 function drawImage(image,x,y,endX,endY) {
