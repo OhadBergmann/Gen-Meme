@@ -62,8 +62,8 @@
     flex-direction: column;
     background-image: linear-gradient(-180deg, var(--cls10) 0%,var(--cls8) 100%);
     padding-inline-start: 0;
-    height: 70vh;
-    margin-block-start: 4.7vh;
+    height: 50vh;
+    margin-block-start: 75px;
     width: 175px;
 
     position: absolute;
