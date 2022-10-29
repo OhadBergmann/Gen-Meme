@@ -51,7 +51,7 @@
 
 body{
     background-color: var(--cls1);
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .hidden{
