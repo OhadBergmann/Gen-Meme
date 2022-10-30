@@ -32,8 +32,15 @@ function setGallery(){
     elGalleryContainer.innerHTML = strHtml;
 }
 
-function onSearch(){
+function onSearchFilter(){
     
+}
+
+function onUpdateFontSize(el){
+    var fontSize = parseFloat(window.getComputedStyle(el, null).getPropertyValue('font-size'));; 
+    if(fontSize <= 50){
+        el.style.fontSize = (fontSize + 2) + 'px';
+    }
 }
 
 function switchDesktopAndMobile(){

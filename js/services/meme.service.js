@@ -77,15 +77,6 @@ function setLineFamily(idx,value){
     gCurrMeme.lines[idx].family = value;
 }
 
-
-function getLineRect(idx){
-    return gCurrMeme.lines[idx].rect;
-}
-
-function setLineRect(idx,rect){
-    gCurrMeme.lines[idx].rect = rect;
-}
-
 function getLineColor(idx){
     return gCurrMeme.lines[idx].color;
 }
@@ -130,11 +121,16 @@ function getImages(){
     return gImages.map((img)=>{return img});
 }
 
-function getMemeSmileys(){
-    return gCurrMeme.smileys;
+function getSmileyFromLine(LineIdx, smileyIdx){
+    return gCurrMeme.lines[LineIdx].smileys[smileyIdx];
 }
+
 function updateLinesPos(idx,currLeft,currTop){
     gCurrMeme.lines[idx].pos = {x: currLeft, y: currTop}
+}
+
+function ToggleUnderLine(idx){
+    gCurrMeme.lines[idx].hasUnderLine = ! gCurrMeme.lines[idx].hasUnderLine;
 }
 
 function createImages(){
@@ -178,30 +174,7 @@ function _createMeme(imgId,fontsize, linespos){
     const pos1 = linespos[1];
     return {
         imgId,
-        lines: [_createLine(0,fontsize,pos0,true),_createLine(1,fontsize,pos1,false)],
-        smileys: [
-            {
-                name: 'ecstatic',
-                isVisible: false,
-                size: fontsize*3,
-                url: './img/img-general/smiley-ecstatic.jpg'
-            },{
-                name: 'awkward',
-                isVisible: false,
-                size: fontsize*3,
-                url: './img/img-general/smiley-awkward.jpg'
-            },{
-                name: 'awe',
-                isVisible: false,
-                size: fontsize*3,
-                url: './img/img-general/smiley-awe.jpg'
-            },{
-                name: 'silly',
-                isVisible: false,
-                size: fontsize*3,
-                url: './img/img-general/smiley-silly.jpg'
-            },
-        ]
+        lines: [_createLine(0,fontsize,pos0,true),_createLine(1,fontsize,pos1,false)]
    };   
 }
 
@@ -209,12 +182,35 @@ function _createLine(lineIdx, fontsize, linespos, isVisible){
     return {
             lineIdx,
             isVisible,
+            hasUnderLine: false,
             pos: linespos,
             txt: '   enter your line',
             family: 'Poppins-Regular',
             size: fontsize,
             align: 'left',
-            color: '#ffffff'
+            color: '#ffffff',
+            smileys: [
+                {
+                    name: 'ecstatic',
+                    isVisible: false,
+                    size: fontsize*3,
+                    url: './img/img-general/smiley-ecstatic.jpg'
+                },{
+                    name: 'awkward',
+                    isVisible: false,
+                    size: fontsize*3,
+                    url: './img/img-general/smiley-awkward.jpg'
+                },{
+                    name: 'awe',
+                    isVisible: false,
+                    size: fontsize*3,
+                    url: './img/img-general/smiley-awe.jpg'
+                },{
+                    name: 'silly',
+                    isVisible: false,
+                    size: fontsize*3,
+                    url: './img/img-general/smiley-silly.jpg'
+                }]
     }
 }
 

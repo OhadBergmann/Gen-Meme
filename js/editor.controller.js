@@ -14,10 +14,19 @@ function renderMeme(){
     getMemeLines().forEach((line)=>{
         if(line.isVisible){
             gCurrCbS.push({func: drawText, id: line.lineIdx});
+            console.log('red')
+            if(line.hasUnderLine) {gCurrCbS.push({func: drawUnderLine, id: line.lineIdx});}
+
+            line.smileys.forEach((smiley, index)=>{
+                if(smiley.isVisible){
+                    gCurrCbS.push({func: drawSmiley,id: {lineId: line.lineIdx,smileyId: index}});
+                }
+            })
         }
+
+        
     });
 
-    getMemeSmileys();
     if(hasActiveLines()){
         gCurrCbS.push({func: drawTxtOutline, id: getMarkedLine()});
     }
@@ -43,7 +52,6 @@ function onImgSelect(el){
     (gCtx.height - (getLineFontSize(1) + canvasEdgeSize*4)));
 }
 
-
 function OnExitEditor() {
     onToggleEditor();
 }
@@ -63,23 +71,17 @@ function onUserAddLine(){
     let newLine = null;
     let linepos;
     const lines = getMemeLines();
+    const elCurrTxt = document.querySelector('.txt-lines-container .current-line');
 
-    if(lines){
-        for (let i = 0; i < lines.length; i++) {
-            if(!lines[i].isVisible){
-                setLineVisibleValue(i, true);
-                setMarkedLine(i);
-                gLineIdx = i;
-                renderMeme();
-                return;
-            } 
-             
-         }
-    } else {
-        //add new line at the top and return;
-        linepos = {x: canvasEdgeSize, y: canvasEdgeSize};
-        addLineToMeme(0, defaultFontSize,linepos, true);
-        gLineIdx = 0;
+    for (let i = 0; i < lines.length; i++) {
+        if(!lines[i].isVisible){
+            setLineVisibleValue(i, true);
+            setMarkedLine(i);
+            gLineIdx = i;
+            elCurrTxt.value = lines[gLineIdx].txt
+            renderMeme();
+            return;
+        }    
     }
     
     if(!newLine){
@@ -97,7 +99,7 @@ function onUserAddLine(){
             */
         }
     }
-
+    elCurrTxt.value = lines[gLineIdx].txt
     renderMeme();
 }
 
@@ -142,14 +144,9 @@ function onTogglebCoverGallery(){
     elCovor.classList.contains('hidden') ? elCovor.classList.remove('hidden') : elCovor.classList.add('hidden');
 }
 
-function onToggleOuterLine(){
-    gRectStyle.outer = !gRectStyle.outer;
-    renderMeme();
-}
-
-function onToggleFill(){
-    gRectStyle.fill = !gRectStyle.fill;
-    renderMeme();
+function onToggleUnderLine(){
+        ToggleUnderLine(gLineIdx);
+        renderMeme();
 }
 
 function onTxtFromInput(){
@@ -217,14 +214,18 @@ function onCloseMenu(){
 }
 
 function onSwitchLine(){
+    const elCurrTxt = document.querySelector('.txt-lines-container .current-line');
     const lines = getMemeLines();
     if(lines[gLineIdx + 1] && lines[gLineIdx + 1].isVisible){
         setMarkedLine(gLineIdx + 1);
         gLineIdx++;
+        elCurrTxt.value = lines[gLineIdx].txt;
         renderMeme();
+        
     } else {
         setMarkedLine(0);
         gLineIdx = 0;
+        elCurrTxt.value = lines[gLineIdx].txt;
         renderMeme();
     }
                
@@ -243,11 +244,24 @@ function onShareImg(){
   }
 
 function onDeleteLine(){
-    deleteLine(gLineIdx);
-    gLineIdx = 0;
-    renderMeme();
+    if(gLineIdx !== 0){
+        deleteLine(gLineIdx);
+        gLineIdx = 0;
+        renderMeme();
+    }
 }
+
+function onClickSmiley(type){
+    const currSmiley = getMemeLines()[gLineIdx].smileys.filter((smiley)=>{
+        smiley.name === type;
+    });
+    currSmiley.isVisible = true;
+}
+
+
+
 /* --------------------------------------- INNER FUNCTIONS ---------------------------------------*/
+
 
 function drawImage(image,x,y,endX,endY) {
     const cds = gCurrCbS; //NOTE: the declaration of this variable is for closure reasons (for the onload function)
@@ -264,6 +278,28 @@ function drawImage(image,x,y,endX,endY) {
     }
 }
 
+function drawUnderLine(idx) {
+    const {x,y} = getLinePos(idx);
+    const currTxt = getLineTxt(idx);
+
+    gCtx.beginPath();
+    drawLinePath(x,(y - (getLineFontSize(idx) + canvasEdgeSize)), 
+    (x + gCtx.measureText(currTxt)), (y - (getLineFontSize(idx)  + canvasEdgeSize)));
+    gCtx.strokeStyle = '##fc0303b3';
+    gCtx.stroke()
+    renderMeme();
+}
+
+function drawSmiley(idObj){
+    const {lineId,smileyId} = idObj;
+    const {x,y} = getLinePos(lineId);
+    const smileySize = getSmileyFromLine(lineId,smileyId).size;
+    const img = new Image();
+    img.src = etSmileyFromLine(lineId,smileyId).url;
+    gCtx.drawImage(img, x , (y + (fontSize + canvasEdgeSize*3)),
+    (endX + fontSize + canvasEdgeSize*3 + smileySize), (endY + smileySize));
+}
+
 function drawText(idx){
     // text padding from the sides
     // txt height\width structure: CANVAS_EDGESIZE || font size || CANVAS_EDGESIZE 
@@ -271,39 +307,10 @@ function drawText(idx){
     const width = gElCanvas.width;
     const height = gElCanvas.height;
     const txt = getLineTxt(idx)
-    let x,y;
+    const {x,y} = getTxtPos(idx, height, width);
     const fontSize = getLineFontSize(idx);
     const fontFamily = getLineFamily(idx);
     const radiusSize = fontSize/2 + canvasEdgeSize;
-    switch (getLineAlign(idx)) {
-        case 'left':
-            if(idx === 0){
-                x = (canvasEdgeSize + radiusSize);
-                y = fontSize + canvasEdgeSize
-            } else if (idx === getMemeLines().length - 1){
-                x = (canvasEdgeSize + radiusSize);
-                y = height - (canvasEdgeSize*3);
-            }
-            break;
-        case 'center':
-            if(idx === 0){
-                x = width/2 - (canvasEdgeSize + radiusSize);
-                y = fontSize + canvasEdgeSize
-            } else if (idx === getMemeLines().length - 1){
-                x = width/2 - (canvasEdgeSize + radiusSize);
-                y = height - canvasEdgeSize*3;
-            }
-            break;
-        case 'right':
-            if(idx === 0){
-                x = width - (canvasEdgeSize + radiusSize);
-                y = fontSize + canvasEdgeSize
-            } else if (idx === getMemeLines().length - 1){
-                x = width - (canvasEdgeSize + radiusSize);
-                y = height - canvasEdgeSize*3;
-            }
-            break;
-    }
 
     gCtx.font = `${fontSize}px ${fontFamily}`;
     gCtx.textAlign = getLineAlign(idx);
@@ -367,6 +374,44 @@ function drawArcPath(x, y, alignment,radiusSize) {
     }
   }
 
+
+function getTxtPos(idx, height, width) {
+    const fontSize = getLineFontSize(idx);
+    const radiusSize = fontSize/2 + canvasEdgeSize;
+    let x,y;
+
+    switch (getLineAlign(idx)) {
+        case 'left':
+            if(idx === 0){
+                x = (canvasEdgeSize + radiusSize);
+                y = fontSize + canvasEdgeSize
+            } else if (idx === getMemeLines().length - 1){
+                x = (canvasEdgeSize + radiusSize);
+                y = height - (canvasEdgeSize*3);
+            }
+            break;
+        case 'center':
+            if(idx === 0){
+                x = width/2 - (canvasEdgeSize + radiusSize);
+                y = fontSize + canvasEdgeSize
+            } else if (idx === getMemeLines().length - 1){
+                x = width/2 - (canvasEdgeSize + radiusSize);
+                y = height - canvasEdgeSize*3;
+            }
+            break;
+        case 'right':
+            if(idx === 0){
+                x = width - (canvasEdgeSize + radiusSize);
+                y = fontSize + canvasEdgeSize
+            } else if (idx === getMemeLines().length - 1){
+                x = width - (canvasEdgeSize + radiusSize);
+                y = height - canvasEdgeSize*3;
+            }
+            break;
+    }
+
+    return {x,y};
+}
 
 function getEventPos(ev) {
     if (TOUCH_EVS.includes(ev.type)) {

@@ -36,13 +36,13 @@
         <section class="search-bar-container flex f-row">
             <input class="search-bar" type="search" placeholder="search" oninput="onSearchFilter(this.value)">
             <div class="search-options flex f-row just-between">
-                <div class="funny" onclick="onSearchFilter('funny')">Funny</div>
-                <div class="politics" onclick="onSearchFilter('politics')">Politics</div>
-                <div class="baby" onclick="onSearchFilter('baby')">Baby</div>
-                <div class="tv-shows" onclick="onSearchFilter('tvshows')">TVshows</div>
-                <div class="smile" onclick="onSearchFilter('smile')">Smile</div>
-                <div class="sport" onclick="onSearchFilter('sport')">Sport</div>
-                <div class="sport" onclick="onSearchFilter('movie')">Movies</div>
+                <div class="funny" onclick="onSearchFilter('funny'); onUpdateFontSize(this)">Funny</div>
+                <div class="politics" onclick="onSearchFilter('politics'); onUpdateFontSize(this)">Politics</div>
+                <div class="baby" onclick="onSearchFilter('baby'); onUpdateFontSize(this)">Baby</div>
+                <div class="tv-shows" onclick="onSearchFilter('tvshows'); onUpdateFontSize(this)">TVshows</div>
+                <div class="smile" onclick="onSearchFilter('smile'); onUpdateFontSize(this)">Smile</div>
+                <div class="sport" onclick="onSearchFilter('sport'); onUpdateFontSize(this)">Sport</div>
+                <div class="sport" onclick="onSearchFilter('movie'); onUpdateFontSize(this)">Movies</div>
             </div>
             <button class="more-btn">More</button>
         </section>
@@ -96,18 +96,18 @@
                     </datalist>
                     <input type="color" class="txt-btn color-picker" oninput="onColorPicked(this)">
                     <button class="txt-btn font-outerline">
-                        <img src="./img/img-general/outerline-icon.jpg" alt="text OuterLine" onclick="onToggleOuterLine()">
+                        <img src="./img/img-general/outerline-icon.jpg" alt="text UnderLine" onclick="onToggleUnderLine()">
                     </button>
                     <button class="txt-btn fill-rect">
-                        <img src="./img/img-general/filltxt-icon.jpg" alt="fill" onclick="onToggleFill()">
+                        <img src="./img/img-general/filltxt-icon.jpg" alt="fill" onclick="">
                     </button>
                 </section>
                 <div class="smileys-container flex f-row just-between">
                     <img class="prev-smiley" src="./img/img-general/prev-icon.jpg">
-                    <img class="smiley-item" src="./img/img-general/smiley-ecstatic.jpg">
-                    <img class="smiley-item" src="./img/img-general/smiley-awkward.jpg">
-                    <img class="smiley-item" src="./img/img-general/smiley-awe.jpg">
-                    <img class="smiley-item" src="./img/img-general/smiley-silly.jpg">
+                    <img class="smiley-item" src="./img/img-general/smiley-ecstatic.jpg" onclick="onClickSmiley('ecstatic')">
+                    <img class="smiley-item" src="./img/img-general/smiley-awkward.jpg" onclick="onClickSmiley('awkward')">
+                    <img class="smiley-item" src="./img/img-general/smiley-awe.jpg" onclick="onClickSmiley('awe')">
+                    <img class="smiley-item" src="./img/img-general/smiley-silly.jpg" onclick="onClickSmiley('silly')">
                     <img class="prev-smiley" src="./img/img-general/next-icon.jpg">
                 </div>
                 <button class="share-btn export-btn">
