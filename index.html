@@ -34,7 +34,16 @@
     
     <main class="gallery-container full">
         <section class="search-bar-container flex f-row">
-            <input class="search-bar" type="search" placeholder="search" oninput="onSearchFilter(this.value)">
+            <input class="search-bar" type="search" list="keyword-search" placeholder="search" oninput="onSearchFilter(this.value)">
+            <datalist id="keyword-search">
+                <option value="funny"></option>
+                <option value="politics"></option>
+                <option value="baby"></option>
+                <option value="tvshows"></option>
+                <option value="smile"></option>
+                <option value="sport"></option>
+                <option value="movies"></option>
+            </datalist>
             <div class="search-options flex f-row just-between">
                 <div class="funny" onclick="onSearchFilter('funny'); onUpdateFontSize(this)">Funny</div>
                 <div class="politics" onclick="onSearchFilter('politics'); onUpdateFontSize(this)">Politics</div>
@@ -89,11 +98,13 @@
                     <button class="txt-btn align-right" onclick="onAlignText('right')">
                         <img src="./img/img-general/align-right-icon.jpg" alt="align right">
                     </button>
-                    <input class="font-selection" list="fonts-list" placeholder="poppins" oninput="onFontSelect()">
-                    <datalist id="fonts-list">
-                        <option value="poppins"></option>
-                        <option value="impacted"></option>
-                    </datalist>
+                    <select class="font-selection" oninput="onFontSelect()">
+                        <option value="poppin">poppin</option>
+                        <option value="poppins-r">poppins-r</option>
+                        <option value="mercedes">impacted</option>
+                        <option value="mystery">mystery</option>
+                    </select>
+                    
                     <input type="color" class="txt-btn color-picker" oninput="onColorPicked(this)">
                     <button class="txt-btn font-outerline">
                         <img src="./img/img-general/outerline-icon.jpg" alt="text UnderLine" onclick="onToggleUnderLine()">

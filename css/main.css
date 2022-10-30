@@ -23,24 +23,29 @@
     --cls14: #ffffff;
     --cls15: #ffffff31;
 
-    --after-mg: url('../img-general/magnifying-glass-icon.png');
+    /* --after-mg: url('./img-general/magnifying-glass-icon.png'); */
 }
 
 /* TYPOGRAPHY */
 
 @font-face {
     font-family: poppins-r;
-    src: url(/fonts/Poppins/Poppins-Regular.ttf);
+    src: url(../fonts/Poppins/Poppins-Regular.ttf);
 }
 
 @font-face {
     font-family: poppin;
-    src: url(/fonts/Poppins/Poppins-Medium.ttf);
+    src: url(../fonts/Poppins/Poppins-Medium.ttf);
 }
 
 @font-face {
     font-family: impacted;
-    src: url(/fonts/Impact/impacted.ttf);
+    src: url(../fonts/Impact/Impacted.ttf);
+}
+
+@font-face {
+    font-family: mystery;
+    src: url(../fonts/Mystery/MysteryQuest-Regular.ttf);
 }
 
 
@@ -73,6 +78,22 @@ body{
 
 .f-col{
     flex-direction: column;
+}
+
+.fam-poppins-r{
+    font-family: poppins-r, serif;
+}
+
+.fam-poppins{
+    font-family: poppins, sans-serif;
+}
+
+.fam-impacted{
+    font-family: impacted, sans-serif;
+}
+
+.fam-impacted{
+    font-family: mystery, sans-serif;
 }
 
 

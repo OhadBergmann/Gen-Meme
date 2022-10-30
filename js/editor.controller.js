@@ -161,8 +161,8 @@ function onFontSelect(){
     setLineFamily(gLineIdx, FontFamily);
 
     elInput.classList.value = `current-line txt-Left`;
-    if(!elInput.classList.contains(`toggle-${FontFamily}`)){
-        elInput.classList.add(`toggle-${FontFamily}`);
+    if(!elInput.classList.contains(`fam-${FontFamily}`)){
+        elInput.classList.add(`fam-${FontFamily}`);
     }
 
     renderMeme();
