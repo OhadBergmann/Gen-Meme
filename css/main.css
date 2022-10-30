@@ -125,6 +125,10 @@ ul,li{
     transform: scaleY(0) !important;
 }
 
+.full{
+    margin-inline: 15px 15px;
+}
+
 /* small */
 @media (min-width: 450px)
 {
