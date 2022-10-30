@@ -166,7 +166,7 @@
 
 /* DESKTOP SIZE EX-LARGE */
 
-@media (min-width: 1600px){
+@media (min-width: 1300px){
     .gallery-container .img-grid-container{
         grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
         grid-template-rows: repeat(auto-fit, minmax(200px, 300px));

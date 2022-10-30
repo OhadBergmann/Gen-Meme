@@ -9,7 +9,6 @@ let gLineIdx = 0;
 let gCurrCbS = null;
 let gRectStyle = {fill: false, outer: true};
 
-
 function renderMeme(){
     gCurrCbS = [];
     getMemeLines().forEach((line)=>{
@@ -424,4 +423,19 @@ function resizeCanvas() {
     updateLinesPos(1,(canvasEdgeSize + getLineFontSize(1)/2 + canvasEdgeSize),
     (gCtx.height - (getLineFontSize(1) + canvasEdgeSize*4)));
     renderMeme();
+  }
+
+
+  function resizeDefaultFontSize(){
+    if(document.body.clientWidth  <= 450){
+        defaultFontSize = 16;
+    } else if(document.body.clientWidth  <= 750){
+        defaultFontSize = 20;
+    } else if(document.body.clientWidth  <= 1050){
+        defaultFontSize = 30;
+    } else if(document.body.clientWidth  <= 1300){
+        defaultFontSize = 40;
+    } else {
+        defaultFontSize = 80;
+    }
   }

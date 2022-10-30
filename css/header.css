@@ -205,7 +205,7 @@
 
 /* DESKTOP SIZE LARGE */
 
-@media (min-width: 1060px)
+@media (min-width: 1050px)
 {
     .header-container{
         border-radius: 7% / 50%;
@@ -220,6 +220,6 @@
 
 /* DESKTOP SIZE EX-LARGE */
 
-@media (min-width: 1600px){
+@media (min-width: 1300px){
 
 }

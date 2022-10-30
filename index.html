@@ -34,14 +34,15 @@
     
     <main class="gallery-container">
         <section class="search-bar-container flex f-row">
-            <input class="search-bar" type="search" placeholder="search" oninput="onSearch()">
+            <input class="search-bar" type="search" placeholder="search" oninput="onSearchFilter(this.value)">
             <div class="search-options flex f-row just-between">
-                <div class="funny">Funny</div>
-                <div class="politics">Politics</div>
-                <div class="baby">Baby</div>
-                <div class="tv-shows">TVshows</div>
-                <div class="smile">Smile</div>
-                <div class="sport">Sport</div>
+                <div class="funny" onclick="onSearchFilter('funny')">Funny</div>
+                <div class="politics" onclick="onSearchFilter('politics')">Politics</div>
+                <div class="baby" onclick="onSearchFilter('baby')">Baby</div>
+                <div class="tv-shows" onclick="onSearchFilter('tvshows')">TVshows</div>
+                <div class="smile" onclick="onSearchFilter('smile')">Smile</div>
+                <div class="sport" onclick="onSearchFilter('sport')">Sport</div>
+                <div class="sport" onclick="onSearchFilter('movie')">Movies</div>
             </div>
             <button class="more-btn">More</button>
         </section>
@@ -54,22 +55,24 @@
             <img src="./img/img-general/x-icon.png" class="quit-editor" onclick="OnExitEditor()">
             <canvas class="meme-canvas"></canvas>
             <section class="txt-editor-container grid">
-                <input class="current-line txt-Left" type="text" placeholder="   enter your line" oninput="onTxtFromInput()">
-                <button class="line-btn switch-Line" onclick="onSwitchLine()">
-                    <img src="./img/img-general/switch-lines-icon.png" alt="">
-                </button>
-                <button class="line-btn add-line-btn" onclick="onUserAddLine()">
-                    <img src="./img/img-general/add-line-icon.png" alt="">
-                </button>
-                <button class="line-btn delete-btn" onclick="onDeleteLine()">
-                    <img src="./img/img-general/delete-icon.png" alt="">
-                </button>
-                <button class="line-btn down-arrow-btn">
-                    <img src="./img/img-general/down-arrow-icon.png" alt="">
-                </button>
-                <button class="line-btn up-arrow-btn">
-                    <img src="./img/img-general/up-arrow-icon.png" alt="">
-                </button>
+                <section class="txt-lines-container grid">
+                    <input class="current-line txt-Left" type="text" placeholder="   enter your line" oninput="onTxtFromInput()">
+                    <button class="line-btn switch-Line" onclick="onSwitchLine()">
+                        <img src="./img/img-general/switch-lines-icon.png" alt="">
+                    </button>
+                    <button class="line-btn add-line-btn" onclick="onUserAddLine()">
+                        <img src="./img/img-general/add-line-icon.png" alt="">
+                    </button>
+                    <button class="line-btn delete-btn" onclick="onDeleteLine()">
+                        <img src="./img/img-general/delete-icon.png" alt="">
+                    </button>
+                    <button class="line-btn down-arrow-btn">
+                        <img src="./img/img-general/down-arrow-icon.png" alt="">
+                    </button>
+                    <button class="line-btn up-arrow-btn">
+                        <img src="./img/img-general/up-arrow-icon.png" alt="">
+                    </button>
+                </section>
                 <section class="txt-style-container grid">
                     <button class="txt-btn increase" onclick="onFontSizeChange(1)">
                         <img src="./img/img-general/increase-icon.jpg" alt="increase">
