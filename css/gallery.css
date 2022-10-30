@@ -9,8 +9,6 @@
     border-radius:0.75rem;
 }
 
-
-
 .search-options .funny{
     font-size: 14px;
 }
@@ -45,15 +43,6 @@
     padding-block-start: 50px;
     padding-inline: 0px;
     
-}
-
-
-.img-grid-container .item-container{
-    border-radius: 0.75rem;
-    padding-inline: 0;
-    object-fit: cover;
-    width: 100%;
-    height: auto;
 }
 
 .item-container .square-img{
