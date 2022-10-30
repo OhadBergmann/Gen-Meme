@@ -319,6 +319,9 @@
     grid-row: 4 / 5;
     background-color: var(--cls11);
     cursor: pointer;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
 }
 
 .more-options-container .share-btn::before{

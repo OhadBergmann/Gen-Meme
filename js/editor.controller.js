@@ -231,12 +231,9 @@ function onSwitchLine(){
                
 }
 
-function onDownloadImg() {
-    const imgContent = gElCanvas.toDataURL('image/jpeg');
-    const link = document.createElement('a');
-    link.href = imgContent;
-    link.download = 'my-meme.jpg';
-    link.click();
+function onCanvasDownload(elBtn) {
+    const dataUrl = gElCanvas.toDataURL('image/jpeg');
+    elBtn.href = dataUrl;
   }
 
 function onShareImg(){
