@@ -244,7 +244,7 @@ function onShareImg(){
   }
 
 function onDeleteLine(){
-    if(gLineIdx !== 0){
+    if(getMemeLines().length > 1){
         deleteLine(gLineIdx);
         gLineIdx = 0;
         renderMeme();

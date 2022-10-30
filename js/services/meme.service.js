@@ -97,14 +97,14 @@ function getImageFromId(id){
     return null;
 }
 
-function deleteLine(idx, edgesize){
+function deleteLine(idx){
     if(gCurrMeme.lines[idx]){
         gCurrMeme.lines.splice(idx,1);
     }
 
-    gCurrMeme.lines.forEach((line, index)=>{
-        line.lineIdx = index;
-    });
+    for(let i = 0; i <gCurrMeme.lines.length; i++){
+        gCurrMeme.lines[i].lineIdx = i;
+    }
 
     gMarkedLine = 0;
 }

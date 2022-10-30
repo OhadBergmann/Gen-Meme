@@ -64,7 +64,8 @@
             <img src="./img/img-general/x-icon.png" class="quit-editor" onclick="OnExitEditor()">
             <canvas class="meme-canvas"></canvas>
             <section class="txt-editor-container grid">
-                <section class="txt-lines-container grid">
+
+                <section class="txt-lines-container grid marg-20">
                     <input class="current-line txt-Left" type="text" placeholder="   enter your line" oninput="onTxtFromInput()">
                     <button class="line-btn switch-Line" onclick="onSwitchLine()">
                         <img src="./img/img-general/switch-lines-icon.png" alt="">
@@ -82,7 +83,8 @@
                         <img src="./img/img-general/up-arrow-icon.png" alt="">
                     </button>
                 </section>
-                <section class="txt-style-container grid">
+
+                <section class="txt-style-container grid marg-20">
                     <button class="txt-btn increase" onclick="onFontSizeChange(1)">
                         <img src="./img/img-general/increase-icon.jpg" alt="increase">
                     </button>
@@ -104,7 +106,6 @@
                         <option value="mercedes">impacted</option>
                         <option value="mystery">mystery</option>
                     </select>
-                    
                     <input type="color" class="txt-btn color-picker" oninput="onColorPicked(this)">
                     <button class="txt-btn font-outerline">
                         <img src="./img/img-general/outerline-icon.jpg" alt="text UnderLine" onclick="onToggleUnderLine()">
@@ -113,20 +114,20 @@
                         <img src="./img/img-general/filltxt-icon.jpg" alt="fill" onclick="">
                     </button>
                 </section>
-                <div class="smileys-container flex f-row just-between">
-                    <img class="prev-smiley" src="./img/img-general/prev-icon.jpg">
-                    <img class="smiley-item" src="./img/img-general/smiley-ecstatic.jpg" onclick="onClickSmiley('ecstatic')">
-                    <img class="smiley-item" src="./img/img-general/smiley-awkward.jpg" onclick="onClickSmiley('awkward')">
-                    <img class="smiley-item" src="./img/img-general/smiley-awe.jpg" onclick="onClickSmiley('awe')">
-                    <img class="smiley-item" src="./img/img-general/smiley-silly.jpg" onclick="onClickSmiley('silly')">
-                    <img class="prev-smiley" src="./img/img-general/next-icon.jpg">
-                </div>
-                <button class="share-btn export-btn">
-                    <img src="./img/img-general/share-icon.png" alt="share" onclick="onShareImg()" >Share
-                </button>
-                <button class="download-btn export-btn">
-                    <img src="./img/img-general/download-icon.png" alt="download" onclick="onDownloadImg()">Download
-                </button>
+
+                <section class="more-options-container grid marg-20">
+                    <div class="smileys-container flex f-row just-between">
+                        <img class="prev-smiley" src="./img/img-general/prev-icon.jpg">
+                        <img class="smiley-item" src="./img/img-general/smiley-ecstatic.jpg" onclick="onClickSmiley('ecstatic')">
+                        <img class="smiley-item" src="./img/img-general/smiley-awkward.jpg" onclick="onClickSmiley('awkward')">
+                        <img class="smiley-item" src="./img/img-general/smiley-awe.jpg" onclick="onClickSmiley('awe')">
+                        <img class="smiley-item" src="./img/img-general/smiley-silly.jpg" onclick="onClickSmiley('silly')">
+                        <img class="prev-smiley" src="./img/img-general/next-icon.jpg">
+                    </div>
+                    <button class="share-btn export-btn">Share</button>
+                    <button class="download-btn export-btn">Download</button>
+                </section>
+                
             </section>
         </div>
     </section>

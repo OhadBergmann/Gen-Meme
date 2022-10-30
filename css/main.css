@@ -150,6 +150,11 @@ ul,li{
     margin-inline: 15px 15px;
 }
 
+.marg-20{
+    margin-inline: 20px;
+}
+
+
 /* small */
 @media (min-width: 450px)
 {
