@@ -14,7 +14,7 @@ function renderMeme(){
     getMemeLines().forEach((line)=>{
         if(line.isVisible){
             gCurrCbS.push({func: drawText, id: line.lineIdx});
-            console.log('red')
+            
             if(line.hasUnderLine) {gCurrCbS.push({func: drawUnderLine, id: line.lineIdx});}
 
             line.smileys.forEach((smiley, index)=>{
@@ -256,6 +256,7 @@ function onClickSmiley(type){
         smiley.name === type;
     });
     currSmiley.isVisible = true;
+    renderMeme();
 }
 
 
@@ -281,13 +282,11 @@ function drawImage(image,x,y,endX,endY) {
 function drawUnderLine(idx) {
     const {x,y} = getLinePos(idx);
     const currTxt = getLineTxt(idx);
-
     gCtx.beginPath();
     drawLinePath(x,(y - (getLineFontSize(idx) + canvasEdgeSize)), 
     (x + gCtx.measureText(currTxt)), (y - (getLineFontSize(idx)  + canvasEdgeSize)));
     gCtx.strokeStyle = '##fc0303b3';
     gCtx.stroke()
-    renderMeme();
 }
 
 function drawSmiley(idObj){
