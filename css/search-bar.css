@@ -6,6 +6,47 @@ section.search-bar{
     margin-inline: auto auto;
 }
 
+.search-bar-container{
+    width: 50%;
+    height: 100%;
+    margin-block-start: 100px;
+}
+.search-bar-container .search-bar{
+    background-color: var(--cls2);
+    height: 20px;
+    width: 25vw;
+    display: inline-block;
+
+    border-radius: 5% / 50%;
+    padding-left: 5px;
+    color: var(--cls14);
+    font-size: 1rem;
+    border: 1px solid var(--cls1);
+    font-family: poppins-r;
+}
+
+.search-bar-container .search-bar::after{
+    content: var(--after-mg);
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.search-bar-container .search-options{
+    height: 20px;
+    width: auto;
+    background-color: var(--cls5);
+    border-radius: 5% / 50%;
+    align-items: center;
+    align-self: center;
+}
+
+.search-bar-container .search-options span{
+    text-align: center;
+    color: var(--cls14);
+    padding-inline: 2px;
+}
+
 
 
 /* --------------------------------------- RESPONSIVE DESIGN ---------------------------------------*/
@@ -34,12 +75,14 @@ section.search-bar{
 
 @media (min-width: 1060px)
 {
-    
+    .search-options{
+        align-items: center;
+    }
 }
 
 
 /* DESKTOP SIZE EX-LARGE */
 
-@media (min-width: 1600px){
-
+@media (min-width: 1300px){
+    
 }
