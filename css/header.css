@@ -100,7 +100,7 @@
 }
 
 .nav-bar-container li a.link:hover{
-    background-color: var(--cls15);
+    background-color: var(--cls14);
     font-weight: 700;
     color: var(--cls9);
     height: 70%;
